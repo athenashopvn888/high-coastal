@@ -134,12 +134,12 @@ function ItemCard({ title, accent, items, hiIdx, preset }: {
 
 /* -- TICKER -- */
 const TICKER_SLIDES = [
-  "🔥 {{STORE_NAME}} — {{STREET_ADDRESS}}, {{CITY}}",
+  "🔥 High Coastal Cannabis — 1720 Lakeshore Rd W, Mississauga",
   "200+ Strains In Stock",
   "Open 24 Hours",
   "Pre-Rolls · Edibles · Vapes · Concentrates",
   "ALL SALES ARE FINAL",
-  "🎮 Play Games at {{DOMAIN_NAME}}/games",
+  "🎮 Play Games at highcoastalcannabis.com/games",
 ];
 
 function VerticalTicker() {
