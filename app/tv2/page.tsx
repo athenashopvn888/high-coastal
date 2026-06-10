@@ -63,8 +63,24 @@ function ItemCard({ title, accent, items, hiIdx, preset }: {
         <div className={styles.mediaSide}>
           <div className={styles.mediaFrame}>
             <div className={styles.mediaViewport}>
-              {prevImg && <img src={prevImg} alt="" className={`${styles.budImg} ${styles.budImgFadeOut}`} referrerPolicy="no-referrer" />}
-              {fadeImg && <img key={fadeImg} src={fadeImg} alt={hi?.name||""} className={`${styles.budImg} ${styles.budImgFadeIn}`} referrerPolicy="no-referrer" />}
+              {prevImg && <img src={prevImg} alt="" className={`${styles.budImg} ${styles.budImgFadeOut}`} referrerPolicy="no-referrer" 
+            onError={(e) => {
+              const t = e.currentTarget;
+              if (t.src.indexOf('r2.dev') !== -1 || t.src.indexOf('images.torontodispensaryhub.com') !== -1) {
+                const filename = t.src.split('/').pop();
+                t.src = 'https://athena-cannabis-images.vercel.app/products/' + filename;
+              }
+            }}
+          />}
+              {fadeImg && <img key={fadeImg} src={fadeImg} alt={hi?.name||""} className={`${styles.budImg} ${styles.budImgFadeIn}`} referrerPolicy="no-referrer" 
+            onError={(e) => {
+              const t = e.currentTarget;
+              if (t.src.indexOf('r2.dev') !== -1 || t.src.indexOf('images.torontodispensaryhub.com') !== -1) {
+                const filename = t.src.split('/').pop();
+                t.src = 'https://athena-cannabis-images.vercel.app/products/' + filename;
+              }
+            }}
+          />}
             </div>
           </div>
           <div className={styles.detailCard}>
@@ -118,12 +134,12 @@ function ItemCard({ title, accent, items, hiIdx, preset }: {
 
 /* -- TICKER -- */
 const TICKER_SLIDES = [
-  "🔥 High Coastal Cannabis — 1720 Lakeshore Rd W, Mississauga",
+  "🔥 {{STORE_NAME}} — {{STREET_ADDRESS}}, {{CITY}}",
   "200+ Strains In Stock",
   "Open 24 Hours",
   "Pre-Rolls · Edibles · Vapes · Concentrates",
   "ALL SALES ARE FINAL",
-  "🎮 Play Games at highcoastalcannabis.com/games",
+  "🎮 Play Games at {{DOMAIN_NAME}}/games",
 ];
 
 function VerticalTicker() {
@@ -211,10 +227,7 @@ export default function TV2Page() {
   return (
     <div className={styles.tvPage}>
       <div className={styles.wrap} ref={wrapRef}>
-        {/* TV BANNER */}
-        <div style={{margin:"-40px -40px 30px -40px", width:"calc(100% + 80px)"}}>
-          <img src="/banners/ItemTv.webp" alt="High Coastal Cannabis Items TV Menu" style={{width:"100%",display:"block"}} />
-        </div>
+        
         {/* GRID */}
         <div className={styles.stage}>
           <div className={styles.grid}>
@@ -246,7 +259,7 @@ export default function TV2Page() {
             })}
           </div>
         </div>
-        <VerticalTicker />
+        
       </div>
       <div className={styles.lastUpdated}>Updated: {lastUpdate}</div>
     </div>
