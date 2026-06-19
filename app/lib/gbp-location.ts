@@ -25,7 +25,7 @@ export const gbpLocation = {
   ],
   menuUrl: "/",
   directionsUrl: "https://maps.google.com/?q=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5",
-  mapEmbedUrl: "https://maps.google.com/maps?q=High%20Coastal%20Cannabis%201720%20Lakeshore%20Rd%20W%2C%20Mississauga%2C%20ON%20L5J%201J5&t=&z=15&ie=UTF8&iwloc=&output=embed",
+  mapEmbedUrl: "https://maps.google.com/maps?q=1720%20Lakeshore%20Rd%20W%2C%20Mississauga%2C%20ON%20L5J%201J5&t=&z=15&ie=UTF8&iwloc=&output=embed",
   latitude: "43.5177",
   longitude: "-79.6220",
   hours: ["Open 24 Hours"],
