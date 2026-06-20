@@ -191,14 +191,6 @@ export default function BlogContent() {
             ))}
           </div>
           <div className={styles.reviewsCta}>
-            <a
-              href="https://maps.google.com/?q=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.reviewsBtn}
-            >
-              📍 See All Reviews on Google
-            </a>
           </div>
         </div>
       </section>

@@ -44,14 +44,6 @@ export default function ContactPage() {
                 <br />
                 <span className={styles.infoMuted}>Lakeshore Rd W & Clarkson Rd N</span>
               </p>
-              <a
-                href="https://maps.google.com/?q=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.infoBtn}
-              >
-                Get Directions →
-              </a>
             </div>
 
             {/* Hours */}
@@ -128,16 +120,6 @@ export default function ContactPage() {
 
           {/* Map */}
           <div className={styles.mapSection}>
-            <iframe
-              src="https://maps.google.com/maps?q=1720%20Lakeshore%20Rd%20W,+Mississauga,+ON+L5J%201J5&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="High Coastal Cannabis — 1720 Lakeshore Rd W, Mississauga"
-            ></iframe>
           </div>
         </div>
       </section>

@@ -101,20 +101,9 @@ const jsonLd = {
       closes: "23:59",
     },
   ],
-  sameAs: [
-    "https://maps.google.com/?q=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5",
-    "https://maps.google.com/?q=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5",
-  ],
-  hasMap: "https://maps.google.com/?q=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5",
   areaServed: {
     "@type": "City",
     name: "Mississauga",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "15",
-    bestRating: "5",
   },
 };
 

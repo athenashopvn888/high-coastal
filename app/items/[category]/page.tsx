@@ -123,14 +123,6 @@ export default async function ItemsCategoryPage({
             <p className={styles.visitText}>
               1720 Lakeshore Rd W, Mississauga, ON L5J 1J5 · Open 24 Hours
             </p>
-            <a
-              href="https://maps.google.com/?q=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.visitBtn}
-            >
-              📍 Get Directions
-            </a>
           </div>
         </div>
       </section>

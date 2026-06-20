@@ -103,26 +103,8 @@ export default async function SeoLandingPage({
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Find Us</h2>
             <div className={styles.mapWrap}>
-              <iframe
-                src="https://maps.google.com/maps?q=1720%20Lakeshore%20Rd%20W,+Mississauga,+ON+L5J%201J5&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="350"
-                style={{ border: 0, borderRadius: "var(--radius-lg)" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="High Coastal Cannabis — 1720 Lakeshore Rd W, Mississauga"
-              />
             </div>
             <div className={styles.visitBtns}>
-              <a
-                href="https://maps.google.com/?q=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.visitBtn}
-              >
-                📍 Get Directions
-              </a>
             </div>
           </div>
 
