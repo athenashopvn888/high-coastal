@@ -5,11 +5,11 @@ import AgeGate from "./components/AgeGate";
 export const metadata: Metadata = {
   metadataBase: new URL("https://highcoastalcannabis.com"),
   title: {
-    default: "High Coastal Cannabis — Premium Cannabis Dispensary, Mississauga",
+    default: "High Coastal Cannabis | Mississauga Dispensary",
     template: "%s | High Coastal Cannabis",
   },
   description:
-    "Shop 200+ premium cannabis strains at High Coastal Cannabis. Exotic, Premium, AAA+, AA & Budget flower from $3/g. Mississauga's uplifting dispensary at 1720 Lakeshore Rd W. Open 24 Hours.",
+    "High Coastal Cannabis is a Mississauga cannabis dispensary on Lakeshore Rd W with adult 19+ store info and category browsing for flower, pre-rolls, vapes, edibles, concentrates, and accessories. Open 24 Hours.",
   keywords: [
     "cannabis dispensary Mississauga",
     "weed store Mississauga",
