@@ -25,7 +25,7 @@ export const STORE_BLOG_CONFIG = {
   storeCode: "LC01",
   storeName: "High Coastal Cannabis",
   city: "Mississauga",
-  domain: "highcoastalcannabis.com",
+  domain: "www.highcoastalcannabis.com",
   storePath: "/weed-dispensary-mississauga",
 };
 

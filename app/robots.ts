@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://highcoastalcannabis.com/sitemap.xml",
+    sitemap: "https://www.highcoastalcannabis.com/sitemap.xml",
   };
 }
