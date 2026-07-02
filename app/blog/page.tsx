@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import BlogContent from "./BlogContent";
+import { STORE_BLOG_CONFIG } from "./staticPosts";
 
 export const metadata: Metadata = {
-  title: "Cannabis Blog & Guides — High Coastal Cannabis | Mississauga",
-  description: "Read the latest strain reviews, dosing guides, and cannabis news from High Coastal Cannabis in Mississauga.",
+  title: `${STORE_BLOG_CONFIG.storeName} Blog | Adult 19+ Store Guides`,
+  description: `Read adult 19+ store guides and local visit-planning notes from ${STORE_BLOG_CONFIG.storeName}.`,
   alternates: {
-    canonical: "https://highcoastalcannabis.com/blog",
+    canonical: `https://${STORE_BLOG_CONFIG.domain}/blog`,
   },
 };
 
