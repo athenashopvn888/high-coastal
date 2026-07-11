@@ -6,27 +6,20 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.grid}>
-          {/* Column 1 — Store Description */}
           <div className={styles.col}>
-            <div className={styles.brand}>
-              HIGH COASTAL CANNABIS
-            </div>
+            <div className={styles.brand}>HIGH COASTAL CANNABIS</div>
             <p className={styles.desc}>
               Your Local Cannabis Dispensary At 1720 Lakeshore Rd W, Mississauga. Visit
               High Coastal Cannabis For Premium Flower, Edibles, Vapes &amp; More.
               Open 24 Hours.
             </p>
             <div className={styles.buttons}>
-              <a
-                href="tel:+12894017550"
-                className={styles.btnPrimary}
-              >
+              <a href="tel:+12894017550" className={styles.btnPrimary}>
                 Call Now
               </a>
             </div>
           </div>
 
-          {/* Column 2 — Contact Info */}
           <div className={styles.col}>
             <h3 className={styles.colTitle}>Contact Info</h3>
             <div className={styles.infoBlock}>
@@ -37,7 +30,11 @@ export default function Footer() {
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Phone:</span>
-              <span><a href="tel:+12894017550" style={{color: "inherit"}}>(289) 401-7550</a></span>
+              <span>
+                <a href="tel:+12894017550" style={{ color: "inherit" }}>
+                  (289) 401-7550
+                </a>
+              </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Hours:</span>
@@ -45,7 +42,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 3 — Quick Links */}
           <div className={styles.col}>
             <h3 className={styles.colTitle}>Quick Links</h3>
             <nav className={styles.links}>
@@ -61,10 +57,10 @@ export default function Footer() {
               <Link href="/resources">Resources</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/delivery">Delivery (Coming Soon)</Link>
-              <Link href="/info/york-weed-dispensary">Mississauga Dispensary</Link>
-              <Link href="/info/cheap-weed-york">Cheap Weed Mississauga</Link>
-              <Link href="/info/native-cigarettes-york">Native Cigarettes</Link>
-              <Link href="/info/weed-store-near-mississauga">Weed Store Near Mississauga</Link>
+              <Link href="/info/mississauga-weed-dispensary">Mississauga Dispensary</Link>
+              <Link href="/info/cheap-weed-mississauga">Cheap Weed Mississauga</Link>
+              <Link href="/info/native-cigarettes-mississauga">Native Cigarettes</Link>
+              <Link href="/info/weed-store-near-clarkson-lakeshore">Weed Store Near Clarkson</Link>
               <Link href="/weed-dispensary-mississauga/">High Coastal Cannabis Weed Dispensary in Mississauga</Link>
               <Link href="/contact">Contact Us</Link>
             </nav>
@@ -73,7 +69,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <p>
-            © {new Date().getFullYear()} High Coastal Cannabis. Must be 19+ to
+            (c) {new Date().getFullYear()} High Coastal Cannabis. Must be 19+ to
             enter. Please consume responsibly.
           </p>
         </div>
