@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     locale: "en_CA",
     url: "https://highcoastalcannabis.com",
     siteName: "High Coastal Cannabis",
-    title: "High Coastal Cannabis — Premium Mississauga Cannabis Dispensary",
+    title: "High Coastal Cannabis - Mississauga Cannabis Dispensary",
     description:
       "200+ strains from $3/g. Exotic to Budget. Mississauga's uplifting dispensary at 1720 Lakeshore Rd W. Open 24 Hours.",
     images: [
@@ -39,13 +39,13 @@ export const metadata: Metadata = {
         url: "https://highcoastalcannabis.com/wp-content/uploads/2026/04/46Oi5.jpg",
         width: 1200,
         height: 630,
-        alt: "High Coastal Cannabis — Premium Cannabis Dispensary Mississauga",
+        alt: "High Coastal Cannabis - Cannabis Dispensary Mississauga",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "High Coastal Cannabis — Mississauga's Uplifting Dispensary",
+    title: "High Coastal Cannabis - Mississauga Dispensary",
     description: "200+ strains from $3/g. Open 24 Hours at 1720 Lakeshore Rd W, Mississauga.",
     images: ["https://highcoastalcannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
   },
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   },
 };
 
-/* ── JSON-LD Structured Data ── */
+/* JSON-LD Structured Data */
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Store",
