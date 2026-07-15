@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Visit High Coastal Cannabis at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Open 24 hours, 7 days a week. Walk-ins welcome.",
   alternates: {
-    canonical: "https://highcoastalcannabis.com/contact",
+    canonical: "https://www.highcoastalcannabis.com/contact",
   },
   openGraph: {
     title: "Contact High Coastal Cannabis — Mississauga Dispensary",
@@ -95,16 +95,16 @@ export default function ContactPage() {
                 <br />
                 Just walk in and our staff will
                 <br />
-                help you find the perfect strain.
+                help you compare current menu details.
               </p>
               <div className={styles.featureList}>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}>✓</span>
-                  200+ strains in stock
+                  Flower tiers and menu categories
                 </div>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}>✓</span>
-                  Lab-tested &amp; safe
+                  Current package details
                 </div>
                 <div className={styles.featureItem}>
                   <span className={styles.featureCheck}>✓</span>

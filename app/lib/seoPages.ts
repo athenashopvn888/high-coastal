@@ -29,7 +29,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "What To Check Before Visiting",
-        "body": "Confirm the store page, directions, contact options, listed hours, and menu category first. For current products, prices, or availability, use the menu or ask staff before leaving."
+        "body": "Confirm the store page, directions, contact options, listed hours, and menu category first. For current products, prices, or menu details, use the menu or ask staff before leaving."
       }
     ],
     "faqs": [
@@ -65,7 +65,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "What To Check Before Visiting",
-        "body": "Confirm the store page, directions, contact options, listed hours, and menu category first. For current products, prices, or availability, use the menu or ask staff before leaving."
+        "body": "Confirm the store page, directions, contact options, listed hours, and menu category first. For current products, prices, or menu details, use the menu or ask staff before leaving."
       }
     ],
     "faqs": [
@@ -97,7 +97,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "Compare The Current Menu",
-        "body": "Look at product name, format, weight, posted price, and item details. Menus change, so use this page for the shopping method and the live menu or staff for current details."
+        "body": "Look at product name, format, weight, posted price, and item details. Menus change, so use this page for the shopping method and the current menu or staff for current details."
       },
       {
         "heading": "Know When To Move Up",
@@ -115,7 +115,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "Where can shoppers confirm current prices?",
-        "a": "Use the current menu or ask staff. A guide should not pretend prices and availability never move."
+        "a": "Use the current menu or ask staff. A guide should not pretend prices and menu details never move."
       }
     ]
   },
@@ -133,7 +133,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "Compare The Current Menu",
-        "body": "Look at product name, format, weight, posted price, and item details. Menus change, so use this page for the shopping method and the live menu or staff for current details."
+        "body": "Look at product name, format, weight, posted price, and item details. Menus change, so use this page for the shopping method and the current menu or staff for current details."
       },
       {
         "heading": "Know When To Move Up",
@@ -151,7 +151,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "Where can shoppers confirm current prices?",
-        "a": "Use the current menu or ask staff. A guide should not pretend prices and availability never move."
+        "a": "Use the current menu or ask staff. A guide should not pretend prices and menu details never move."
       }
     ]
   },
@@ -182,8 +182,8 @@ export const SEO_PAGES: SeoPageData[] = [
         "a": "The menu may show Native smoke brands such as Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, and Canadian Menthol. Confirm current options before visiting."
       },
       {
-        "q": "Are $25 cartons guaranteed?",
-        "a": "No. This page points shoppers toward menu listings where $25 carton-style options are shown. Confirm current price and availability before choosing."
+        "q": "Where can I confirm carton details?",
+        "a": "No. This page points shoppers toward menu listings where $25 carton-style options are shown. Confirm current price and menu details before choosing."
       },
       {
         "q": "Where should shoppers start?",
@@ -218,8 +218,8 @@ export const SEO_PAGES: SeoPageData[] = [
         "a": "The menu may show Native smoke brands such as Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, and Canadian Menthol. Confirm current options before visiting."
       },
       {
-        "q": "Are $25 cartons guaranteed?",
-        "a": "No. This page points shoppers toward menu listings where $25 carton-style options are shown. Confirm current price and availability before choosing."
+        "q": "Where can I confirm carton details?",
+        "a": "No. This page points shoppers toward menu listings where $25 carton-style options are shown. Confirm current price and menu details before choosing."
       },
       {
         "q": "Where should shoppers start?",
@@ -250,7 +250,7 @@ export const SEO_PAGES: SeoPageData[] = [
     ],
     "faqs": [
       {
-        "q": "What is the best first step for a Clarkson / Lakeshore visit?",
+        "q": "What is the first step for a Clarkson / Lakeshore visit?",
         "a": "Open the High Coastal Cannabis store page, then use the current menu category that matches the visit."
       },
       {
@@ -286,7 +286,7 @@ export const SEO_PAGES: SeoPageData[] = [
     ],
     "faqs": [
       {
-        "q": "What is the best first step for a Clarkson / Lakeshore visit?",
+        "q": "What is the first step for a Clarkson / Lakeshore visit?",
         "a": "Open the High Coastal Cannabis store page, then use the current menu category that matches the visit."
       },
       {
@@ -309,7 +309,7 @@ export const SEO_PAGES: SeoPageData[] = [
     "sections": [
       {
         "heading": "Make The Search Useful",
-        "body": "A near-me search should get you to the right store page, not a wall of generic copy. High Coastal Cannabis gives shoppers a clear path to the store page, menu categories, and resources."
+        "body": "Use the store page, menu categories, and resources to plan a High Coastal Cannabis visit and choose the next useful page."
       },
       {
         "heading": "Compare Categories Naturally",
@@ -317,7 +317,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "Check Current Details",
-        "body": "For product names, prices, and availability, use the current menu or ask staff. This page is for orientation and visit planning."
+        "body": "For product names, prices, and menu details, use the current menu or ask staff. This page is for orientation and visit planning."
       }
     ],
     "faqs": [
@@ -345,7 +345,7 @@ export const SEO_PAGES: SeoPageData[] = [
     "sections": [
       {
         "heading": "Make The Search Useful",
-        "body": "A near-me search should get you to the right store page, not a wall of generic copy. High Coastal Cannabis gives shoppers a clear path to the store page, menu categories, and resources."
+        "body": "Use the store page, menu categories, and resources to plan a High Coastal Cannabis visit and choose the next useful page."
       },
       {
         "heading": "Compare Categories Naturally",
@@ -353,7 +353,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "Check Current Details",
-        "body": "For product names, prices, and availability, use the current menu or ask staff. This page is for orientation and visit planning."
+        "body": "For product names, prices, and menu details, use the current menu or ask staff. This page is for orientation and visit planning."
       }
     ],
     "faqs": [

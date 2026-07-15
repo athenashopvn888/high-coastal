@@ -39,7 +39,7 @@ export default function NotFound() {
           }}
         >
           This page doesn&apos;t exist — but our shelves are fully stocked.
-          Browse 200+ strains at Mississauga&apos;s most fire dispensary.
+          Browse High Coastal Cannabis menu categories and store information.
         </p>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
           <Link

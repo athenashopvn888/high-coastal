@@ -1,7 +1,6 @@
-// Auto-generated Google Business Profile Local SEO Location Configuration
 export const gbpLocation = {
   storeName: "High Coastal Cannabis",
-  domain: "highcoastalcannabis.com",
+  domain: "www.highcoastalcannabis.com",
   city: "Mississauga",
   province: "ON",
   country: "CA",
@@ -32,7 +31,7 @@ export const gbpLocation = {
   seoTitle: "High Coastal Cannabis | Weed Dispensary in Mississauga",
   metaDescription: "High Coastal Cannabis is a local weed dispensary in Mississauga offering flower, pre-rolls, edibles, vapes, concentrates, CBD, and service for adults 19+.",
   localLandmarks: ["Lakeshore Rd W", "Clarkson", "Mississauga"],
-  introVariant: "If you are searching for a reliable weed dispensary in Mississauga, High Coastal Cannabis at 1720 Lakeshore Rd W is your go-to destination. We serve adults 19+ with a vast selection of weed products including cannabis flower, pre-rolls, edibles, THC vapes, shatter, and CBD oils. Serving customers near Clarkson / Lakeshore and surrounding communities like Clarkson, our cannabis store and weed shop is focused on quality and convenience.",
+  introVariant: "High Coastal Cannabis is a local weed dispensary at 1720 Lakeshore Rd W in Mississauga. Adults 19+ can browse flower tiers and category pages for pre-rolls, edibles, vapes, concentrates, and accessories before visiting.",
   neighborhoodDescription: "Located in the vibrant Clarkson / Lakeshore district, our cannabis store fits right into this active and historic community, surrounded by local retail shops and convenient transit links.",
   parkingNote: "Plaza parking lot is available for customers",
   transitNote: "Steps from Clarkson GO Station and accessible by local MiWay routes.",

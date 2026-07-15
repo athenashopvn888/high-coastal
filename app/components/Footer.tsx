@@ -70,7 +70,7 @@ export default function Footer() {
         <div className={styles.bottom}>
           <p>
             (c) {new Date().getFullYear()} High Coastal Cannabis. Must be 19+ to
-            enter. Please consume responsibly.
+            enter. Please review posted store and menu information.
           </p>
         </div>
       </div>

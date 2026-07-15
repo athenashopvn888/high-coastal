@@ -26,7 +26,7 @@ export async function generateMetadata({
     title: page.title,
     description: page.metaDescription,
     alternates: {
-      canonical: `https://highcoastalcannabis.com/info/${slug}`,
+      canonical: `https://www.highcoastalcannabis.com/info/${slug}`,
     },
   };
 }
