@@ -39,11 +39,11 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "What should I check before visiting High Coastal Cannabis?",
-        "a": "Start with the store page, then use the current menu to compare product names, formats, prices, and item notes."
+        "a": "Start with the store page, then use the current menu to compare product names, formats, prices, and item details."
       },
       {
         "q": "Does High Coastal Cannabis carry flower and pre-rolls?",
-        "a": "The site has menu paths for flower tiers and pre-rolls. Check the current menu or ask staff for current details."
+        "a": "The site has menu categories for flower tiers and pre-rolls. Check the current menu or ask staff for current details."
       }
     ]
   },
@@ -75,11 +75,11 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "What should I check before visiting High Coastal Cannabis?",
-        "a": "Start with the store page, then use the current menu to compare product names, formats, prices, and item notes."
+        "a": "Start with the store page, then use the current menu to compare product names, formats, prices, and item details."
       },
       {
         "q": "Does High Coastal Cannabis carry flower and pre-rolls?",
-        "a": "The site has menu paths for flower tiers and pre-rolls. Check the current menu or ask staff for current details."
+        "a": "The site has menu categories for flower tiers and pre-rolls. Check the current menu or ask staff for current details."
       }
     ]
   },
@@ -97,7 +97,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "Compare The Current Menu",
-        "body": "Look at product name, format, weight, posted price, and item notes. Menus change, so use this page for the shopping method and the live menu or staff for current details."
+        "body": "Look at product name, format, weight, posted price, and item details. Menus change, so use this page for the shopping method and the live menu or staff for current details."
       },
       {
         "heading": "Know When To Move Up",
@@ -111,7 +111,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "Does affordable weed mean guessing?",
-        "a": "No. Compare the category, product name, format, size, posted price, and item notes. Ask staff if anything is unclear."
+        "a": "No. Compare the category, product name, format, size, posted price, and item details. Ask staff if anything is unclear."
       },
       {
         "q": "Where can shoppers confirm current prices?",
@@ -133,7 +133,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "Compare The Current Menu",
-        "body": "Look at product name, format, weight, posted price, and item notes. Menus change, so use this page for the shopping method and the live menu or staff for current details."
+        "body": "Look at product name, format, weight, posted price, and item details. Menus change, so use this page for the shopping method and the live menu or staff for current details."
       },
       {
         "heading": "Know When To Move Up",
@@ -147,7 +147,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "Does affordable weed mean guessing?",
-        "a": "No. Compare the category, product name, format, size, posted price, and item notes. Ask staff if anything is unclear."
+        "a": "No. Compare the category, product name, format, size, posted price, and item details. Ask staff if anything is unclear."
       },
       {
         "q": "Where can shoppers confirm current prices?",
@@ -237,7 +237,7 @@ export const SEO_PAGES: SeoPageData[] = [
     "sections": [
       {
         "heading": "Confirm The Right Store Page",
-        "body": "When you search for a weed store near Clarkson / Lakeshore, open the High Coastal Cannabis store page first. Confirm directions, contact options, listed hours, and the menu path before visiting."
+        "body": "When you search for a weed store near Clarkson / Lakeshore, open the High Coastal Cannabis store page first. Confirm directions, contact options, listed hours, and the category you want before visiting."
       },
       {
         "heading": "Choose The Product Category",
@@ -259,7 +259,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "What categories can shoppers compare?",
-        "a": "Use the menu paths for flower, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarettes where listed."
+        "a": "Use the menu categories for flower, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarettes where listed."
       }
     ]
   },
@@ -273,7 +273,7 @@ export const SEO_PAGES: SeoPageData[] = [
     "sections": [
       {
         "heading": "Confirm The Right Store Page",
-        "body": "When you search for a weed store near Clarkson / Lakeshore, open the High Coastal Cannabis store page first. Confirm directions, contact options, listed hours, and the menu path before visiting."
+        "body": "When you search for a weed store near Clarkson / Lakeshore, open the High Coastal Cannabis store page first. Confirm directions, contact options, listed hours, and the category you want before visiting."
       },
       {
         "heading": "Choose The Product Category",
@@ -295,7 +295,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "What categories can shoppers compare?",
-        "a": "Use the menu paths for flower, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarettes where listed."
+        "a": "Use the menu categories for flower, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarettes where listed."
       }
     ]
   },

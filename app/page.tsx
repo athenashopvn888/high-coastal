@@ -211,7 +211,20 @@ export default function HomePage() {
       </section>
 
       {/* ── BENTO MOSAIC HERO ── */}
-      <section className={styles.hero}>
+
+
+      <section className={styles.hiringCallout} aria-label="Hiring at High Coastal Cannabis">
+        <div className={styles.hiringCalloutInner}>
+          <div>
+            <span className={styles.hiringEyebrow}>Budtenders / Managers Wanted</span>
+            <h2>Join High Coastal</h2>
+            <p>High Coastal is taking online applications for budtender and manager roles. We are looking for motivated, steady people who can give customers clear help without pressure. Online applications only. Please do not call the store about hiring.</p>
+          </div>
+          <Link href="/careers/budtender" className={styles.hiringButton}>Apply Online</Link>
+        </div>
+      </section>
+
+<section className={styles.hero}>
         <div className={styles.heroBg} />
         <div className={styles.heroOverlay} />
         <div className={styles.heroStars} />
