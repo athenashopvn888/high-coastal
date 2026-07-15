@@ -233,7 +233,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Resource Centre Launch",
     "description": "The High Coastal Cannabis resource centre gives shoppers cleaner menu guides for flower, value, pre-rolls, and store visits.",
     "eyebrow": "Resource Update",
-    "intro": "The resource centre is here to make the menu easier to shop. No internal jargon, no fake certainty, just cleaner notes for real shoppers.",
+    "intro": "The resource centre makes the menu easier to shop with clear category notes and practical links for real shoppers.",
     "cards": [
       {
         "title": "Menu Guide",
