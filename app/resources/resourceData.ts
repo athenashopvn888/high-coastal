@@ -28,7 +28,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Resources | Menu and Shopping Guides",
     "description": "Resource guides for shopping the High Coastal Cannabis menu in Mississauga, including flower, value, pre-rolls, and Native smokes where listed.",
     "eyebrow": "Resource Centre",
-    "intro": "Welcome to the High Coastal Cannabis resource centre. These guides help shoppers compare categories before they visit. Choose the product category, compare what matters, then use the current menu or staff for details that can change.",
+    "intro": "High Coastal's guides are a planning dock for a Clarkson and Lakeshore visit. Pick the guide that matches the stop, narrow the decision there, and use the current category as the final source for item details.",
     "cards": [
       {
         "title": "Menu Guide",
@@ -58,17 +58,17 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "How To Use These Guides",
-        "body": "Start with the store page, then choose the category that matches the visit. Flower, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarette options should not all be compared the same way.",
+        "heading": "Plan The Shoreline Stop In Layers",
+        "body": "Use the High Coastal store page for the visit, a Resource guide for category context, and the live menu for current listings. Keeping those jobs separate makes the Mississauga site easier to scan.",
         "bullets": [
-          "Use the store page for directions, contact options, and listed hours.",
-          "Use category pages to compare the current menu category.",
-          "Ask staff when a product detail needs a current answer."
+          "Confirm Clarkson visit information on the store page.",
+          "Choose a single menu lane before comparing items.",
+          "Return to the current listing for changeable details."
         ]
       },
       {
         "heading": "Local Notes For Clarkson / Lakeshore",
-        "body": "High Coastal Cannabis serves shoppers around Clarkson / Lakeshore, Lakeshore Rd W, Clarkson, Mississauga. If you searched for a weed dispensary in Clarkson / Lakeshore, this resource section keeps the visit simple: the store details, the category, and the next step."
+        "body": "For shoppers searching around Clarkson, Lakeshore Road West, or southwest Mississauga, the useful order is simple: establish the trip, choose the right shelf or format, and finish on today's public menu page."
       }
     ]
   },
@@ -78,7 +78,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Menu Guide | Mississauga Weed Dispensary Tips",
     "description": "How to shop the High Coastal Cannabis menu by category, with natural tips for flower, pre-rolls, edibles, THC vapes, concentrates, and value shopping.",
     "eyebrow": "Menu Guide",
-    "intro": "The fastest way through the menu is simple: choose the product type before you compare products. That keeps the page useful whether you want premium flower, cheap weed, pre-rolls, edibles, THC vapes, or concentrates.",
+    "intro": "The High Coastal menu is easier to navigate when the first question is what kind of stop this is. Flower, pre-rolls, edibles, vapes, concentrates, accessories, and cigarettes each open a different comparison route.",
     "cards": [
       {
         "title": "Flower Guide",
@@ -103,17 +103,17 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "Choose The Category First",
-        "body": "If you want flower, start with flower. If you want pre-rolls, stay in pre-rolls. If the visit is about edibles, vapes, concentrates, or accessories, open that section and compare there first.",
+        "heading": "Set A Course Before Reading Listings",
+        "body": "A flower shopper can begin with a tier, while a format-driven shopper should head directly to that product section. One clear starting route avoids mixing unrelated listings into the Clarkson visit plan.",
         "bullets": [
-          "Flower shoppers should compare tiers.",
-          "Pre-roll shoppers should compare format and package details.",
-          "Edible, vape, and concentrate shoppers should read current details carefully."
+          "Flower uses five shelf links as the first filter.",
+          "Pre-rolls use the displayed package format.",
+          "Other categories keep their own public item fields."
         ]
       },
       {
-        "heading": "Check What Is Current",
-        "body": "Use this guide for the shopping method, then use the current menu and staff for details that change. Product names, prices, and menu details can move, so do not let an old example make the decision."
+        "heading": "Dock At The Live Menu For The Final Check",
+        "body": "This guide explains the route through High Coastal's pages. The current menu is where a shopper should confirm the displayed name, size, format, notes, and price before relying on a specific entry."
       }
     ]
   },
@@ -123,7 +123,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Flower Guide | Exotic, Premium, Budget",
     "description": "Compare exotic flower, premium flower, budget weed, cheap weed, and affordable weed at High Coastal Cannabis with clearer category notes.",
     "eyebrow": "Flower Guide",
-    "intro": "Flower gets easier when you compare one tier at a time. Exotic flower and premium flower sit in different lanes from AAA+, AA, and Budget, so start with the lane that matches the visit.",
+    "intro": "High Coastal divides its flower section into Exotic, Premium, AAA+, AA, and Budget shelves. Choose the shelf that fits the visit first, then read only the current listings collected inside it.",
     "cards": [
       {
         "title": "Exotic Flower",
@@ -153,12 +153,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "Compare Tier, Then Details",
-        "body": "Open the tier, then compare the current product name, format, weight, posted price, and item details. That gives you a clean decision path without turning the whole menu into noise."
+        "heading": "Use The Shelf As A Search Boundary",
+        "body": "After opening a tier, compare the complete public entries on that page: name, size, format, posted price, and any displayed notes. The shelf keeps the first comparison focused."
       },
       {
-        "heading": "Value Does Not Need To Be Complicated",
-        "body": "Budget weed and affordable weed are easiest to compare when you stay inside the right lane. If the details are thin or the choice feels close, ask staff before choosing."
+        "heading": "Cross To Another Shelf Only When Needed",
+        "body": "If one High Coastal tier does not fit the plan, move to the next shelf and begin again. That produces a clearer choice than judging every flower page as one undifferentiated list."
       }
     ]
   },
@@ -168,7 +168,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Value Guide | Cheap Weed and Budget Weed",
     "description": "A practical value guide for shoppers comparing cheap weed, budget weed, affordable weed, and menu categories at High Coastal Cannabis.",
     "eyebrow": "Value Guide",
-    "intro": "Good value shopping starts with the product type, the current details, and the price that fits the visit.",
+    "intro": "For a value-led High Coastal flower stop, Budget and AA form the first two shelves to inspect. Another product type should stay in its own menu section rather than borrowing a flower comparison.",
     "cards": [
       {
         "title": "Budget Flower",
@@ -188,12 +188,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "Start With The Budget Lane",
-        "body": "If low spend is the point, start in Budget and AA before jumping across the rest of the menu. That keeps the comparison honest and quick."
+        "heading": "Begin At Budget And Work Upward",
+        "body": "Review the current Budget entries, then AA if the first shelf does not suit the Clarkson stop. Expanding in that order keeps a price-focused search from drifting across all five tiers."
       },
       {
-        "heading": "Read The Menu Notes",
-        "body": "Compare the product name, format, size, and posted price. If one detail is unclear, use staff for the answer instead of guessing from an old blog line."
+        "heading": "Read More Than The Price",
+        "body": "A fair comparison includes the displayed name, size, format, notes, and posted price. Ask the store when a decision depends on information the current listing does not show clearly."
       }
     ]
   },
@@ -203,7 +203,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Pre-Roll Guide | Mississauga Cannabis Menu Tips",
     "description": "How to compare pre-rolls at High Coastal Cannabis without mixing them up with flower, edibles, THC vapes, and concentrates.",
     "eyebrow": "Pre-Roll Guide",
-    "intro": "Pre-rolls are their own lane. Compare them like pre-rolls, not like loose flower, edibles, THC vapes, or concentrates.",
+    "intro": "High Coastal pre-rolls should be read by format before product name. A current single, multipack, infused option, or other listing represents a different kind of stop, so establish that detail first.",
     "cards": [
       {
         "title": "Pre-Rolls",
@@ -218,12 +218,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "Compare Format First",
-        "body": "Check whether the listing is a single, pack, infused option, or another pre-roll format shown on the menu. Then compare the posted details and price before choosing."
+        "heading": "Group Like Packages Together",
+        "body": "Identify current entries that share a displayed format, then compare their count, page notes, and price. This keeps the pre-roll section useful without treating it like loose flower."
       },
       {
-        "heading": "Keep It Separate",
-        "body": "If the visit turns into flower, edibles, vapes, or concentrates, switch categories. Do not force one pre-roll decision to carry the whole menu."
+        "heading": "Return To Port When The Plan Changes",
+        "body": "If the Lakeshore visit turns toward flower, edibles, vapes, or concentrates, leave the pre-roll page and start again in the matching High Coastal category."
       }
     ]
   },
@@ -233,7 +233,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Resource Centre Launch",
     "description": "The High Coastal Cannabis resource centre gives shoppers cleaner menu guides for flower, value, pre-rolls, and store visits.",
     "eyebrow": "Resource Update",
-    "intro": "The resource centre makes the menu easier to shop with clear category notes and practical links for real shoppers.",
+    "intro": "The High Coastal Resource Centre connects Clarkson visit planning with a direct route into flower shelves, value browsing, pre-roll formats, and cigarette categories.",
     "cards": [
       {
         "title": "Menu Guide",
@@ -263,12 +263,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "What Changed",
-        "body": "The resources section now gives shoppers a central place for menu tips, flower comparison, value shopping, pre-roll notes, and store visit guidance."
+        "heading": "One Harbour For Shopping Guides",
+        "body": "The hub gives each shopping question a stable starting page while current items remain in their live categories. It is a map of the site, not a duplicate inventory list."
       },
       {
-        "heading": "How To Use It",
-        "body": "Start with the guide that matches the visit, then open the current menu or store page when you are ready to compare details."
+        "heading": "Chart, Narrow, Confirm",
+        "body": "Chart the visit with a guide, narrow it to one shelf or format, and confirm the result on High Coastal's current menu. Use the store page separately for Clarkson trip details."
       }
     ]
   },
@@ -278,7 +278,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Native Smokes | $25 Carton Notes",
     "description": "High Coastal Cannabis Native smokes resource with cigarette brand names shown on the menu and $25 carton notes where listed.",
     "eyebrow": "Native Smokes",
-    "intro": "High Coastal Cannabis shoppers looking for Native smokes can use this page as a cleaner starting point. Brand names shown on the cigarette menu include Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, Canadian Menthol, Canadian Classics Original, Canadian Classics Silver, * Rolled Gold Lights, Nexus Full, Nexus Lights, and Time Full. Some carton-style listings show around $25, but shoppers should check the current menu or staff before making the trip.",
+    "intro": "High Coastal presents Native smokes through its cigarette category. This page supplies a way to read brand families, variant wording, and carton-style notes before checking the current public entries.",
     "cards": [
       {
         "title": "Cigarette Menu",
@@ -298,8 +298,8 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "Brands Shoppers May See",
-        "body": "The cigarette menu may show brands such as Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, Canadian Menthol, Canadian Classics Original, Canadian Classics Silver, * Rolled Gold Lights, Nexus Full, Nexus Lights, and Time Full. The exact shelf can change, so treat this as a menu guide and confirm current options before choosing.",
+        "heading": "Read The Entire Cigarette Label",
+        "body": "High Coastal has shown Canadian, Putters, Canadian Goose, Canadian Classics, Rolled Gold, Nexus, and Time family names. The following full, light, silver, or menthol wording identifies the variant and belongs in the comparison.",
         "bullets": [
           "Canadian Lights",
           "Canadian Full",
@@ -316,12 +316,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         ]
       },
       {
-        "heading": "$25 Carton Notes",
-        "body": "Where the menu lists $25 carton-style Native cigarettes, this resource points shoppers to the cigarette category first. Check the current menu or ask staff for what is available today."
+        "heading": "Tie A Carton Note To One Listing",
+        "body": "Some public cigarette entries have included a $25 carton-style note. Confirm which current brand and variant carries it rather than applying that figure to the whole category."
       },
       {
-        "heading": "Keep The Visit Simple",
-        "body": "If you are also shopping cannabis, keep the cigarette decision separate from flower, pre-rolls, edibles, THC vapes, and concentrates. One lane at a time keeps the visit smooth."
+        "heading": "Keep The Cigarette Route Separate",
+        "body": "Complete the Native smokes check inside the cigarette category. If cannabis is also part of the Clarkson stop, go back to High Coastal's main menu and choose that section independently."
       }
     ]
   },
@@ -331,7 +331,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Native Cigarettes Guide | Brands and Carton Notes",
     "description": "A shopper-friendly Native cigarettes guide for High Coastal Cannabis, including brand names shown on the menu and $25 carton notes where listed.",
     "eyebrow": "Native Cigarettes Guide",
-    "intro": "If Native cigarettes are part of the stop, start with the cigarette category and compare the current listings. High Coastal Cannabis menu brand names may include Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, Canadian Menthol, Canadian Classics Original, Canadian Classics Silver, * Rolled Gold Lights, Nexus Full, Nexus Lights, and Time Full.",
+    "intro": "The quickest reading order for High Coastal cigarettes is family name, variant, carton detail, and posted price. That sequence helps separate similarly named entries on the current page.",
     "cards": [
       {
         "title": "Cigarette Menu",
@@ -351,8 +351,8 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "Compare The Brand Names",
-        "body": "Look for the brand name first, then compare the posted price and any item details. The menu may include Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, Canadian Menthol, Canadian Classics Original, Canadian Classics Silver, * Rolled Gold Lights, Nexus Full, Nexus Lights, and Time Full.",
+        "heading": "Family Name Is Only The Beginning",
+        "body": "Canadian, Putters, Canadian Goose, Canadian Classics, Rolled Gold, Nexus, and Time labels have appeared in the category. Read the complete variant wording before comparing current item notes or price.",
         "bullets": [
           "Canadian Lights",
           "Canadian Full",
@@ -369,12 +369,12 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         ]
       },
       {
-        "heading": "Ask If The Shelf Matters",
-        "body": "When a specific carton, full, light, or menthol option matters, ask staff before choosing. That is better than guessing from any resource page."
+        "heading": "Confirm An Exact Variant",
+        "body": "When the Lakeshore stop depends on one precise full, light, silver, or menthol label, use the current listing and contact High Coastal if an essential detail needs clarification."
       },
       {
-        "heading": "Use The Cigarette Category",
-        "body": "Open the cigarette category before the trip. It is the cleanest public path for current Native smokes information at this store."
+        "heading": "End On The Current Cigarette Page",
+        "body": "This guide is the navigation chart; High Coastal's live cigarette category is the public source for the entries currently displayed."
       }
     ]
   }
