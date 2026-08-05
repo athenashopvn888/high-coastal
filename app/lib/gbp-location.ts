@@ -8,8 +8,8 @@ export const gbpLocation = {
   address: "1720 Lakeshore Rd W, Mississauga, ON L5J 1J5",
   streetAddress: "1720 Lakeshore Rd W",
   postalCode: "L5J 1J5",
-  phone: "(289) 401-7550",
-  phoneIntl: "+12894017550",
+  phone: "+1 (289) 815-5222",
+  phoneIntl: "+12898155222",
   neighborhood: "Clarkson / Lakeshore",
   nearbyAreas: ["Lakeshore Rd W", "Clarkson", "Mississauga", "Port Credit", "Clarkson GO", "Lorne Park", "MiWay"],
   products: [

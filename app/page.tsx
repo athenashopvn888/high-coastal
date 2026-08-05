@@ -78,7 +78,7 @@ const LOCAL_FAQS = [
   },
   {
     q: "Where is High Coastal Cannabis located?",
-    a: "We are located at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Visit us in person or call us at (289) 401-7550. Free evening street parking is available.",
+    a: "We are located at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Visit us in person or call us at +1 (289) 815-5222. Free evening street parking is available.",
   },
   {
     q: "What is the cheapest weed at High Coastal Cannabis?",
