@@ -101,7 +101,7 @@ export default function DeliveryContent() {
         <div className={styles.ctaSection}>
           <p className={styles.ctaText}>
             Can&apos;t wait? Visit us in-store at <strong>1720 Lakeshore Rd W, Mississauga</strong> -
-            open <strong>24 hours</strong>. Call <strong>(289) 401-7550</strong>.
+            open <strong>24 hours</strong>. Call <strong>+1 (289) 815-5222</strong>.
           </p>
         </div>
       </div>
