@@ -27,7 +27,6 @@ function readBase64(blob: Blob) {
     reader.readAsDataURL(blob);
   });
 }
-
 async function preparePhoto(file: File) {
   if (!file.type.startsWith("image/")) throw new Error("Choose a JPG, PNG, or WebP photo.");
   let source: CanvasImageSource;
@@ -215,4 +214,3 @@ export default function HighCoastalWebChat() {
     </section>}
   </aside>;
 }
-
