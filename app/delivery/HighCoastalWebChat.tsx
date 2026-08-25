@@ -86,11 +86,39 @@ export default function HighCoastalWebChat() {
   const [editingPhone, setEditingPhone] = useState(false);
   const [replacementPhone, setReplacementPhone] = useState("");
   const [replacementPhoneConfirmation, setReplacementPhoneConfirmation] = useState("");
+  const chatRoot = useRef<HTMLElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const previewRef = useRef("");
 
   useEffect(() => () => { if (previewRef.current) URL.revokeObjectURL(previewRef.current); }, []);
   useEffect(() => { document.body.classList.toggle("sod-chat-open", open); return () => document.body.classList.remove("sod-chat-open"); }, [open]);
+  useEffect(() => {
+    if (!open || !chatRoot.current) return;
+
+    const root = chatRoot.current;
+    const viewport = window.visualViewport;
+    const syncVisualViewport = () => {
+      const height = viewport?.height ?? window.innerHeight;
+      const offsetTop = viewport?.offsetTop ?? 0;
+      root.style.setProperty("--sod-chat-viewport-height", `${Math.round(height)}px`);
+      root.style.setProperty("--sod-chat-viewport-offset-top", `${Math.round(offsetTop)}px`);
+    };
+
+    syncVisualViewport();
+    viewport?.addEventListener("resize", syncVisualViewport);
+    viewport?.addEventListener("scroll", syncVisualViewport);
+    window.addEventListener("resize", syncVisualViewport);
+    window.addEventListener("orientationchange", syncVisualViewport);
+
+    return () => {
+      viewport?.removeEventListener("resize", syncVisualViewport);
+      viewport?.removeEventListener("scroll", syncVisualViewport);
+      window.removeEventListener("resize", syncVisualViewport);
+      window.removeEventListener("orientationchange", syncVisualViewport);
+      root.style.removeProperty("--sod-chat-viewport-height");
+      root.style.removeProperty("--sod-chat-viewport-offset-top");
+    };
+  }, [open]);
   useEffect(() => { if (new URLSearchParams(window.location.search).get("liveOrder") !== "1") return; const timer = window.setTimeout(() => setOpen(true), 0); return () => window.clearTimeout(timer); }, []);
 
   const refresh = useCallback(async (activeToken: string) => {
@@ -177,7 +205,7 @@ export default function HighCoastalWebChat() {
   const paused = availability?.state === "PAUSED";
   const statusMessage = paused ? availability.message : availabilityUnavailable ? "Delivery status is temporarily unavailable. Please check back soon." : null;
 
-  return <aside className={`sod-web-chat ${open ? "open" : ""}`} aria-label="High Coastal Cannabis Web Chat">
+  return <aside ref={chatRoot} className={`sod-web-chat ${open ? "open" : ""}`} aria-label="High Coastal Cannabis Web Chat">
     <button className="sod-chat-launcher" type="button" onClick={() => { if (!open) void refreshAvailability(); setOpen((value) => !value); }} aria-expanded={open}>{open ? "Close chat" : "LIVE ORDER"}</button>
     {open && <section className="sod-chat-panel" role="dialog" aria-modal="true" aria-label="High Coastal Cannabis Web Chat">
       <header><div><strong>High Coastal Cannabis Web Chat</strong><small>Start your delivery order with a dispatcher</small></div><button type="button" onClick={() => setOpen(false)} aria-label="Minimize chat">&times;</button></header>
