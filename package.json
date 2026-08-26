@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:webchat-browser": "playwright test tests/browser/high-coastal-webchat.spec.ts",
     "test:webchat-viewport": "node scripts/verify-webchat-viewport.mjs",
     "test:staff-photo": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/staff-photo.test.ts",
     "verify:delivery-images": "node scripts/verify-athena-delivery-images.mjs"
@@ -21,6 +22,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

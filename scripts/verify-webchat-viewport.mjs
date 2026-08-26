@@ -11,9 +11,13 @@ for (const expected of [
   'viewport?.removeEventListener("resize", syncVisualViewport)',
   'viewport?.removeEventListener("scroll", syncVisualViewport)',
   "viewport?.height ?? window.innerHeight",
+  "viewport?.width ?? window.innerWidth",
   "viewport?.offsetTop ?? 0",
+  "viewport?.offsetLeft ?? 0",
   "--sod-chat-viewport-height",
+  "--sod-chat-viewport-width",
   "--sod-chat-viewport-offset-top",
+  "--sod-chat-viewport-offset-left",
 ]) {
   assert.ok(chat.includes(expected), `Missing visual viewport contract: ${expected}`);
 }
@@ -35,6 +39,8 @@ for (const expected of [
   ".sod-chat-composer { grid-area:composer",
   ".sod-chat-notice { grid-area:notice",
   "top:var(--sod-chat-viewport-offset-top,0px)",
+  "left:var(--sod-chat-viewport-offset-left,0px)",
+  "width:var(--sod-chat-viewport-width,100dvw)",
   "height:var(--sod-chat-viewport-height,100dvh)",
   ".sod-chat-panel{position:absolute;inset:0;width:100%;height:100%",
 ]) {

@@ -5,7 +5,10 @@ import "./HighCoastalWebChat.css";
 
 const API_BASE = (process.env.NEXT_PUBLIC_SOD_WEB_CHAT_API_BASE || "https://milestone-1-demo.vercel.app").replace(/\/$/, "");
 const SESSION_KEY = "sod-web-chat:LC01";
+const DRAFT_KEY = "sod-web-chat:draft:LC01";
 const MAX_BYTES = 3 * 1024 * 1024;
+const SESSION_EXPIRED_MESSAGE = "This chat expired after 7 days. Your unsent message is still saved here. Start a new chat to continue.";
+const FOCUSABLE_SELECTOR = 'a[href],button:not([disabled]),textarea:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
 type Message = { id: string; direction: "inbound" | "outbound"; body: string; at: number };
 type Review = { id: string; status: string; receivedAt: number; expiresAt: number };
@@ -74,10 +77,11 @@ export default function HighCoastalWebChat() {
   const [phone, setPhone] = useState("");
   const [smsConsent, setSmsConsent] = useState(false);
   const [intent, setIntent] = useState<CustomerIntent | "">("");
-  const [firstMessage, setFirstMessage] = useState("");
-  const [message, setMessage] = useState("");
+  const [firstMessage, setFirstMessage] = useState(() => typeof window === "undefined" || localStorage.getItem(SESSION_KEY) ? "" : localStorage.getItem(DRAFT_KEY) || "");
+  const [message, setMessage] = useState(() => typeof window === "undefined" ? "" : localStorage.getItem(DRAFT_KEY) || "");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
   const [photoPreview, setPhotoPreview] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState<File | null>(null);
   const [uploadState, setUploadState] = useState<UploadState>("idle");
@@ -87,6 +91,9 @@ export default function HighCoastalWebChat() {
   const [replacementPhone, setReplacementPhone] = useState("");
   const [replacementPhoneConfirmation, setReplacementPhoneConfirmation] = useState("");
   const chatRoot = useRef<HTMLElement>(null);
+  const launcherRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const previewRef = useRef("");
 
@@ -99,9 +106,13 @@ export default function HighCoastalWebChat() {
     const viewport = window.visualViewport;
     const syncVisualViewport = () => {
       const height = viewport?.height ?? window.innerHeight;
+      const width = viewport?.width ?? window.innerWidth;
       const offsetTop = viewport?.offsetTop ?? 0;
+      const offsetLeft = viewport?.offsetLeft ?? 0;
       root.style.setProperty("--sod-chat-viewport-height", `${Math.round(height)}px`);
+      root.style.setProperty("--sod-chat-viewport-width", `${Math.round(width)}px`);
       root.style.setProperty("--sod-chat-viewport-offset-top", `${Math.round(offsetTop)}px`);
+      root.style.setProperty("--sod-chat-viewport-offset-left", `${Math.round(offsetLeft)}px`);
     };
 
     syncVisualViewport();
@@ -116,17 +127,87 @@ export default function HighCoastalWebChat() {
       window.removeEventListener("resize", syncVisualViewport);
       window.removeEventListener("orientationchange", syncVisualViewport);
       root.style.removeProperty("--sod-chat-viewport-height");
+      root.style.removeProperty("--sod-chat-viewport-width");
       root.style.removeProperty("--sod-chat-viewport-offset-top");
+      root.style.removeProperty("--sod-chat-viewport-offset-left");
+    };
+  }, [open]);
+  useEffect(() => {
+    if (!open || !chatRoot.current || !panelRef.current) return;
+
+    const root = chatRoot.current;
+    const panel = panelRef.current;
+    const launcher = launcherRef.current;
+    const inerted: HTMLElement[] = [];
+    let branch: HTMLElement = root;
+
+    while (branch.parentElement) {
+      const parent = branch.parentElement;
+      for (const sibling of Array.from(parent.children)) {
+        if (sibling === branch || !(sibling instanceof HTMLElement) || sibling.hasAttribute("inert")) continue;
+        sibling.setAttribute("inert", "");
+        inerted.push(sibling);
+      }
+      if (parent === document.body) break;
+      branch = parent;
+    }
+
+    const focusableElements = () => Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter((element) => !element.hidden && element.getClientRects().length > 0);
+    const focusFrame = window.requestAnimationFrame(() => closeButtonRef.current?.focus({ preventScroll: true }));
+    const containModalFocus = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const focusable = focusableElements();
+      if (!focusable.length) {
+        event.preventDefault();
+        panel.focus({ preventScroll: true });
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable.at(-1) || first;
+      if (event.shiftKey && (document.activeElement === first || document.activeElement === panel)) {
+        event.preventDefault();
+        last.focus({ preventScroll: true });
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus({ preventScroll: true });
+      } else if (!panel.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus({ preventScroll: true });
+      }
+    };
+
+    document.addEventListener("keydown", containModalFocus);
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener("keydown", containModalFocus);
+      for (const element of inerted) element.removeAttribute("inert");
+      window.requestAnimationFrame(() => launcher?.focus({ preventScroll: true }));
     };
   }, [open]);
   useEffect(() => { if (new URLSearchParams(window.location.search).get("liveOrder") !== "1") return; const timer = window.setTimeout(() => setOpen(true), 0); return () => window.clearTimeout(timer); }, []);
 
+  const authenticatedPayload = useCallback(async (response: Response) => {
+    if (response.status === 401) {
+      setSessionExpired(true);
+      setNotice("");
+      return null;
+    }
+    return payload(response);
+  }, []);
+
   const refresh = useCallback(async (activeToken: string) => {
     if (!activeToken) return;
     const response = await fetch(`${API_BASE}/api/web-chat/messages`, { cache: "no-store", headers: { Authorization: `Bearer ${activeToken}` } });
-    if (response.status === 401) { localStorage.removeItem(SESSION_KEY); setToken(""); setConversation(null); return; }
-    setConversation((await payload(response)).conversation);
-  }, []);
+    const data = await authenticatedPayload(response);
+    if (data) setConversation(data.conversation);
+  }, [authenticatedPayload]);
 
   const refreshAvailability = useCallback(async () => {
     try { const data = await payload(await fetch(`${API_BASE}/api/web-chat/status`, { cache: "no-store" })); setAvailability(data.availability); setAvailabilityUnavailable(false); }
@@ -142,7 +223,12 @@ export default function HighCoastalWebChat() {
     return () => window.clearTimeout(initial);
   }, [refresh, refreshAvailability, token]);
 
-  useEffect(() => { if (!token) return; const timer = window.setInterval(() => { if (!document.hidden) void refresh(token).catch(() => undefined); }, 15000); return () => window.clearInterval(timer); }, [refresh, token]);
+  useEffect(() => { if (!token || sessionExpired) return; const timer = window.setInterval(() => { if (!document.hidden) void refresh(token).catch(() => undefined); }, 15000); return () => window.clearInterval(timer); }, [refresh, sessionExpired, token]);
+
+  function persistDraft(value: string) {
+    if (value) localStorage.setItem(DRAFT_KEY, value);
+    else localStorage.removeItem(DRAFT_KEY);
+  }
 
   async function start(event: FormEvent) {
     event.preventDefault();
@@ -151,14 +237,14 @@ export default function HighCoastalWebChat() {
     setBusy(true); setNotice("");
     try {
       const data = await payload(await fetch(`${API_BASE}/api/web-chat/session`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ storeId: "LC01", customerName: intent === "NEW_CUSTOMER" ? name : "", phone, intent, message: firstMessage, workflowVersion: "READY_V1", smsConsent }) }));
-      localStorage.setItem(SESSION_KEY, data.token); setToken(data.token); setConversation(data.conversation);
+      localStorage.setItem(SESSION_KEY, data.token); localStorage.removeItem(DRAFT_KEY); setToken(data.token); setConversation(data.conversation); setFirstMessage(""); setMessage(""); setSessionExpired(false);
     } catch (error) { setNotice(error instanceof Error ? error.message : "Web Chat is unavailable."); }
     finally { setBusy(false); }
   }
 
   async function send(event: FormEvent) {
     event.preventDefault(); if (!message.trim()) return; setBusy(true);
-    try { const data = await payload(await fetch(`${API_BASE}/api/web-chat/messages`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ message }) })); setMessage(""); setConversation(data.conversation); }
+    try { const data = await authenticatedPayload(await fetch(`${API_BASE}/api/web-chat/messages`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ message }) })); if (!data) return; setMessage(""); persistDraft(""); setConversation(data.conversation); }
     catch (error) { setNotice(error instanceof Error ? error.message : "Message could not be sent."); }
     finally { setBusy(false); }
   }
@@ -166,7 +252,8 @@ export default function HighCoastalWebChat() {
   async function changePhone(event: FormEvent) {
     event.preventDefault(); if (!token || !conversation?.phoneVersion) return; setBusy(true); setNotice("");
     try {
-      const data = await payload(await fetch(`${API_BASE}/api/web-chat/phone`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ phone: replacementPhone, phoneConfirmation: replacementPhoneConfirmation, phoneVersion: conversation.phoneVersion }) }));
+      const data = await authenticatedPayload(await fetch(`${API_BASE}/api/web-chat/phone`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ phone: replacementPhone, phoneConfirmation: replacementPhoneConfirmation, phoneVersion: conversation.phoneVersion }) }));
+      if (!data) return;
       setConversation(data.conversation); setReplacementPhone(""); setReplacementPhoneConfirmation(""); setEditingPhone(false);
       setNotice(data.readySuperseded ? "Mobile number updated. The dispatcher must send a new READY link manually." : "Mobile number updated.");
     } catch (error) { setNotice(error instanceof Error ? error.message : "Mobile number could not be updated."); }
@@ -176,7 +263,7 @@ export default function HighCoastalWebChat() {
   async function startAnotherOrder() {
     if (!token || !window.confirm("Start another delivery order now? Your existing chat history will stay here.")) return;
     setBusy(true); setNotice("");
-    try { const data = await payload(await fetch(`${API_BASE}/api/web-chat/order-cycle`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ requestId: crypto.randomUUID() }) })); setConversation(data.conversation); setNotice("Another order has started. Send the dispatcher your new order details."); }
+    try { const data = await authenticatedPayload(await fetch(`${API_BASE}/api/web-chat/order-cycle`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ requestId: crypto.randomUUID() }) })); if (!data) return; setConversation(data.conversation); setNotice("Another order has started. Send the dispatcher your new order details."); }
     catch (error) { setNotice(error instanceof Error ? error.message : "Another order could not be started."); }
     finally { setBusy(false); }
   }
@@ -185,7 +272,8 @@ export default function HighCoastalWebChat() {
     if (!file || !token) return; setBusy(true); setUploadState("preparing"); setUploadError(""); setNotice("");
     try {
       const photo = await preparePhoto(file); setUploadState("uploading");
-      const data = await payload(await fetch(`${API_BASE}/api/web-chat/id-review`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ mimeType: "image/jpeg", imageBase64: await readBase64(photo) }) }));
+      const data = await authenticatedPayload(await fetch(`${API_BASE}/api/web-chat/id-review`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ mimeType: "image/jpeg", imageBase64: await readBase64(photo) }) }));
+      if (!data) return;
       setConversation((current) => current ? { ...current, idReviews: [...(current.idReviews || []), data.review] } : current); setSelectedPhoto(null);
       if (previewRef.current) URL.revokeObjectURL(previewRef.current); previewRef.current = ""; setPhotoPreview(""); setRetryExpanded(false); setUploadState("sent");
     } catch (error) { setUploadError(error instanceof Error ? error.message : "Photo could not be sent."); setUploadState("error"); }
@@ -197,6 +285,21 @@ export default function HighCoastalWebChat() {
     const objectUrl = URL.createObjectURL(file); previewRef.current = objectUrl; setPhotoPreview(objectUrl); setSelectedPhoto(file); setUploadState("idle"); setUploadError(""); void uploadPhoto(file);
   }
 
+  function startNewChat() {
+    const draft = message || firstMessage;
+    localStorage.removeItem(SESSION_KEY);
+    setToken("");
+    setConversation(null);
+    setSessionExpired(false);
+    setNotice("");
+    setIntent("");
+    setSmsConsent(false);
+    setEditingPhone(false);
+    setFirstMessage(draft);
+    if (draft) persistDraft(draft);
+    void refreshAvailability();
+  }
+
   const latestReview = conversation?.idReviews?.at(-1);
   const reviewStatus = latestReview?.status || "NOT_SUBMITTED";
   const retryNeeded = reviewStatus === "REJECTED" || reviewStatus === "EXPIRED";
@@ -206,9 +309,9 @@ export default function HighCoastalWebChat() {
   const statusMessage = paused ? availability.message : availabilityUnavailable ? "Delivery status is temporarily unavailable. Please check back soon." : null;
 
   return <aside ref={chatRoot} className={`sod-web-chat ${open ? "open" : ""}`} aria-label="High Coastal Cannabis Web Chat">
-    <button className="sod-chat-launcher" type="button" onClick={() => { if (!open) void refreshAvailability(); setOpen((value) => !value); }} aria-expanded={open}>{open ? "Close chat" : "LIVE ORDER"}</button>
-    {open && <section className="sod-chat-panel" role="dialog" aria-modal="true" aria-label="High Coastal Cannabis Web Chat">
-      <header><div><strong>High Coastal Cannabis Web Chat</strong><small>Start your delivery order with a dispatcher</small></div><button type="button" onClick={() => setOpen(false)} aria-label="Minimize chat">&times;</button></header>
+    <button ref={launcherRef} className="sod-chat-launcher" type="button" onClick={() => { void refreshAvailability(); setOpen(true); }} aria-expanded={open}>LIVE ORDER</button>
+    {open && <section ref={panelRef} className="sod-chat-panel" role="dialog" aria-modal="true" aria-labelledby="sod-chat-title" tabIndex={-1}>
+      <header><div><strong id="sod-chat-title">High Coastal Cannabis Web Chat</strong><small>Start your delivery order with a dispatcher</small></div><button ref={closeButtonRef} type="button" onClick={() => setOpen(false)} aria-label="Minimize chat">&times;</button></header>
       <div className={`sod-availability-banner ${paused ? "paused" : "unavailable"}`} role="status" hidden={!statusMessage}><strong>{paused ? "New delivery chats are paused" : "Delivery status unavailable"}</strong><span>{statusMessage}{token ? " Your existing chat remains open." : ""}</span></div>
       {!token ? (!availability || availability.state !== "AVAILABLE" ? <div className="sod-chat-start sod-chat-paused"><p>{statusMessage || "Checking delivery availability..."}</p><button type="button" onClick={() => void refreshAvailability()}>Check again</button></div> : <form className="sod-chat-start" onSubmit={start}>
         <fieldset className="sod-intent-options"><legend>Tell us about your account</legend>
@@ -218,7 +321,7 @@ export default function HighCoastalWebChat() {
         {intent === "NEW_CUSTOMER" && <><div className="sod-chat-welcome"><h2>Welcome!</h2><p>Have a valid government-issued photo ID and a Canadian mobile number ready. Your mobile number will be used as your account number.</p><p>Use a mobile number that can receive verification texts.</p></div><label>Full name<input required minLength={2} maxLength={80} value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" /></label></>}
         {intent && <><label>Canadian mobile number<input required inputMode="tel" value={phone} onChange={(event) => setPhone(event.target.value)} autoComplete="tel" placeholder="647 555 0123" aria-describedby={intent === "NEW_CUSTOMER" ? "sod-phone-help" : undefined} />{intent === "NEW_CUSTOMER" && <small id="sod-phone-help">Must be able to receive verification texts. This becomes your account number.</small>}</label>
           <label className="sod-sms-consent"><input required type="checkbox" checked={smsConsent} onChange={(event) => setSmsConsent(event.target.checked)} /><span>I agree to receive one READY delivery-link text for this order. Message and data rates may apply.</span></label>
-          <label>Order details (optional)<textarea maxLength={1000} value={firstMessage} onChange={(event) => setFirstMessage(event.target.value)} placeholder="What would you like to order today?" /></label><button type="submit" disabled={busy || !smsConsent}>{busy ? "Starting..." : "Start order chat"}</button></>}
+          <label>Order details (optional)<textarea maxLength={1000} value={firstMessage} onChange={(event) => { const value = event.target.value; setFirstMessage(value); persistDraft(value); }} placeholder="What would you like to order today?" /></label><button type="submit" disabled={busy || !smsConsent}>{busy ? "Starting..." : "Start order chat"}</button></>}
       </form>) : <><div className="sod-chat-scroll">
         <section className="sod-chat-account" aria-label="Order account"><div><span>Mobile number</span><strong>{conversation?.customerNumberMasked || "Not available"}</strong></div>
           {!editingPhone ? <button type="button" disabled={busy} onClick={() => setEditingPhone(true)}>Change number</button> : <form onSubmit={changePhone}><label>New Canadian mobile number<input required inputMode="tel" autoComplete="tel" value={replacementPhone} onChange={(event) => setReplacementPhone(event.target.value)} placeholder="647 555 0123" /></label><label>Enter the new number again<input required inputMode="tel" autoComplete="tel" value={replacementPhoneConfirmation} onChange={(event) => setReplacementPhoneConfirmation(event.target.value)} placeholder="647 555 0123" /></label><div><button type="submit" disabled={busy}>Confirm new number</button><button type="button" disabled={busy} onClick={() => { setEditingPhone(false); setReplacementPhone(""); setReplacementPhoneConfirmation(""); }}>Cancel</button></div></form>}
@@ -237,8 +340,8 @@ export default function HighCoastalWebChat() {
           {uploadState === "error" && selectedPhoto && <button className="sod-id-retry" type="button" disabled={busy} onClick={() => void uploadPhoto(selectedPhoto)}>Try sending again</button>}
           <small>The photo is private and never sent by MMS. If approved, the full verification photo and a small profile image are securely retained for future identity and address verification until replaced, manually removed, or your profile is deleted. Unapproved photos expire after 24 hours.</small>
         </section>}
-      </div><form className="sod-chat-composer" onSubmit={send}><textarea aria-label="Web Chat message" maxLength={1000} value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Write a message" /><button type="submit" disabled={busy || !message.trim()}>Send</button></form></>}
-      {notice && <p className="sod-chat-notice" role="status">{notice}</p>}
+      </div><form className="sod-chat-composer" onSubmit={send}><textarea aria-label="Web Chat message" maxLength={1000} value={message} onChange={(event) => { const value = event.target.value; setMessage(value); persistDraft(value); }} placeholder="Write a message" /><button type="submit" disabled={busy || sessionExpired || !message.trim()}>Send</button></form></>}
+      {sessionExpired ? <div className="sod-chat-expired" role="alert"><p>{SESSION_EXPIRED_MESSAGE}</p><button type="button" onClick={startNewChat}>Start a new chat</button></div> : notice && <p className="sod-chat-notice" role="status">{notice}</p>}
     </section>}
   </aside>;
 }
