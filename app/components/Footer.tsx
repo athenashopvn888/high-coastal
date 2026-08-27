@@ -60,6 +60,7 @@ export default function Footer() {
               <Link href="/info/mississauga-weed-dispensary">Mississauga Dispensary</Link>
               <Link href="/info/cheap-weed-mississauga">Cheap Weed Mississauga</Link>
               <Link href="/info/native-cigarettes-mississauga">Native Cigarettes</Link>
+              <Link href="/info/nicotine-vapes-mississauga">Nicotine Vapes Mississauga</Link>
               <Link href="/info/weed-store-near-clarkson-lakeshore">Weed Store Near Clarkson</Link>
               <Link href="/weed-dispensary-mississauga/">High Coastal Cannabis Weed Dispensary in Mississauga</Link>
               <Link href="/contact">Contact Us</Link>
@@ -77,3 +78,4 @@ export default function Footer() {
     </footer>
   );
 }
+
