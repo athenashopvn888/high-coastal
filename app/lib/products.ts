@@ -170,7 +170,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   },
   "VAPE PENS": {
     banner: "/banners/01_Vape_Pens.webp",
-    name: "THC Vape", slug: "vapes", color: "#8b5cf6", icon: "VP",
+    name: "Nic Vape", slug: "vapes", color: "#8b5cf6", icon: "VP",
     seoTitle: "Vapes Mississauga | High Coastal Cannabis",
     seoIntro: "Compare vape listings at High Coastal Cannabis by product name, format, posted details, and current menu details.",
     seoDescription: "Vape shoppers should use the current menu first, then ask staff if a cartridge, disposable, battery, or format detail needs a current answer.",
@@ -181,7 +181,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   },
   "VAPE DISPOSABLE": {
     banner: "/banners/02_Vape_Disposable.webp",
-    name: "Nic Vape", slug: "vape-disposables", color: "#a78bfa", icon: "VD",
+    name: "THC Vape", slug: "vape-disposables", color: "#a78bfa", icon: "VD",
     seoTitle: "Disposable Vapes Mississauga | High Coastal Cannabis",
     seoIntro: "Use the disposable vape category at High Coastal Cannabis for current product names, formats, and menu details.",
     seoDescription: "Disposable vape listings are easiest to compare inside their own category. Check the current menu and ask staff if a detail matters before choosing.",
@@ -294,3 +294,4 @@ export function formatPrice(p: PricePoint | null): string {
   if (p.sale !== null) return `$${p.sale}`;
   return `$${p.regular}`;
 }
+

@@ -9,6 +9,40 @@ const NATIVE_HERO_PRODUCTS = [
   { name: "Canadian Menthol", image: "/products/1013-CANADIAN-MENTHOL.webp" },
 ] as const;
 
+const NICOTINE_VAPES_MISSISSAUGA_PRODUCTS = [
+  {
+    slug: "geek-promax-5-30k-puffs",
+    name: "GEEK PROMAX – 5% | 30K PUFFS",
+    image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/GEEK-PROMAX.jpg",
+  },
+  {
+    slug: "geek-universe-25k-puffs",
+    name: "GEEK UNIVERSE 25k PUFFS",
+    image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/geek_universe_pulse_x_25k.webp",
+  },
+  {
+    slug: "nexa-pix-30k-puffs-many-flavors",
+    name: "NEXA PIX | 30K PUFFS | MANY FLAVORS",
+    image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/nexa_showcase_600x600.webp",
+  },
+  {
+    slug: "ovns-10000-5-10k-puffs",
+    name: "OVNS 10000 – 5% | 10K PUFFS",
+    image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/1081OVNS10000.jpg",
+  },
+  {
+    slug: "ovns-pioneer-5-22k-puffs",
+    name: "OVNS PIONEER – 5% | 22K PUFFS",
+    image: "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/OVNS_PIONEER_5_22K_PUFFS.webp",
+  },
+] as const;
+
+interface HeroPreviewProduct {
+  name: string;
+  image: string;
+  slug?: string;
+}
+
 export interface SeoPageData {
   slug: string;
   title: string;
@@ -20,14 +54,80 @@ export interface SeoPageData {
   heroPreview?: {
     eyebrow: string;
     intro: string;
-    products: typeof NATIVE_HERO_PRODUCTS;
-    disclosure: typeof NATIVE_HERO_DISCLOSURE;
+    products: readonly HeroPreviewProduct[];
+    disclosure: string;
+    menuHref?: string;
+    primaryLabel?: string;
+    secondaryLabel?: string;
+    stageLabel?: string;
+    warning?: string;
   };
+  showTierGrid?: boolean;
+  showVisitSection?: boolean;
+  relatedLink?: { href: string; label: string; body: string };
   sections: { heading: string; body: string }[];
   faqs: { q: string; a: string }[];
 }
 
 export const SEO_PAGES: SeoPageData[] = [
+  {
+    slug: "nicotine-vapes-mississauga",
+    title: "Nicotine Vapes Mississauga | High Coastal Cannabis",
+    metaDescription: "Adults 19+: review five live-checked nicotine vape product pages from High Coastal Cannabis in Mississauga. Nicotine is addictive.",
+    h1: "Nicotine Vapes in Mississauga",
+    icon: "VP",
+    heroTagline: "Five live-checked nicotine vape pages",
+    heroPreview: {
+      eyebrow: "HIGH COASTAL CANNABIS • MISSISSAUGA • CLARKSON / LAKESHORE • ADULTS 19+",
+      intro: "This High Coastal Cannabis guide highlights five live-checked nicotine vape product pages for adults in Mississauga, Clarkson and the Lakeshore area. Use the nicotine vape category for product information. The cards are a limited evidence set. Nicotine is addictive.",
+      products: NICOTINE_VAPES_MISSISSAUGA_PRODUCTS,
+      disclosure: "Five live-checked product pages only. These cards do not describe the complete selection, current stock, price or availability.",
+      menuHref: "/items/vapes",
+      primaryLabel: "Browse Nicotine Vapes",
+      secondaryLabel: "Review the Five Vape Cards",
+      stageLabel: "Five live-checked nicotine vape product pages",
+      warning: "Adults 19+. Nicotine is addictive.",
+    },
+    showTierGrid: false,
+    showVisitSection: false,
+    relatedLink: {
+      href: "/info/native-cigarettes-mississauga",
+      label: "Read the Native Cigarettes Mississauga guide",
+      body: "Looking for the separate cigarette resource? Use the verified High Coastal Cannabis guide for Mississauga.",
+    },
+    sections: [
+      {
+        heading: "Five Live-Checked Nicotine Vape Pages",
+        body: "This focused set covers verified Geek, NEXA and OVNS product pages. Each card keeps its exact supported name and image attached to the correct page. It is a five-page reference set, not a claim about the complete nicotine vape selection.",
+      },
+      {
+        heading: "Keep Product Details Attached to Each Page",
+        body: "Names on these live-checked pages include product-specific nicotine strength and puff-count details. Use those details only to identify the corresponding listing; they are not guarantees of duration, performance or superiority.",
+      },
+      {
+        heading: "Mississauga, Clarkson and Lakeshore Context",
+        body: "This High Coastal Cannabis resource is written for adults looking for nicotine vape information around Mississauga, Clarkson and Lakeshore. Product facts remain tied to the five verified pages rather than broad local assumptions.",
+      },
+      {
+        heading: "Keep Nicotine and THC Vapes Separate",
+        body: "This page is limited to live-checked products from the VAPE PENS category. THC and cannabis vape products are excluded from this nicotine guide.",
+      },
+    ],
+    faqs: [
+      {
+        q: "How many nicotine vape product pages are featured here?",
+        a: "Five live-checked product pages are featured. The cards are a focused evidence set and do not claim to show a complete or currently available selection.",
+      },
+      {
+        q: "Where should adults review nicotine vape category information?",
+        a: "Use /items/vapes. Product details can change, so keep each detail attached to its own current product page.",
+      },
+      {
+        q: "Does this High Coastal Cannabis page include THC vapes?",
+        a: "No. This guide covers nicotine products from the VAPE PENS category for adults 19+. THC and cannabis vape products are excluded.",
+      },
+    ],
+  },
   {
     "slug": "mississauga-weed-dispensary",
     "title": "High Coastal Cannabis Weed Dispensary in Mississauga",
@@ -399,3 +499,4 @@ export const SEO_PAGES: SeoPageData[] = [
 export function getSeoPageBySlug(slug: string): SeoPageData | undefined {
   return SEO_PAGES.find((p) => p.slug === slug);
 }
+
