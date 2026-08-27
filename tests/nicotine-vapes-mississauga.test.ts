@@ -64,7 +64,7 @@ test("nicotine renderer and discovery stay scoped", () => {
     "weed-store-near-brampton",
     "dispensary-near-me-york",
   ]) {
-    assert.ok(getSeoPageBySlug(legacySlug), `${legacySlug} must remain untouched for the later cleanup phase`);
+    assert.equal(getSeoPageBySlug(legacySlug), undefined, `${legacySlug} must not remain discoverable`);
   }
 });
 
