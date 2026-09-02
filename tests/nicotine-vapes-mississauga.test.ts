@@ -39,13 +39,13 @@ test("Mississauga nicotine page renders only the five live-checked products", ()
 
 test("nicotine and THC vape category labels match their routes", () => {
   const products = readFileSync(new URL("../app/lib/products.ts", import.meta.url), "utf8");
-  assert.match(products, /"VAPE PENS": \{[\s\S]*?name: "Nic Vape", slug: "vapes"/);
+  assert.match(products, /"VAPE PENS": \{[\s\S]*?name: "Nicotine Vape", slug: "vapes"/);
   assert.match(products, /"VAPE DISPOSABLE": \{[\s\S]*?name: "THC Vape", slug: "vape-disposables"/);
 
   const home = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
   assert.match(home, /name: "THC Vape", slug: "items\/vape-disposables"/);
   const navbar = readFileSync(new URL("../app/components/Navbar.tsx", import.meta.url), "utf8");
-  assert.match(navbar, /href: "\/items\/vapes", label: "Nic Vape"/);
+  assert.match(navbar, /href: "\/items\/vapes", label: "Nicotine Vape"/);
   assert.match(navbar, /href: "\/items\/vape-disposables", label: "THC Vape"/);
 });
 
@@ -66,5 +66,11 @@ test("nicotine renderer and discovery stay scoped", () => {
   ]) {
     assert.equal(getSeoPageBySlug(legacySlug), undefined, `${legacySlug} must not remain discoverable`);
   }
+});
+
+test("qualified Nicotine Vape and THC Vape categories render distinct H1 labels", () => {
+  const categoryPage = readFileSync(new URL("../app/items/[category]/page.tsx", import.meta.url), "utf8");
+  assert.match(categoryPage, /catInfo\.key === "VAPE PENS" \|\| catInfo\.key === "VAPE DISPOSABLE"/);
+  assert.match(categoryPage, /<h1 className=\{styles\.heroTitle\}>\{config\.name\}<\/h1>/);
 });
 

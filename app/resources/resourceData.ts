@@ -36,9 +36,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         "text": "Pick the category first, then compare the details that matter."
       },
       {
-        "title": "Flower Guide",
-        "href": "/resources/flower-guide",
-        "text": "Compare Exotic, Premium, AAA+, AA, and Budget with clearer category notes."
+        "title": "Weed & Flower Guide",
+        "href": "/resources/weed-flower-guide",
+        "text": "Compare Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed collections."
       },
       {
         "title": "Value Guide",
@@ -81,9 +81,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "intro": "The High Coastal menu is easier to navigate when the first question is what kind of stop this is. Flower, pre-rolls, edibles, vapes, concentrates, accessories, and cigarettes each open a different comparison route.",
     "cards": [
       {
-        "title": "Flower Guide",
-        "href": "/resources/flower-guide",
-        "text": "Compare Exotic, Premium, AAA+, AA, and Budget with clearer category notes."
+        "title": "Weed & Flower Guide",
+        "href": "/resources/weed-flower-guide",
+        "text": "Compare Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed collections."
       },
       {
         "title": "Value Guide",
@@ -118,47 +118,52 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ]
   },
   {
-    "slug": "flower-guide",
-    "title": "High Coastal Cannabis Flower Guide",
-    "seoTitle": "High Coastal Cannabis Flower Guide | Exotic, Premium, Budget",
-    "description": "Compare exotic flower, premium flower, budget weed, cheap weed, and affordable weed at High Coastal Cannabis with clearer category notes.",
-    "eyebrow": "Flower Guide",
-    "intro": "High Coastal divides its flower section into Exotic, Premium, AAA+, AA, and Budget shelves. Choose the shelf that fits the visit first, then read only the current listings collected inside it.",
+    "slug": "weed-flower-guide",
+    "title": "High Coastal Cannabis Weed & Flower Guide",
+    "seoTitle": "Weed & Cannabis Flower Guide Mississauga | High Coastal Cannabis",
+    "description": "Explore Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed collections from High Coastal Cannabis in Mississauga.",
+    "eyebrow": "Weed & Flower Guide",
+    "intro": "High Coastal Cannabis brings five Weed flower collections together for shoppers comparing different parts of the Cannabis Flower menu: Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed.",
     "cards": [
       {
-        "title": "Exotic Flower",
-        "href": "/exotic",
-        "text": "Start here when you want the higher shelf flower lane."
+        "title": "Exotic Weed",
+        "href": "/exotic-weed",
+        "text": "Explore the Exotic Weed flower collection."
       },
       {
-        "title": "Premium Flower",
-        "href": "/premium",
-        "text": "A strong lane for shoppers comparing quality and value."
+        "title": "Premium Weed",
+        "href": "/premium-weed",
+        "text": "Explore the Premium Weed flower collection."
       },
       {
-        "title": "AAA+ Flower",
-        "href": "/aaa",
-        "text": "A clear middle lane for flower comparison."
+        "title": "AAA+ Weed",
+        "href": "/aaa-weed",
+        "text": "Explore the AAA+ Weed flower collection."
       },
       {
-        "title": "AA Flower",
-        "href": "/aa",
-        "text": "A straight value-minded flower lane."
+        "title": "AA Weed",
+        "href": "/aa-weed",
+        "text": "Explore the AA Weed flower collection."
       },
       {
-        "title": "Budget Flower",
-        "href": "/budget",
-        "text": "Start here when cheap weed or affordable weed is the goal."
+        "title": "Budget Weed",
+        "href": "/budget-weed",
+        "text": "Explore the Budget Weed flower collection."
+      },
+      {
+        "title": "Explore High Coastal Cannabis Weed in Mississauga",
+        "href": "/weed-dispensary-mississauga/",
+        "text": "Find verified store information on the broad High Coastal Cannabis Weed page."
       }
     ],
     "sections": [
       {
-        "heading": "Use The Shelf As A Search Boundary",
-        "body": "After opening a tier, compare the complete public entries on that page: name, size, format, posted price, and any displayed notes. The shelf keeps the first comparison focused."
+        "heading": "Compare One Weed Collection At A Time",
+        "body": "After opening a Weed collection, review the information displayed with its individual product listings before moving to another flower collection."
       },
       {
-        "heading": "Cross To Another Shelf Only When Needed",
-        "body": "If one High Coastal tier does not fit the plan, move to the next shelf and begin again. That produces a clearer choice than judging every flower page as one undifferentiated list."
+        "heading": "Explore High Coastal Cannabis Weed In Mississauga",
+        "body": "Use the broad High Coastal Cannabis Weed page for verified store information, then return to the named Weed collection that interests you."
       }
     ]
   },
@@ -168,16 +173,16 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     "seoTitle": "High Coastal Cannabis Value Guide | Cheap Weed and Budget Weed",
     "description": "A practical value guide for shoppers comparing cheap weed, budget weed, affordable weed, and menu categories at High Coastal Cannabis.",
     "eyebrow": "Value Guide",
-    "intro": "For a value-led High Coastal flower stop, Budget and AA form the first two shelves to inspect. Another product type should stay in its own menu section rather than borrowing a flower comparison.",
+    "intro": "For a value-led High Coastal flower stop, Budget Weed and AA Weed form the first two collections to inspect. Another product type should stay in its own menu section rather than borrowing a flower comparison.",
     "cards": [
       {
-        "title": "Budget Flower",
-        "href": "/budget",
+        "title": "Budget Weed",
+        "href": "/budget-weed",
         "text": "The first stop for cheap weed and affordable weed comparisons."
       },
       {
-        "title": "AA Flower",
-        "href": "/aa",
+        "title": "AA Weed",
+        "href": "/aa-weed",
         "text": "A simple value lane for flower shoppers."
       },
       {
@@ -188,8 +193,8 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     ],
     "sections": [
       {
-        "heading": "Begin At Budget And Work Upward",
-        "body": "Review the current Budget entries, then AA if the first shelf does not suit the Clarkson stop. Expanding in that order keeps a price-focused search from drifting across all five tiers."
+        "heading": "Begin With Budget Weed",
+        "body": "Review the current Budget Weed entries, then AA Weed if the first collection does not suit the Clarkson stop. Expanding in that order keeps a price-focused comparison within the named flower collections."
       },
       {
         "heading": "Read More Than The Price",
@@ -241,9 +246,9 @@ export const RESOURCE_PAGES: ResourcePage[] = [
         "text": "Pick the category first, then compare the details that matter."
       },
       {
-        "title": "Flower Guide",
-        "href": "/resources/flower-guide",
-        "text": "Compare Exotic, Premium, AAA+, AA, and Budget with clearer category notes."
+        "title": "Weed & Flower Guide",
+        "href": "/resources/weed-flower-guide",
+        "text": "Compare Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed collections."
       },
       {
         "title": "Value Guide",
