@@ -5,165 +5,59 @@ export interface TierSeoData {
   faqs: { q: string; a: string }[];
 }
 
+function tierContent(label: string): Omit<TierSeoData, "seoTitle"> {
+  return {
+    seoIntro: `${label} at High Coastal Cannabis is organized as its own Cannabis Flower collection. Browse this collection, review the information presented with individual products, and compare it with other High Coastal Cannabis flower collections that interest you.`,
+    sections: [
+      {
+        heading: `Browse ${label}`,
+        body: `Use the ${label} collection to keep this part of the High Coastal Cannabis flower menu together. Product pages provide the details displayed for each individual listing.`,
+      },
+      {
+        heading: "Compare Flower Collections",
+        body: `If you want to explore another part of the flower menu, move from ${label} to one of the other named Weed collections and compare the information presented there.`,
+      },
+      {
+        heading: "Plan a High Coastal Cannabis Visit",
+        body: "Use the High Coastal Cannabis store page for verified location, contact, and hours information. Keep product decisions with the information displayed on the current menu.",
+      },
+    ],
+    faqs: [
+      {
+        q: `How should shoppers browse ${label}?`,
+        a: `Open the ${label} collection and review the information displayed with each product listing.`,
+      },
+      {
+        q: `Can shoppers compare ${label} with another Weed collection?`,
+        a: "Yes. Each High Coastal Cannabis Weed collection has its own page so shoppers can move directly between flower categories.",
+      },
+      {
+        q: "Where is High Coastal Cannabis store information shown?",
+        a: "Use the High Coastal Cannabis store page for verified location, contact, and hours information.",
+      },
+    ],
+  };
+}
+
 export const TIER_SEO: Record<string, TierSeoData> = {
-  "EXOTIC": {
-    "seoTitle": "Exotic Cannabis Flower Mississauga | High Coastal Cannabis",
-    "seoIntro": "Exotic flower at High Coastal Cannabis is easiest to compare as its own lane. Open the current Exotic menu, read the posted details, and ask staff when one product detail matters.",
-    "sections": [
-      {
-        "heading": "How To Shop Exotic",
-        "body": "Exotic is the lane for shoppers who want to compare the higher shelf flower category first. Start with the tier page, then compare product name, format, weight, posted price, and item details. The current menu is the right place for details that move."
-      },
-      {
-        "heading": "When Exotic Makes Sense",
-        "body": "Use Exotic when the visit is about the upper flower lane, not when the main goal is cheap weed. If the listing is close but not clear, ask staff before choosing. That is faster than guessing from an old blog line."
-      },
-      {
-        "heading": "Local Clarkson / Lakeshore Menu Tip",
-        "body": "If you searched for a weed dispensary in Clarkson / Lakeshore or a cannabis dispensary in Mississauga, keep the Exotic page open while you compare. Use the store page for directions, contact options, and listed hours."
-      }
-    ],
-    "faqs": [
-      {
-        "q": "How should shoppers compare Exotic flower?",
-        "a": "Open the Exotic tier, compare the current product details, and ask staff when a note needs a current answer."
-      },
-      {
-        "q": "Does Exotic menu details change?",
-        "a": "Yes. Product names, prices, and menu details can change, so confirm through the current menu or staff."
-      },
-      {
-        "q": "Where should shoppers go after this Exotic guide?",
-        "a": "Use the Exotic tier page first, then the store page when you are ready for directions or contact options."
-      }
-    ]
+  EXOTIC: {
+    seoTitle: "Exotic Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    ...tierContent("Exotic Weed"),
   },
-  "PREMIUM": {
-    "seoTitle": "Premium Cannabis Flower Mississauga | High Coastal Cannabis",
-    "seoIntro": "Premium flower at High Coastal Cannabis is easiest to compare as its own lane. Open the current Premium menu, read the posted details, and ask staff when one product detail matters.",
-    "sections": [
-      {
-        "heading": "How To Shop Premium",
-        "body": "Premium is a strong lane for shoppers balancing flower quality and value. Start with the tier page, then compare product name, format, weight, posted price, and item details. The current menu is the right place for details that move."
-      },
-      {
-        "heading": "When Premium Makes Sense",
-        "body": "Use Premium when you want to compare above the value lanes without starting every search in Exotic. If the listing is close but not clear, ask staff before choosing. That is faster than guessing from an old blog line."
-      },
-      {
-        "heading": "Local Clarkson / Lakeshore Menu Tip",
-        "body": "If you searched for a weed dispensary in Clarkson / Lakeshore or a cannabis dispensary in Mississauga, keep the Premium page open while you compare. Use the store page for directions, contact options, and listed hours."
-      }
-    ],
-    "faqs": [
-      {
-        "q": "How should shoppers compare Premium flower?",
-        "a": "Open the Premium tier, compare the current product details, and ask staff when a note needs a current answer."
-      },
-      {
-        "q": "Does Premium menu details change?",
-        "a": "Yes. Product names, prices, and menu details can change, so confirm through the current menu or staff."
-      },
-      {
-        "q": "Where should shoppers go after this Premium guide?",
-        "a": "Use the Premium tier page first, then the store page when you are ready for directions or contact options."
-      }
-    ]
+  PREMIUM: {
+    seoTitle: "Premium Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    ...tierContent("Premium Weed"),
   },
   "AAA+": {
-    "seoTitle": "AAA+ Cannabis Flower Mississauga | High Coastal Cannabis",
-    "seoIntro": "AAA+ flower at High Coastal Cannabis is easiest to compare as its own lane. Open the current AAA+ menu, read the posted details, and ask staff when one product detail matters.",
-    "sections": [
-      {
-        "heading": "How To Shop AAA+",
-        "body": "AAA+ is a clean middle lane for shoppers comparing flower without jumping straight to the top tier. Start with the tier page, then compare product name, format, weight, posted price, and item details. The current menu is the right place for details that move."
-      },
-      {
-        "heading": "When AAA+ Makes Sense",
-        "body": "Use AAA+ when you want a focused flower comparison with less menu noise. If the listing is close but not clear, ask staff before choosing. That is faster than guessing from an old blog line."
-      },
-      {
-        "heading": "Local Clarkson / Lakeshore Menu Tip",
-        "body": "If you searched for a weed dispensary in Clarkson / Lakeshore or a cannabis dispensary in Mississauga, keep the AAA+ page open while you compare. Use the store page for directions, contact options, and listed hours."
-      }
-    ],
-    "faqs": [
-      {
-        "q": "How should shoppers compare AAA+ flower?",
-        "a": "Open the AAA+ tier, compare the current product details, and ask staff when a note needs a current answer."
-      },
-      {
-        "q": "Does AAA+ menu details change?",
-        "a": "Yes. Product names, prices, and menu details can change, so confirm through the current menu or staff."
-      },
-      {
-        "q": "Where should shoppers go after this AAA+ guide?",
-        "a": "Use the AAA+ tier page first, then the store page when you are ready for directions or contact options."
-      }
-    ]
+    seoTitle: "AAA+ Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    ...tierContent("AAA+ Weed"),
   },
-  "AA": {
-    "seoTitle": "AA Cannabis Flower Mississauga | High Coastal Cannabis",
-    "seoIntro": "AA flower at High Coastal Cannabis is easiest to compare as its own lane. Open the current AA menu, read the posted details, and ask staff when one product detail matters.",
-    "sections": [
-      {
-        "heading": "How To Shop AA",
-        "body": "AA is a practical value lane for shoppers who want straightforward flower browsing. Start with the tier page, then compare product name, format, weight, posted price, and item details. The current menu is the right place for details that move."
-      },
-      {
-        "heading": "When AA Makes Sense",
-        "body": "Use AA when affordable weed is part of the plan but you still want a dedicated flower tier. If the listing is close but not clear, ask staff before choosing. That is faster than guessing from an old blog line."
-      },
-      {
-        "heading": "Local Clarkson / Lakeshore Menu Tip",
-        "body": "If you searched for a weed dispensary in Clarkson / Lakeshore or a cannabis dispensary in Mississauga, keep the AA page open while you compare. Use the store page for directions, contact options, and listed hours."
-      }
-    ],
-    "faqs": [
-      {
-        "q": "How should shoppers compare AA flower?",
-        "a": "Open the AA tier, compare the current product details, and ask staff when a note needs a current answer."
-      },
-      {
-        "q": "Does AA menu details change?",
-        "a": "Yes. Product names, prices, and menu details can change, so confirm through the current menu or staff."
-      },
-      {
-        "q": "Where should shoppers go after this AA guide?",
-        "a": "Use the AA tier page first, then the store page when you are ready for directions or contact options."
-      }
-    ]
+  AA: {
+    seoTitle: "AA Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    ...tierContent("AA Weed"),
   },
-  "BUDGET": {
-    "seoTitle": "Budget Cannabis Flower Mississauga | High Coastal Cannabis",
-    "seoIntro": "Budget flower at High Coastal Cannabis is easiest to compare as its own lane. Open the current Budget menu, read the posted details, and ask staff when one product detail matters.",
-    "sections": [
-      {
-        "heading": "How To Shop Budget",
-        "body": "Budget is the first stop when cheap weed, budget weed, or affordable weed is the goal. Start with the tier page, then compare product name, format, weight, posted price, and item details. The current menu is the right place for details that move."
-      },
-      {
-        "heading": "When Budget Makes Sense",
-        "body": "Use Budget when price is the main filter, then compare the current listings before choosing. If the listing is close but not clear, ask staff before choosing. That is faster than guessing from an old blog line."
-      },
-      {
-        "heading": "Local Clarkson / Lakeshore Menu Tip",
-        "body": "If you searched for a weed dispensary in Clarkson / Lakeshore or a cannabis dispensary in Mississauga, keep the Budget page open while you compare. Use the store page for directions, contact options, and listed hours."
-      }
-    ],
-    "faqs": [
-      {
-        "q": "How should shoppers compare Budget flower?",
-        "a": "Open the Budget tier, compare the current product details, and ask staff when a note needs a current answer."
-      },
-      {
-        "q": "Does Budget menu details change?",
-        "a": "Yes. Product names, prices, and menu details can change, so confirm through the current menu or staff."
-      },
-      {
-        "q": "Where should shoppers go after this Budget guide?",
-        "a": "Use the Budget tier page first, then the store page when you are ready for directions or contact options."
-      }
-    ]
-  }
+  BUDGET: {
+    seoTitle: "Budget Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    ...tierContent("Budget Weed"),
+  },
 };

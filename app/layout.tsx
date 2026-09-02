@@ -76,7 +76,7 @@ const jsonLd = {
   additionalType: "https://schema.org/Store",
   "@id": "https://www.highcoastalcannabis.com",
   name: "High Coastal Cannabis",
-  description: "Cannabis dispensary at 1720 Lakeshore Rd W in Mississauga, ON. Shop exotic, premium, AAA+, AA, and budget flower tiers plus edibles, prerolls, and vapes. Open 24 Hours.",
+  description: "Cannabis dispensary at 1720 Lakeshore Rd W in Mississauga, ON. Browse Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed flower collections plus edibles, prerolls, and vapes. Open 24 Hours.",
   url: "https://www.highcoastalcannabis.com",
   telephone: "+12898155222",
   image: "https://www.highcoastalcannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",

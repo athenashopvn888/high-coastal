@@ -10,7 +10,7 @@ export default function Footer() {
             <div className={styles.brand}>HIGH COASTAL CANNABIS</div>
             <p className={styles.desc}>
               Your Local Cannabis Dispensary At 1720 Lakeshore Rd W, Mississauga. Visit
-              High Coastal Cannabis For Premium Flower, Edibles, Vapes &amp; More.
+              High Coastal Cannabis For Premium Weed, Edibles, Vapes &amp; More.
               Open 24 Hours.
             </p>
             <div className={styles.buttons}>
@@ -46,14 +46,14 @@ export default function Footer() {
             <h3 className={styles.colTitle}>Quick Links</h3>
             <nav className={styles.links}>
               <Link href="/">Home</Link>
-              <Link href="/exotic">Exotic Flower</Link>
-              <Link href="/premium">Premium Flower</Link>
-              <Link href="/aaa">AAA+ Flower</Link>
-              <Link href="/aa">AA Flower</Link>
-              <Link href="/budget">Budget Flower</Link>
+              <Link href="/exotic-weed">Exotic Weed</Link>
+              <Link href="/premium-weed">Premium Weed</Link>
+              <Link href="/aaa-weed">AAA+ Weed</Link>
+              <Link href="/aa-weed">AA Weed</Link>
+              <Link href="/budget-weed">Budget Weed</Link>
               <Link href="/items/edibles">Edibles</Link>
               <Link href="/items/cigarettes">Cigarettes</Link>
-              <Link href="/items/vapes">Vape Pens</Link>
+              <Link href="/items/vapes">Nicotine Vape</Link>
               <Link href="/resources">Resources</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/delivery">Delivery Menu</Link>

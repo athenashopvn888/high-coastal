@@ -173,8 +173,8 @@ export const SEO_PAGES: SeoPageData[] = [
     "heroTagline": "Value shopping with clearer category choices",
     "sections": [
       {
-        "heading": "Start With Budget And AA",
-        "body": "If cheap weed or affordable weed is the mission, start with the Budget and AA flower lanes before jumping around the rest of the menu. That keeps the comparison clean."
+        "heading": "Start With Budget Weed And AA Weed",
+        "body": "If cheap weed or affordable weed is the mission, start with the Budget Weed and AA Weed flower collections before exploring the rest of the menu."
       },
       {
         "heading": "Compare The Current Menu",
@@ -182,13 +182,13 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "heading": "Know When To Move Up",
-        "body": "If Budget or AA does not fit the visit, compare AAA+, Premium, or Exotic flower next. A better tier choice starts with the category, then the current product details."
+        "body": "If Budget Weed or AA Weed does not fit the visit, compare AAA+ Weed, Premium Weed, or Exotic Weed next. Begin with the named collection, then review the current product details."
       }
     ],
     "faqs": [
       {
         "q": "Where should value shoppers start at High Coastal Cannabis?",
-        "a": "Start with Budget and AA flower, then compare current menu details before choosing."
+        "a": "Start with Budget Weed and AA Weed, then compare current menu details before choosing."
       },
       {
         "q": "Does affordable weed mean guessing?",

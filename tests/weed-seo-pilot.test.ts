@@ -17,9 +17,48 @@ test("LC01 keeps the protected owner and exact metadata", () => {
 
 test("LC01 static discovery uses only approved destinations", () => {
   const sources = [read("app/lib/weedDiscovery.ts"), read("app/components/WeedDiscoveryModule.tsx")].join("\n");
-  for (const href of ["/budget", "/aa", "/aaa", "/premium", "/exotic", "/items/prerolls", "/items/edibles", "/items/vapes", "/items/concentrates", "/items/add-ons", "/weed-dispensary-mississauga/", "/resources/flower-guide"]) {
+  for (const href of ["/budget-weed", "/aa-weed", "/aaa-weed", "/premium-weed", "/exotic-weed", "/items/prerolls", "/items/edibles", "/items/vapes", "/items/concentrates", "/items/add-ons", "/weed-dispensary-mississauga/", "/resources/weed-flower-guide"]) {
     assert.ok(sources.includes(href), `Missing approved link: ${href}`);
   }
+});
+
+test("LC01 V2.1 owners use tier-first Weed labels and direct canonicals", () => {
+  const products = read("app/lib/products.ts");
+  const tierCopy = read("app/lib/tierSeoContent.ts");
+  const nav = read("app/components/Navbar.tsx");
+  const footer = read("app/components/Footer.tsx");
+  const home = read("app/page.tsx");
+  const resources = read("app/resources/resourceData.ts");
+  const redirects = read("next.config.ts");
+
+  for (const [label, slug, legacy] of [
+    ["Exotic Weed", "exotic-weed", "exotic"],
+    ["Premium Weed", "premium-weed", "premium"],
+    ["AAA+ Weed", "aaa-weed", "aaa"],
+    ["AA Weed", "aa-weed", "aa"],
+    ["Budget Weed", "budget-weed", "budget"],
+  ]) {
+    for (const source of [products, tierCopy, nav, footer, home, resources]) {
+      assert.ok(source.includes(label), `Missing V2.1 label: ${label}`);
+    }
+    assert.ok(products.includes(`slug: "${slug}"`), `Missing canonical tier slug: ${slug}`);
+    assert.ok(redirects.includes(`source: "/${legacy}", destination: "/${slug}"`), `Missing direct tier redirect: ${legacy}`);
+  }
+
+  assert.ok(resources.includes('"slug": "weed-flower-guide"'));
+  assert.ok(redirects.includes('source: "/resources/flower-guide", destination: "/resources/weed-flower-guide"'));
+  assert.ok(resources.includes('"href": "/weed-dispensary-mississauga/"'));
+});
+
+test("LC01 leaves delivery outside the Weed migration", () => {
+  const nav = read("app/components/Navbar.tsx");
+  const footer = read("app/components/Footer.tsx");
+  const sitemap = read("app/sitemap.ts");
+  const redirects = read("next.config.ts");
+  assert.match(nav, /href: "\/delivery", label: "Delivery"/);
+  assert.match(footer, /href="\/delivery">Delivery Menu/);
+  assert.match(sitemap, /\$\{BASE\}\/delivery/);
+  assert.doesNotMatch(redirects, /weed-delivery/);
 });
 
 test("LC01 exact FMD identity is consistent", () => {
