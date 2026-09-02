@@ -171,7 +171,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   "VAPE PENS": {
     banner: "/banners/01_Vape_Pens.webp",
     name: "Nicotine Vape", slug: "vapes", color: "#8b5cf6", icon: "VP",
-    seoTitle: "Nicotine Vapes Mississauga | High Coastal Cannabis",
+    seoTitle: "Nicotine Vapes Mississauga",
     seoIntro: "High Coastal Cannabis keeps Nicotine Vape products separate from THC Vape products so adults 19+ can clearly distinguish the two categories.",
     seoDescription: "Browse the Nicotine Vape category separately from THC Vape products. Adults 19+. Nicotine is addictive.",
     faqs: [
@@ -182,7 +182,7 @@ export const CATEGORY_CONFIG: Record<string, CategoryInfo> = {
   "VAPE DISPOSABLE": {
     banner: "/banners/02_Vape_Disposable.webp",
     name: "THC Vape", slug: "vape-disposables", color: "#a78bfa", icon: "VD",
-    seoTitle: "THC Vapes Mississauga | High Coastal Cannabis",
+    seoTitle: "THC Vapes Mississauga",
     seoIntro: "Browse the High Coastal Cannabis THC Vape category, kept separate from Nicotine Vape products.",
     seoDescription: "Browse the THC Vape category separately from Nicotine Vape products and review the information shown with each listing.",
     faqs: [
@@ -294,4 +294,5 @@ export function formatPrice(p: PricePoint | null): string {
   if (p.sale !== null) return `$${p.sale}`;
   return `$${p.regular}`;
 }
+
 

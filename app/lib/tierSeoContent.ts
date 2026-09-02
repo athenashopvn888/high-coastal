@@ -41,23 +41,24 @@ function tierContent(label: string): Omit<TierSeoData, "seoTitle"> {
 
 export const TIER_SEO: Record<string, TierSeoData> = {
   EXOTIC: {
-    seoTitle: "Exotic Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    seoTitle: "Exotic Weed & Cannabis Flower Mississauga",
     ...tierContent("Exotic Weed"),
   },
   PREMIUM: {
-    seoTitle: "Premium Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    seoTitle: "Premium Weed & Cannabis Flower Mississauga",
     ...tierContent("Premium Weed"),
   },
   "AAA+": {
-    seoTitle: "AAA+ Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    seoTitle: "AAA+ Weed & Cannabis Flower Mississauga",
     ...tierContent("AAA+ Weed"),
   },
   AA: {
-    seoTitle: "AA Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    seoTitle: "AA Weed & Cannabis Flower Mississauga",
     ...tierContent("AA Weed"),
   },
   BUDGET: {
-    seoTitle: "Budget Weed & Cannabis Flower Mississauga | High Coastal Cannabis",
+    seoTitle: "Budget Weed & Cannabis Flower Mississauga",
     ...tierContent("Budget Weed"),
   },
 };
+

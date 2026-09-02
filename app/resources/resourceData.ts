@@ -120,7 +120,7 @@ export const RESOURCE_PAGES: ResourcePage[] = [
   {
     "slug": "weed-flower-guide",
     "title": "High Coastal Cannabis Weed & Flower Guide",
-    "seoTitle": "Weed & Cannabis Flower Guide Mississauga | High Coastal Cannabis",
+    "seoTitle": "Weed & Cannabis Flower Guide Mississauga",
     "description": "Explore Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed collections from High Coastal Cannabis in Mississauga.",
     "eyebrow": "Weed & Flower Guide",
     "intro": "High Coastal Cannabis brings five Weed flower collections together for shoppers comparing different parts of the Cannabis Flower menu: Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed.",
@@ -391,3 +391,4 @@ export function getResourcePage(slug: string) {
   const cleanSlug = slug.replace(/^\/+|\/+$/g, "");
   return RESOURCE_PAGES.find((page) => page.slug === cleanSlug);
 }
+
