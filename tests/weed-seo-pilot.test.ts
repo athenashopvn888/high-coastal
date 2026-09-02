@@ -15,6 +15,23 @@ test("LC01 keeps the protected owner and exact metadata", () => {
   assert.match(page, /canonical:.*gbpLocation\.slug/s);
 });
 
+test("refreshed metadata relies on the root template for one brand suffix", () => {
+  const sources = [read("app/lib/tierSeoContent.ts"), read("app/lib/products.ts"), read("app/resources/resourceData.ts")].join("\n");
+  for (const title of [
+    "Exotic Weed & Cannabis Flower Mississauga",
+    "Premium Weed & Cannabis Flower Mississauga",
+    "AAA+ Weed & Cannabis Flower Mississauga",
+    "AA Weed & Cannabis Flower Mississauga",
+    "Budget Weed & Cannabis Flower Mississauga",
+    "Nicotine Vapes Mississauga",
+    "THC Vapes Mississauga",
+    "Weed & Cannabis Flower Guide Mississauga",
+  ]) {
+    assert.ok(sources.includes(title));
+    assert.ok(!sources.includes(`${title} | High Coastal Cannabis`));
+  }
+});
+
 test("LC01 static discovery uses only approved destinations", () => {
   const sources = [read("app/lib/weedDiscovery.ts"), read("app/components/WeedDiscoveryModule.tsx")].join("\n");
   for (const href of ["/budget-weed", "/aa-weed", "/aaa-weed", "/premium-weed", "/exotic-weed", "/items/prerolls", "/items/edibles", "/items/vapes", "/items/concentrates", "/items/add-ons", "/weed-dispensary-mississauga/", "/resources/weed-flower-guide"]) {
@@ -74,3 +91,4 @@ test("LC01 shopper copy avoids workflow and unsupported local language", () => {
     assert.ok(!sources.includes(blocked), `Blocked shopper-copy phrase: ${blocked}`);
   }
 });
+
