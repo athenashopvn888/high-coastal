@@ -68,3 +68,9 @@ test("nicotine renderer and discovery stay scoped", () => {
   }
 });
 
+test("qualified Nicotine Vape and THC Vape categories render distinct H1 labels", () => {
+  const categoryPage = readFileSync(new URL("../app/items/[category]/page.tsx", import.meta.url), "utf8");
+  assert.match(categoryPage, /catInfo\.key === "VAPE PENS" \|\| catInfo\.key === "VAPE DISPOSABLE"/);
+  assert.match(categoryPage, /<h1 className=\{styles\.heroTitle\}>\{config\.name\}<\/h1>/);
+});
+

@@ -55,6 +55,7 @@ export default async function ItemsCategoryPage({
     items = [...items, ...uniqueAccessories];
   }
   const { config } = catInfo;
+  const isVapeCategory = catInfo.key === "VAPE PENS" || catInfo.key === "VAPE DISPOSABLE";
 
   return (
     <main className={styles.main}>
@@ -63,11 +64,19 @@ export default async function ItemsCategoryPage({
       {/* Hero Banner */}
       <section style={{ width: "100%", overflow: "hidden", marginTop: "92px", marginBottom: "24px" }}>
         {config.banner ? (
-          <img
-            src={config.banner}
-            alt={config.name}
-            style={{ width: "100%", height: "auto", display: "block", objectFit: "contain" }}
-          />
+          <>
+            <img
+              src={config.banner}
+              alt={config.name}
+              style={{ width: "100%", height: "auto", display: "block", objectFit: "contain" }}
+            />
+            {isVapeCategory && (
+              <div className={styles.heroContent} style={{ padding: "28px 24px 8px", textAlign: "center" }}>
+                <h1 className={styles.heroTitle}>{config.name}</h1>
+                <p className={styles.heroSub}>{config.seoIntro}</p>
+              </div>
+            )}
+          </>
         ) : (
           <div className={styles.heroContent} style={{ background: config.color, padding: "60px 24px", textAlign: "center" }}>
             <span className={styles.heroIcon}>{config.icon}</span>
