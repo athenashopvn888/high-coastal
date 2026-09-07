@@ -75,6 +75,17 @@ export function GBPLandingPage() {
         </section>
 
         <section className={styles.section}>
+          <h2>Learn Before You Browse</h2>
+          <p>Want a clearer way to read the High Coastal Cannabis menu? Start with Cannabis 101, the Lakeshore Road first-visit guide or the Weed &amp; Flower Guide.</p>
+          <div className={styles.inlineGuide}>
+            <Link href="/resources/cannabis-101">Cannabis 101</Link>
+            <Link href="/resources/lakeshore-clarkson-first-visit-guide">First Visit on Lakeshore Road West</Link>
+            <Link href="/resources/weed-flower-guide">Weed &amp; Flower Guide</Link>
+            <Link href="/resources">Resource Centre</Link>
+          </div>
+        </section>
+
+        <section className={styles.section}>
           <h2>Helpful Cannabis Guides</h2>
           <div className={styles.guideGrid}>{store.guides.map((guide) => <article className={styles.guideCard} key={guide.href}><h3>{guide.label}</h3><p>{guide.description}</p><Link href={guide.href}>Explore {guide.label}</Link></article>)}</div>
         </section>

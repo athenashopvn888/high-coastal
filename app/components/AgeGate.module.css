@@ -12,6 +12,7 @@
 }
 
 .modal {
+  box-sizing: border-box;
   background: var(--bg-card);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(168, 85, 247, 0.2);
@@ -24,6 +25,26 @@
   position: relative;
   overflow: hidden;
   animation: scaleUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 16px;
+  }
+
+  .modal {
+    padding: 32px 20px;
+  }
+
+  .btnRow {
+    gap: 8px;
+  }
+
+  .yesBtn,
+  .noBtn {
+    min-width: 0;
+    padding-inline: 12px;
+  }
 }
 
 .modal::before {

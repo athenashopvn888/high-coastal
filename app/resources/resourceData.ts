@@ -1,13 +1,30 @@
+import { ADC_RESOURCE_PAGES } from "./adcResourceData";
+
 export interface ResourceCard {
   title: string;
   href: string;
-  text: string;
+  text?: string;
+}
+
+export interface ResourceGroup {
+  heading: string;
+  cards: ResourceCard[];
 }
 
 export interface ResourceSection {
   heading: string;
-  body: string;
+  body: string | string[];
   bullets?: string[];
+  subsections?: {
+    heading: string;
+    body: string[];
+    bullets?: string[];
+  }[];
+}
+
+export interface ResourceFaq {
+  q: string;
+  a: string;
 }
 
 export interface ResourcePage {
@@ -16,12 +33,18 @@ export interface ResourcePage {
   seoTitle: string;
   description: string;
   eyebrow: string;
-  intro: string;
+  intro: string | string[];
+  introBullets?: string[];
   cards: ResourceCard[];
+  groups?: ResourceGroup[];
   sections: ResourceSection[];
+  faqs?: ResourceFaq[];
+  datePublished?: string;
+  dateModified?: string;
+  kind?: "article" | "collection";
 }
 
-export const RESOURCE_PAGES: ResourcePage[] = [
+const BASE_RESOURCE_PAGES: ResourcePage[] = [
   {
     "slug": "",
     "title": "High Coastal Cannabis Resources",
@@ -383,6 +406,104 @@ export const RESOURCE_PAGES: ResourcePage[] = [
       }
     ]
   }
+];
+
+const adcPages = ADC_RESOURCE_PAGES as ResourcePage[];
+const adcBySlug = new Map(adcPages.map((page) => [page.slug, page]));
+
+const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSections?: ResourceSection[]; appendCards?: ResourceCard[] }> = {
+  "": {
+    groups: [
+      {
+        heading: "Start With Cannabis Basics",
+        cards: [
+          { title: "Cannabis Dispensary vs Weed Dispensary", href: "/resources/cannabis-dispensary-vs-weed-dispensary", text: "Understand the different words adults use when they are looking for the same kind of local cannabis store." },
+          { title: "Cannabis 101", href: "/resources/cannabis-101", text: "Start with product categories, Weed terminology, THC, genetics and menu basics." },
+          { title: "First Visit on Lakeshore Road West", href: "/resources/lakeshore-clarkson-first-visit-guide", text: "Plan a first High Coastal Cannabis visit and learn how to approach the menu before product names." },
+        ],
+      },
+      {
+        heading: "Weed & Flower Education",
+        cards: adcPages.filter((page) => page.slug === "weed-flower-guide" || page.slug.startsWith("weed-flower-guide/")).map((page) => ({ title: page.title, href: `/resources/${page.slug}`, text: page.description })),
+      },
+      {
+        heading: "Genetics & Cannabis Terms",
+        cards: adcPages.filter((page) => page.slug.startsWith("cannabis-101/")).map((page) => ({ title: page.title, href: `/resources/${page.slug}`, text: page.description })),
+      },
+      {
+        heading: "Native Smokes Education",
+        cards: [
+          { title: "Native Smokes Guide", href: "/resources/native-smokes", text: "Use these guides to understand commercial cigarette and Native-smokes terminology. Current brands, prices, package formats and availability belong on current product pages." },
+          { title: "Native Cigarettes in Ontario", href: "/resources/native-smokes/native-cigarettes-guide", text: "Learn what Native cigarettes can mean in Ontario and why manufacturer identity, tax status and retail terminology are separate questions." },
+        ],
+      },
+    ],
+    appendSections: [{ heading: "Current Product Information", body: ["High Coastal Cannabis resources explain stable menu and product terminology. Use current category and product pages for changing details such as product names, prices, package formats and availability."] }],
+    kind: "collection",
+  },
+  "menu-guide": {
+    appendSections: [{ heading: "Learn the Language Behind the Menu", body: ["Once you know which product category you want, Cannabis 101 and the Weed & Flower Guide explain the terminology behind flower tiers, THC, genetics, aroma and everyday Weed slang."], subsections: [], }],
+    appendCards: [
+      { title: "Cannabis 101", href: "/resources/cannabis-101" },
+      { title: "Weed & Flower Guide", href: "/resources/weed-flower-guide" },
+      { title: "Weed Slang Glossary", href: "/resources/cannabis-101/weed-slang-glossary" },
+    ],
+  },
+  "value-guide": {
+    appendSections: [{ heading: "Value and Quality Are Different Questions", body: ["Budget and price position are useful shopping filters. They do not automatically decide flower quality. Use current product pages for current pricing, and use the Weed & Flower Guide for aroma, cure, THC, trichomes and other flower-quality terminology."] }],
+    appendCards: [
+      { title: "Weed & Flower Guide", href: "/resources/weed-flower-guide" },
+      { title: "THC vs Weed Quality", href: "/resources/weed-flower-guide/thc-vs-weed-quality" },
+    ],
+  },
+  "pre-roll-guide": {
+    appendSections: [{ heading: "When the Question Becomes a Flower Question", body: ["Pre-rolls are their own product format. If you want to compare loose flower categories, THC, aroma, trichomes or bud structure instead, continue to the Weed & Flower Guide."] }],
+    appendCards: [
+      { title: "Weed & Flower Guide", href: "/resources/weed-flower-guide" },
+      { title: "Cannabis 101", href: "/resources/cannabis-101" },
+    ],
+  },
+  "resource-centre-launch": {
+    appendCards: [{ title: "Open the current High Coastal Cannabis Resource Centre", href: "/resources" }],
+  },
+  "native-smokes": {
+    title: "High Coastal Cannabis Native Smokes Guide",
+    seoTitle: "Native Smokes Guide | High Coastal Cannabis Mississauga",
+    description: "A practical guide to Native-smokes terminology, commercial cigarette brand names, package language and current-menu checking at High Coastal Cannabis.",
+    intro: [
+      "Adults use “Native smokes” as broad retail language for several different commercial-tobacco contexts.",
+      "Use this page to understand the terminology.",
+      "Use current cigarette pages for current prices, brands and availability.",
+    ],
+    cards: [
+      { title: "Native Cigarettes in Ontario", href: "/resources/native-smokes/native-cigarettes-guide" },
+      { title: "Current Cigarette Category", href: "/items/cigarettes" },
+      { title: "Menu Guide", href: "/resources/menu-guide" },
+      { title: "High Coastal Cannabis in Mississauga", href: "/weed-dispensary-mississauga" },
+    ],
+    sections: [
+      { heading: "What This Guide Covers", body: [], bullets: ["Native-smokes terminology;", "commercial cigarette brand names;", "package and carton language;", "the difference between manufacturer identity and tax status;", "links to the current cigarette category;", "the deeper Native Cigarettes in Ontario guide."] },
+      { heading: "Current Prices Belong on Current Product Pages", body: ["Prices and package details can change.", "Use the current cigarette category for current retail details."] },
+      { heading: "Commercial Tobacco and Cannabis Stay Separate", body: ["Commercial cigarettes are tobacco products.", "They should remain separate from cannabis flower, pre-roll, edible and THC-vape education."] },
+    ],
+  },
+};
+
+function applySupportingEnhancement(page: ResourcePage): ResourcePage {
+  const enhancement = supportingEnhancements[page.slug];
+  if (!enhancement) return page;
+  const { appendSections = [], appendCards = [], ...overrides } = enhancement;
+  return {
+    ...page,
+    ...overrides,
+    cards: overrides.cards ?? [...page.cards, ...appendCards],
+    sections: overrides.sections ?? [...page.sections, ...appendSections],
+  };
+}
+
+export const RESOURCE_PAGES: ResourcePage[] = [
+  ...BASE_RESOURCE_PAGES.map((page) => applySupportingEnhancement(adcBySlug.get(page.slug) ?? page)),
+  ...adcPages.filter((page) => !BASE_RESOURCE_PAGES.some((candidate) => candidate.slug === page.slug)),
 ];
 
 export const RESOURCE_HOME = RESOURCE_PAGES[0];
