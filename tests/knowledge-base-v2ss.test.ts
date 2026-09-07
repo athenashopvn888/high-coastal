@@ -26,6 +26,7 @@ test("LC01 ADC V2 SS installs the approved 19-page resource set", () => {
     assert.ok(page.description);
     assert.ok(Array.isArray(page.intro) && page.intro.length > 0, `Missing intro: ${page.slug}`);
     assert.ok(page.sections.length > 0, `Missing sections: ${page.slug}`);
+    assert.equal(page.faqs?.length, 5, `FAQ count mismatch: ${page.slug}`);
   }
 });
 

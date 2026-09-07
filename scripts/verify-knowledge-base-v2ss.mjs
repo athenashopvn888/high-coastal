@@ -11,6 +11,12 @@ const protectedRoutes = [
   "/budget-weed",
   "/weed-dispensary-mississauga",
   "/resources",
+  "/resources/native-smokes",
+  "/resources/menu-guide",
+  "/resources/value-guide",
+  "/resources/pre-roll-guide",
+  "/resources/resource-centre-launch",
+  "/items/cigarettes",
 ];
 const blockedPublicText = [
   "---",
