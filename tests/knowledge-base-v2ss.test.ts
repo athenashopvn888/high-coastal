@@ -83,3 +83,9 @@ test("resource route emits indexable self-canonicals and valid schema types", ()
   assert.match(route, /FAQPage/);
   assert.doesNotMatch(route, /Product|Offer/);
 });
+
+test("banner-backed category pages receive one semantic H1 without duplicating vape H1s", () => {
+  const route = read("app/items/[category]/page.tsx");
+  assert.match(route, /const SeoHeading = config\.banner && !isVapeCategory \? "h1" : "h2"/);
+  assert.match(route, /<SeoHeading className=\{styles\.seoTitle\}>/);
+});

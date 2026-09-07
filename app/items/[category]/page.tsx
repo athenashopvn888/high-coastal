@@ -56,6 +56,7 @@ export default async function ItemsCategoryPage({
   }
   const { config } = catInfo;
   const isVapeCategory = catInfo.key === "VAPE PENS" || catInfo.key === "VAPE DISPOSABLE";
+  const SeoHeading = config.banner && !isVapeCategory ? "h1" : "h2";
 
   return (
     <main className={styles.main}>
@@ -110,7 +111,7 @@ export default async function ItemsCategoryPage({
       {/* SEO Content */}
       <section className={styles.seoSection}>
         <div className={styles.container}>
-          <h2 className={styles.seoTitle}>{config.seoTitle}</h2>
+          <SeoHeading className={styles.seoTitle}>{config.seoTitle}</SeoHeading>
           <p className={styles.seoBody}>{config.seoDescription}</p>
 
           {/* FAQ */}
