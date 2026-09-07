@@ -8,7 +8,7 @@ import {
   getTierFromSlug,
   TIER_CONFIG,
 } from "../lib/products";
-import { TIER_SEO } from "../lib/tierSeoContent";
+import { TIER_EDUCATION_LINKS, TIER_SEO } from "../lib/tierSeoContent";
 import styles from "./tier.module.css";
 
 /* -- Generate all tier pages at build -- */
@@ -183,6 +183,12 @@ export default async function TierPage({
                 <p className={styles.seoBody}>{s.body}</p>
               </div>
             ))}
+
+            <nav aria-label={`${config.name} educational guides`} className={styles.educationLinks}>
+              {TIER_EDUCATION_LINKS[tierInfo.key]?.map((link) => (
+                <a key={link.href} href={link.href}>{link.label}</a>
+              ))}
+            </nav>
 
             {/* FAQ Accordion */}
             {seo.faqs.length > 0 && (
