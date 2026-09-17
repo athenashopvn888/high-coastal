@@ -33,7 +33,7 @@ test("refreshed metadata relies on the root template for one brand suffix", () =
 });
 
 test("LC01 static discovery uses only approved destinations", () => {
-  const sources = [read("app/lib/weedDiscovery.ts"), read("app/components/WeedDiscoveryModule.tsx")].join("\n");
+  const sources = [read("app/lib/storeIdentity.ts"), read("app/lib/weedDiscovery.ts"), read("app/components/WeedDiscoveryModule.tsx")].join("\n");
   for (const href of ["/budget-weed", "/aa-weed", "/aaa-weed", "/premium-weed", "/exotic-weed", "/items/prerolls", "/items/edibles", "/items/vapes", "/items/concentrates", "/items/add-ons", "/weed-dispensary-mississauga/", "/resources/weed-flower-guide"]) {
     assert.ok(sources.includes(href), `Missing approved link: ${href}`);
   }
@@ -79,7 +79,7 @@ test("LC01 leaves delivery outside the Weed migration", () => {
 });
 
 test("LC01 exact FMD identity is consistent", () => {
-  const sources = [read("app/lib/weedDiscovery.ts"), read("app/lib/gbp-location.ts"), read("app/components/GBPLandingPage.tsx")].join("\n");
+  const sources = [read("app/lib/storeIdentity.ts"), read("app/lib/weedDiscovery.ts"), read("app/lib/gbp-location.ts"), read("app/components/GBPLandingPage.tsx")].join("\n");
   assert.match(sources, /1720 Lakeshore Rd W/);
   assert.match(sources, /\+12898155222/);
   assert.match(sources, /\+1 \(289\) 815-5222/);

@@ -2,18 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import AgeGate from "./components/AgeGate";
+import { STORE_IDENTITY, jsonLdHtml, storeJsonLd } from "./lib/storeIdentity";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.highcoastalcannabis.com"),
+  metadataBase: new URL(STORE_IDENTITY.websiteUrl),
   title: {
     default: "High Coastal Cannabis | Mississauga Dispensary",
     template: "%s | High Coastal Cannabis",
   },
   description:
-    "High Coastal Cannabis is a Mississauga cannabis dispensary on Lakeshore Rd W with adult 19+ store info and category browsing for flower, pre-rolls, vapes, edibles, concentrates, and accessories. Open 24 Hours.",
+    "High Coastal Cannabis is a 24-hour cannabis dispensary at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5 in the Clarkson / Lakeshore neighbourhood. Adults 19+ can browse flower, pre-rolls, vapes, edibles, concentrates, and accessories. Call +1 (289) 815-5222.",
   keywords: [
     "cannabis dispensary Mississauga",
     "weed store Mississauga",
+    "24 hour dispensary Mississauga",
+    "Lakeshore Rd W dispensary",
+    "weed dispensary Clarkson",
     "exotic flower Mississauga",
     "premium cannabis",
     "High Coastal Cannabis",
@@ -30,8 +34,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://www.highcoastalcannabis.com",
-    siteName: "High Coastal Cannabis",
+    url: STORE_IDENTITY.websiteUrl,
+    siteName: STORE_IDENTITY.name,
     title: "High Coastal Cannabis - Mississauga Cannabis Dispensary",
     description:
       "Browse flower tiers and menu categories for High Coastal Cannabis at 1720 Lakeshore Rd W. Open 24 Hours.",
@@ -62,51 +66,14 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://www.highcoastalcannabis.com",
+    canonical: STORE_IDENTITY.websiteUrl,
   },
   verification: {
     // google: "your-google-verification-code",
   },
 };
 
-/* JSON-LD Structured Data */
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Store",
-  additionalType: "https://schema.org/Store",
-  "@id": "https://www.highcoastalcannabis.com",
-  name: "High Coastal Cannabis",
-  description: "Cannabis dispensary at 1720 Lakeshore Rd W in Mississauga, ON. Browse Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed flower collections plus edibles, prerolls, and vapes. Open 24 Hours.",
-  url: "https://www.highcoastalcannabis.com",
-  telephone: "+12898155222",
-  image: "https://www.highcoastalcannabis.com/wp-content/uploads/2026/04/7Clmh.jpg",
-  priceRange: "$3 - $12/g",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "1720 Lakeshore Rd W",
-    addressLocality: "Mississauga",
-    addressRegion: "ON",
-    postalCode: "L5J 1J5",
-    addressCountry: "CA",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 43.5177,
-    longitude: -79.6220,
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "00:00",
-      closes: "23:59",
-    },
-  ],
-  areaServed: {
-    "@type": "City",
-    name: "Mississauga",
-  },
-};
+const jsonLd = storeJsonLd();
 
 export default function RootLayout({
   children,
@@ -128,7 +95,7 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
         />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLDK412BJR"></script>
         <script

@@ -62,6 +62,7 @@ test("protected Weed owners and local owner remain linked and unchanged", () => 
   const tierData = read("app/lib/tierSeoContent.ts");
   const products = read("app/lib/products.ts");
   const localPage = read("app/components/GBPLandingPage.tsx");
+  const identity = read("app/lib/storeIdentity.ts");
   const resources = JSON.stringify(ADC_RESOURCE_PAGES);
 
   for (const [label, slug] of protectedTiers) {
@@ -69,7 +70,10 @@ test("protected Weed owners and local owner remain linked and unchanged", () => 
     assert.ok(products.includes(`slug: "${slug}"`), `Missing protected route: /${slug}`);
   }
 
-  assert.ok(localPage.includes("/weed-dispensary-mississauga"));
+  assert.match(identity, /landingPath: "\/weed-dispensary-mississauga\/"/);
+  assert.match(identity, /websiteUrl: "https:\/\/www\.highcoastalcannabis\.com"/);
+  assert.match(localPage, /storeIdentity/);
+  assert.match(localPage, /High Coastal Cannabis/);
   assert.ok(resources.includes("/weed-dispensary-mississauga"));
 });
 

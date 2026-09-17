@@ -138,7 +138,7 @@ export const SEO_PAGES: SeoPageData[] = [
     "sections": [
       {
         "heading": "Shop High Coastal Cannabis With A Plan",
-        "body": "High Coastal Cannabis helps adults compare the menu without overcomplicating the visit. Start with the store page, then choose the category that matches the visit: flower, pre-rolls, edibles, THC vapes, concentrates, accessories, or cigarettes where listed."
+        "body": "High Coastal Cannabis is the 24-hour weed dispensary at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5 in the Clarkson / Lakeshore neighbourhood. Start with the store page, then choose the category that matches the visit: flower, pre-rolls, edibles, THC vapes, concentrates, accessories, or cigarettes where listed."
       },
       {
         "heading": "Local Menu Notes For Clarkson / Lakeshore",
@@ -252,7 +252,7 @@ export const SEO_PAGES: SeoPageData[] = [
     "sections": [
       {
         "heading": "Confirm The Right Store Page",
-        "body": "When you search for a weed store near Clarkson / Lakeshore, open the High Coastal Cannabis store page first. Confirm directions, contact options, listed hours, and the category you want before visiting."
+        "body": "When you search for a weed store near Clarkson / Lakeshore, confirm High Coastal Cannabis at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. The store is open 24 hours. Call +1 (289) 815-5222, then choose the category you want before visiting."
       },
       {
         "heading": "Choose The Product Category",
@@ -288,7 +288,7 @@ export const SEO_PAGES: SeoPageData[] = [
     "sections": [
       {
         "heading": "Make The Search Useful",
-        "body": "Use the store page, menu categories, and resources to plan a High Coastal Cannabis visit and choose the next useful page."
+        "body": "High Coastal Cannabis is a 24-hour cannabis dispensary at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Use the store page, menu categories, and resources to plan a visit and choose the next useful category."
       },
       {
         "heading": "Compare Categories Naturally",

@@ -54,7 +54,7 @@ export default function Navbar({ hideThcVape = false }: { hideThcVape?: boolean 
         <div className={styles.topBarRight}>
           <span className={styles.open}>
             <span className={styles.dot}></span>
-            Open Now
+            Open 24 Hours
           </span>
         </div>
       </div>
