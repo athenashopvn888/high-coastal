@@ -5,7 +5,7 @@ import styles from "./contact.module.css";
 import { STORE_IDENTITY as nap, jsonLdHtml } from "../lib/storeIdentity";
 
 export const metadata: Metadata = {
-  title: `Contact Us — ${nap.name} | ${nap.streetAddress}, ${nap.addressLocality}`,
+  title: { absolute: `Contact Us — ${nap.name} | ${nap.streetAddress}, ${nap.addressLocality}` },
   description:
     `Visit ${nap.name} at ${nap.addressDisplay}. ${nap.hoursDisplay}, 7 days a week. Walk-ins welcome. Call ${nap.phoneDisplay}.`,
   alternates: {
