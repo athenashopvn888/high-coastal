@@ -33,6 +33,7 @@ const nextConfig: NextConfig = {
       { source: "/info/weed-store-near-brampton", destination: "/info/weed-store-near-clarkson-lakeshore", permanent: true },
       { source: "/info/dispensary-near-me-york", destination: "/info/dispensary-near-me-mississauga", permanent: true },
       { source: "/resources/local-guides/lakeshore-mississauga-visit-guide", destination: "/visit", permanent: true },
+      { source: "/resources/local-guides/lakeshore-24-hour-open-now-faq", destination: "/24-hour-dispensary-mississauga", permanent: true },
     ];
   },
 };

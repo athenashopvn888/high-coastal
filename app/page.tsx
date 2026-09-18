@@ -231,7 +231,9 @@ export default function HomePage() {
             <img src="/storeFavicon.webp" alt="High Coastal Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
             <h1 className={styles.brandTitle}>HIGH COASTAL CANNABIS</h1>
             <p className={styles.brandSub}>24-Hour Cannabis Dispensary · Lakeshore Rd W, Mississauga</p>
-            <div className={styles.brandBadge}>Open 24 Hours</div>
+            <Link href="/24-hour-dispensary-mississauga" className={styles.brandBadge}>
+              Open 24 Hours
+            </Link>
           </div>
 
           {/* Bento Grid */}
@@ -324,7 +326,7 @@ export default function HomePage() {
               Looking for a weed dispensary in Mississauga or a cannabis store on Lakeshore Rd W? Confirm the current identity: High Coastal Cannabis, 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5, +1 (289) 815-5222, Open 24 Hours.
             </p>
             <p className={styles.seoPanelText}>
-              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>.
+              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>. For open-now hours and late-night ID, use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>.
             </p>
           </div>
         </div>
@@ -441,6 +443,10 @@ export default function HomePage() {
                 Open 7 Days a Week
                 <br />
                 <span className={styles.storeHighlight}>Open 24 Hours</span>
+                <br />
+                <Link href="/24-hour-dispensary-mississauga" className={styles.storeLink}>
+                  24-hour open-now FAQ
+                </Link>
               </p>
             </div>
             <div className={styles.storeCard}>
