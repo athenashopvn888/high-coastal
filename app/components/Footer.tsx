@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
+import { STORE_IDENTITY as nap } from "../lib/storeIdentity";
 
 export default function Footer() {
   return (
@@ -9,12 +10,10 @@ export default function Footer() {
           <div className={styles.col}>
             <div className={styles.brand}>HIGH COASTAL CANNABIS</div>
             <p className={styles.desc}>
-              Your Local Cannabis Dispensary At 1720 Lakeshore Rd W, Mississauga. Visit
-              High Coastal Cannabis For Premium Weed, Edibles, Vapes &amp; More.
-              Open 24 Hours.
+              Your Local Cannabis Dispensary At {nap.streetAddress}, {nap.addressLocality}. Visit {nap.name} For Premium Weed, Edibles, Vapes &amp; More. {nap.hoursDisplay}.
             </p>
             <div className={styles.buttons}>
-              <a href="tel:+12898155222" className={styles.btnPrimary}>
+              <a href={`tel:${nap.phoneIntl}`} className={styles.btnPrimary}>
                 Call Now
               </a>
             </div>
@@ -24,21 +23,21 @@ export default function Footer() {
             <h3 className={styles.colTitle}>Contact Info</h3>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Address:</span>
-              <span>1720 Lakeshore Rd W</span>
-              <span>Mississauga, ON L5J 1J5</span>
+              <span>{nap.streetAddress}</span>
+              <span>{nap.addressLocality}, {nap.addressRegion} {nap.postalCode}</span>
               <span>Canada</span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Phone:</span>
               <span>
-                <a href="tel:+12898155222" style={{ color: "inherit" }}>
-                  +1 (289) 815-5222
+                <a href={`tel:${nap.phoneIntl}`} style={{ color: "inherit" }}>
+                  {nap.phoneDisplay}
                 </a>
               </span>
             </div>
             <div className={styles.infoBlock}>
               <span className={styles.infoLabel}>Hours:</span>
-              <span className={styles.highlight}>Open 24 Hours</span>
+              <span className={styles.highlight}>{nap.hoursDisplay}</span>
             </div>
           </div>
 
@@ -70,7 +69,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <p>
-            (c) {new Date().getFullYear()} High Coastal Cannabis. Must be 19+ to
+            (c) {new Date().getFullYear()} {nap.name}. Must be 19+ to
             enter. Please review posted store and menu information.
           </p>
         </div>
@@ -78,4 +77,3 @@ export default function Footer() {
     </footer>
   );
 }
-

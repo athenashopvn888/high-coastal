@@ -262,6 +262,10 @@
 .kicker { margin: 0 0 12px; color: #86efac; font-size: .82rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .main .hero h1 { max-width: 880px; margin: 0 auto 16px; color: #fff; font-size: clamp(2.2rem, 6vw, 4.5rem); line-height: 1.04; letter-spacing: -.04em; }
 .heroAddress { margin: 0; color: #d1d5db; font-size: clamp(1rem, 2vw, 1.2rem); }
+.heroPhone { margin: 10px 0 0; color: #86efac; font-size: 1.05rem; font-weight: 800; }
+.heroPhone a { color: #86efac; text-underline-offset: 3px; }
+.areaRow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.areaChip { padding: 8px 16px; border: 1px solid rgba(134, 239, 172, .22); border-radius: 999px; background: rgba(15, 23, 42, .76); color: #d1d5db; font-size: .9rem; font-weight: 700; }
 .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
 .primaryAction,
 .secondaryAction { min-width: 210px; padding: 14px 20px; border-radius: 999px; font-weight: 850; text-align: center; text-decoration: none; }

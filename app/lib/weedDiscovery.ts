@@ -1,8 +1,10 @@
+import { STORE_IDENTITY as nap } from "./storeIdentity";
+
 export type WeedDiscoveryLink = { label: string; description: string; href: string };
 export type WeedOwnerConfig = { storeName: string; city: string; address: string; streetAddress: string; province: string; postalCode: string; phoneDisplay: string; phoneIntl: string; ownerPath: string; flowerTiers: WeedDiscoveryLink[]; categories: WeedDiscoveryLink[]; guides: WeedDiscoveryLink[] };
 
 export const lcWeedOwner: WeedOwnerConfig = {
-  storeName: "High Coastal Cannabis", city: "Mississauga", address: "1720 Lakeshore Rd W, Mississauga, ON L5J 1J5, Canada", streetAddress: "1720 Lakeshore Rd W", province: "ON", postalCode: "L5J 1J5", phoneDisplay: "+1 (289) 815-5222", phoneIntl: "+12898155222", ownerPath: "/weed-dispensary-mississauga/",
+  storeName: nap.name, city: nap.addressLocality, address: nap.addressDisplay, streetAddress: nap.streetAddress, province: nap.addressRegion, postalCode: nap.postalCode, phoneDisplay: nap.phoneDisplay, phoneIntl: nap.phoneIntl, ownerPath: nap.landingPath,
   flowerTiers: [
     { label: "Budget Weed", description: "Explore the Budget Weed flower collection.", href: "/budget-weed" }, { label: "AA Weed", description: "Explore the AA Weed flower collection.", href: "/aa-weed" }, { label: "AAA+ Weed", description: "Explore the AAA+ Weed flower collection.", href: "/aaa-weed" }, { label: "Premium Weed", description: "Explore the Premium Weed flower collection.", href: "/premium-weed" }, { label: "Exotic Weed", description: "Explore the Exotic Weed flower collection.", href: "/exotic-weed" },
   ],

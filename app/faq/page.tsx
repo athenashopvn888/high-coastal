@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "./faq.module.css";
+import { STORE_IDENTITY as nap } from "../lib/storeIdentity";
 
 export const metadata: Metadata = {
   title: "FAQ | High Coastal Cannabis",
@@ -15,7 +16,7 @@ const FAQ_CATEGORIES = [
   {
     title: "Location and Hours",
     faqs: [
-      { q: "Where is High Coastal Cannabis located?", a: "High Coastal Cannabis is listed at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Use the store page for directions and contact options before visiting." },
+      { q: "Where is High Coastal Cannabis located?", a: `High Coastal Cannabis is listed at ${nap.addressDisplay}. Use the store page for directions and contact options before visiting.` },
       { q: "What are the listed hours?", a: "Open 24 Hours. Check the current store page or contact staff before visiting if timing matters." },
       { q: "What is the best way to plan the visit?", a: "Start with the store page, confirm directions and listed hours, then open the menu category that matches the visit." },
     ],
@@ -91,7 +92,7 @@ export default function FAQPage() {
           <div className={styles.ctaSection}>
             <h2 className={styles.ctaTitle}>Still have questions?</h2>
             <p className={styles.ctaText}>
-              Call <a href="tel:+12898155222">+1 (289) 815-5222</a> or use the store page before visiting.
+              Call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a> or use the store page before visiting.
             </p>
           </div>
         </div>

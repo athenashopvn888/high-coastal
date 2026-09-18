@@ -18,7 +18,7 @@ export const ADC_RESOURCE_PAGES = [
     "cards": [
       {
         "title": "High Coastal Cannabis in Mississauga",
-        "href": "/weed-dispensary-mississauga"
+        "href": "/weed-dispensary-mississauga/"
       },
       {
         "title": "First Visit on Lakeshore Road West",
@@ -325,6 +325,8 @@ export const ADC_RESOURCE_PAGES = [
     "intro": [
       "High Coastal Cannabis is located at:",
       "1720 Lakeshore Rd W, Mississauga, ON L5J 1J5",
+      "Phone:",
+      "+1 (289) 815-5222",
       "Current listed hours:",
       "Open 24 Hours",
       "A first cannabis-store visit does not require knowing every cultivar, brand or menu term before you arrive.",
@@ -338,7 +340,7 @@ export const ADC_RESOURCE_PAGES = [
     "cards": [
       {
         "title": "weed dispensary mississauga",
-        "href": "/weed-dispensary-mississauga"
+        "href": "/weed-dispensary-mississauga/"
       },
       {
         "title": "cannabis 101",
@@ -2411,7 +2413,7 @@ export const ADC_RESOURCE_PAGES = [
       },
       {
         "title": "weed dispensary mississauga",
-        "href": "/weed-dispensary-mississauga"
+        "href": "/weed-dispensary-mississauga/"
       },
       {
         "title": "resources",

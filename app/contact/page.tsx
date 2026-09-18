@@ -2,24 +2,34 @@ import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "./contact.module.css";
+import { STORE_IDENTITY as nap, jsonLdHtml } from "../lib/storeIdentity";
 
 export const metadata: Metadata = {
-  title: "Contact Us — High Coastal Cannabis | 1720 Lakeshore Rd W, Mississauga",
+  title: { absolute: `Contact Us — ${nap.name} | ${nap.streetAddress}, ${nap.addressLocality}` },
   description:
-    "Visit High Coastal Cannabis at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Open 24 hours, 7 days a week. Walk-ins welcome.",
+    `Visit ${nap.name} at ${nap.addressDisplay}. ${nap.hoursDisplay}, 7 days a week. Walk-ins welcome. Call ${nap.phoneDisplay}.`,
   alternates: {
-    canonical: "https://www.highcoastalcannabis.com/contact",
+    canonical: `${nap.websiteUrl}/contact`,
   },
   openGraph: {
-    title: "Contact High Coastal Cannabis — Mississauga Dispensary",
+    title: `Contact ${nap.name} — Mississauga Dispensary`,
     description:
-      "1720 Lakeshore Rd W, Mississauga. Open 24 hours, 7 days a week. Premium cannabis, always fire.",
+      `${nap.streetAddress}, ${nap.addressLocality}. ${nap.hoursDisplay}, 7 days a week. Call ${nap.phoneDisplay}.`,
   },
 };
 
 export default function ContactPage() {
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    url: `${nap.websiteUrl}/contact`,
+    name: `Contact ${nap.name}`,
+    mainEntity: { "@id": nap.storeId },
+  };
+
   return (
     <main className={styles.main}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdHtml(contactSchema) }} />
       <Navbar />
 
       {/* ── Hero ── */}
@@ -38,11 +48,16 @@ export default function ContactPage() {
               <div className={styles.infoIcon}>📍</div>
               <h2 className={styles.infoTitle}>Location</h2>
               <p className={styles.infoText}>
-                1720 Lakeshore Rd W
+                {nap.streetAddress}
                 <br />
-                Mississauga, ON L5J 1J5
+                {nap.addressLocality}, {nap.addressRegion} {nap.postalCode}
                 <br />
-                <span className={styles.infoMuted}>Lakeshore Rd W & Clarkson Rd N</span>
+                <span className={styles.infoMuted}>{nap.intersection}</span>
+              </p>
+              <p className={styles.infoText}>
+                <a href={`tel:${nap.phoneIntl}`} className={styles.infoBtn}>
+                  Call {nap.phoneDisplay}
+                </a>
               </p>
             </div>
 

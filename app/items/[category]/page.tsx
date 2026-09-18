@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 import SafeImage from "../../components/SafeImage";
 import { getItemPriceDisplay } from "../../lib/itemPricing";
 import Footer from "../../components/Footer";
+import { STORE_IDENTITY as nap } from "../../lib/storeIdentity";
 import {
   getItemsByCategory,
   getCategoryFromSlug,
@@ -132,7 +133,7 @@ export default async function ItemsCategoryPage({
           <div className={styles.visitCta}>
             <h3 className={styles.visitTitle}>Visit High Coastal Cannabis</h3>
             <p className={styles.visitText}>
-              1720 Lakeshore Rd W, Mississauga, ON L5J 1J5 · Open 24 Hours
+              {nap.addressDisplay} · {nap.hoursDisplay} · {nap.phoneDisplay}
             </p>
           </div>
         </div>

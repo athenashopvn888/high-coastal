@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
 import { allFlowers } from "./lib/products";
+import { STORE_IDENTITY as nap, jsonLdHtml } from "./lib/storeIdentity";
 import Papa from "papaparse";
 
 /* ── Bento Mosaic Config ── */
@@ -68,7 +69,7 @@ const EXPLORE_CATEGORIES = [
   { name: "Magic Stuff", slug: "items/magic", banner: "/banners/09_Magic_Stuff.webp", icon: "🍄" },
 ];
 
-/* ── Local FAQs for Jane St ── */
+/* ── Local FAQs for Lakeshore Rd W ── */
 const LOCAL_FAQS = [
   {
     q: "What are the hours for High Coastal Cannabis?",
@@ -81,6 +82,10 @@ const LOCAL_FAQS = [
   {
     q: "Where is High Coastal Cannabis located?",
     a: "We are located at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Visit us in person or call us at +1 (289) 815-5222. Free evening street parking is available.",
+  },
+  {
+    q: "Is High Coastal Cannabis a 24-hour dispensary on Lakeshore Rd W?",
+    a: "Yes. High Coastal Cannabis is open 24 hours at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5, in the Clarkson / Lakeshore neighbourhood. Call +1 (289) 815-5222.",
   },
   {
     q: "What is the cheapest weed at High Coastal Cannabis?",
@@ -225,7 +230,7 @@ export default function HomePage() {
           <div className={styles.brandBlock}>
             <img src="/storeFavicon.webp" alt="High Coastal Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
             <h1 className={styles.brandTitle}>HIGH COASTAL CANNABIS</h1>
-            <p className={styles.brandSub}>Premium Cannabis Dispensary</p>
+            <p className={styles.brandSub}>24-Hour Cannabis Dispensary · Lakeshore Rd W, Mississauga</p>
             <div className={styles.brandBadge}>Open 24 Hours</div>
           </div>
 
@@ -311,15 +316,15 @@ export default function HomePage() {
       <section className={styles.seoSection}>
         <div className={styles.container}>
           <div className={styles.seoPanel}>
-            <h2 className={styles.seoPanelTitle}>Shop The Menu With A Plan</h2>
+            <h2 className={styles.seoPanelTitle}>24-Hour Cannabis Dispensary on Lakeshore Rd W</h2>
             <p className={styles.seoPanelText}>
-              Start with the store page, then choose the product category that fits the visit. Flower, pre-rolls, edibles, THC vapes, concentrates, accessories, and cigarettes each shop differently.
+              High Coastal Cannabis is the 24-hour dispensary at 1720 Lakeshore Rd W in Mississauga, in the Clarkson / Lakeshore neighbourhood. Adults 19+ can walk in any time for flower, pre-rolls, edibles, vapes, concentrates, accessories, and cigarettes.
             </p>
             <p className={styles.seoPanelText}>
-              If cheap weed or affordable weed is the goal, start with Budget Weed and AA Weed before moving to another collection. If Premium Weed or Exotic Weed is the mood, open those collections first and compare the current details there.
+              Looking for a weed dispensary in Mississauga or a cannabis store on Lakeshore Rd W? Confirm the current identity: High Coastal Cannabis, 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5, +1 (289) 815-5222, Open 24 Hours.
             </p>
             <p className={styles.seoPanelText}>
-              Menus change, so use the current menu and staff for product names, prices, and menu details before you make the trip.
+              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available.
             </p>
           </div>
         </div>
@@ -385,6 +390,20 @@ export default function HomePage() {
 
       {/* ── FAQS SECTION ── */}
       <section className={styles.faqSection}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLdHtml({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: LOCAL_FAQS.map((faq) => ({
+                "@type": "Question",
+                name: faq.q,
+                acceptedAnswer: { "@type": "Answer", text: faq.a },
+              })),
+            }),
+          }}
+        />
         <div className={styles.faqContainer}>
           <h2 className={styles.sectionTitle} style={{ textAlign: "center", marginBottom: "32px" }}>
             Frequently Asked Questions
@@ -406,10 +425,13 @@ export default function HomePage() {
               <span className={styles.storeIcon}>📍</span>
               <h3 className={styles.storeCardTitle}>Location</h3>
               <p className={styles.storeCardText}>
-                1720 Lakeshore Rd W
+                {nap.streetAddress}
                 <br />
-                Mississauga, ON L5J 1J5
+                {nap.addressLocality}, {nap.addressRegion} {nap.postalCode}
                 <br />
+                <a href={`tel:${nap.phoneIntl}`} className={styles.storeLink}>
+                  {nap.phoneDisplay}
+                </a>
               </p>
             </div>
             <div className={styles.storeCard}>
