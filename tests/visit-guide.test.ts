@@ -24,7 +24,7 @@ test("B06 visit guide is a second door-test surface beside the Mississauga LP", 
   assert.match(page, /1720 Lakeshore Rd W/);
   assert.match(page, /href="\/"/);
   assert.match(page, /nap\.landingPath|weed-dispensary-mississauga/);
-  assert.match(page, /exotic-weed/);
+  assert.match(page, /\/exotic/);
   assert.match(page, /Open 24 Hours|open 24 hours/);
   assert.match(sitemap, /\$\{BASE\}\/visit/);
   assert.doesNotMatch(sitemap, /\$\{BASE\}\/visit\//);

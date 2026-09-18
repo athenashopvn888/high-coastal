@@ -3,17 +3,22 @@ import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FlowerCard from "../components/FlowerCard";
+import { SccHubNav } from "../components/SccHubNav";
 import {
   getFlowersByTier,
   getTierFromSlug,
   TIER_CONFIG,
 } from "../lib/products";
 import { TIER_EDUCATION_LINKS, TIER_SEO } from "../lib/tierSeoContent";
+import { jsonLdHtml } from "../lib/storeIdentity";
 import styles from "./tier.module.css";
 
-/* -- Generate all tier pages at build -- */
+/* -- Generate short SCC paths and live *-weed aliases at build -- */
 export function generateStaticParams() {
-  return Object.values(TIER_CONFIG).map((t) => ({ tier: t.slug }));
+  return Object.values(TIER_CONFIG).flatMap((t) => [
+    { tier: t.shortSlug },
+    { tier: t.slug },
+  ]);
 }
 
 /* -- Dynamic SEO metadata -- */
@@ -32,11 +37,11 @@ export async function generateMetadata({
     title: seo?.seoTitle || `${tierInfo.config.name} Cannabis Flower — ${flowers.length} Strains`,
     description: seo?.seoIntro || `Shop ${flowers.length} ${tierInfo.config.name.toLowerCase()} cannabis strains at High Coastal Cannabis.`,
     alternates: {
-      canonical: `https://www.highcoastalcannabis.com/${tierSlug}`,
+      canonical: `https://www.highcoastalcannabis.com/${tierInfo.config.shortSlug}`,
     },
     openGraph: {
-      title: `${tierInfo.config.name} Flower | High Coastal Cannabis`,
-      description: `Browse the current ${tierInfo.config.name.toLowerCase()} flower tier and posted menu details at High Coastal Cannabis.`,
+      title: seo?.seoTitle || `${tierInfo.config.name} Flower | High Coastal Cannabis`,
+      description: seo?.seoIntro || `Browse the current ${tierInfo.config.name.toLowerCase()} flower tier and posted menu details at High Coastal Cannabis.`,
     },
   };
 }
@@ -61,6 +66,22 @@ export default async function TierPage({
 
   return (
     <main className={styles.main}>
+      {seo && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: jsonLdHtml({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: seo.faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.q,
+                acceptedAnswer: { "@type": "Answer", text: faq.a },
+              })),
+            }),
+          }}
+        />
+      )}
       <Navbar />
 
       {/* ── Banner Image (standalone, no overlay text) ── */}
@@ -82,7 +103,7 @@ export default async function TierPage({
             <div className={styles.heroTitleRow}>
               <span className={styles.heroIcon}>{config.icon}</span>
               <h1 className={styles.heroTitle}>
-                <span style={{ color: config.color }}>{config.name}</span>
+                <span style={{ color: config.color }}>{seo?.h1 || config.name}</span>
               </h1>
             </div>
             <p className={styles.heroTagline}>{config.tagline}</p>
@@ -101,6 +122,7 @@ export default async function TierPage({
                 </span>
               )}
             </div>
+            <SccHubNav current={`/${config.shortSlug}`} variant="light" />
           </div>
 
           <div className={styles.heroRight}>
@@ -202,6 +224,8 @@ export default async function TierPage({
                 ))}
               </div>
             )}
+
+            <SccHubNav current={`/${config.shortSlug}`} variant="light" />
           </div>
         </section>
       )}

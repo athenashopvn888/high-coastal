@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { SccHubNav } from "../components/SccHubNav";
 import {
   STORE_IDENTITY as nap,
   VISIT_FAQS,
@@ -77,6 +78,7 @@ export default function VisitPage() {
             </a>
             <Link href="/">Homepage NAP</Link>
           </div>
+          <SccHubNav current={nap.visitPath} />
         </section>
 
         <section>
@@ -195,7 +197,9 @@ export default function VisitPage() {
           <h2>After you have the pin</h2>
           <p>
             Browse the live menu from the <Link href="/">homepage</Link>, or start with{" "}
-            <Link href="/exotic-weed">Exotic Weed</Link> if that is the collection you already want. For menu
+            <Link href="/exotic">Exotic Weed</Link>, <Link href="/premium">Premium Weed</Link>,{" "}
+            <Link href="/aaa">AAA+ Weed</Link>, <Link href="/aa">AA Weed</Link>, or{" "}
+            <Link href="/budget">Budget Weed</Link> if that is the collection you already want. For menu
             terminology on a first store visit, use the{" "}
             <Link href="/resources/lakeshore-clarkson-first-visit-guide">Lakeshore first-visit shopping guide</Link>.
             The category landing remains{" "}

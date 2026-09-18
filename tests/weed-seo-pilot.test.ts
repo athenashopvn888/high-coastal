@@ -18,11 +18,11 @@ test("LC01 keeps the protected owner and exact metadata", () => {
 test("refreshed metadata relies on the root template for one brand suffix", () => {
   const sources = [read("app/lib/tierSeoContent.ts"), read("app/lib/products.ts"), read("app/resources/resourceData.ts")].join("\n");
   for (const title of [
-    "Exotic Weed & Cannabis Flower Mississauga",
-    "Premium Weed & Cannabis Flower Mississauga",
-    "AAA+ Weed & Cannabis Flower Mississauga",
-    "AA Weed & Cannabis Flower Mississauga",
-    "Budget Weed & Cannabis Flower Mississauga",
+    "Exotic Weed on Lakeshore Rd W — Clarkson & Port Credit",
+    "Premium Weed near Clarkson — Lakeshore Mississauga",
+    "AAA+ Weed on Lakeshore — Port Credit / Clarkson",
+    "AA Weed in Clarkson — Lakeshore Rd W",
+    "Budget Weed on Lakeshore Rd W — Mississauga Walk-In",
     "Nicotine Vapes Mississauga",
     "THC Vapes Mississauga",
     "Weed & Cannabis Flower Guide Mississauga",
@@ -58,8 +58,12 @@ test("LC01 V2.1 owners use tier-first Weed labels and direct canonicals", () => 
     for (const source of [products, tierCopy, nav, footer, home, resources]) {
       assert.ok(source.includes(label), `Missing V2.1 label: ${label}`);
     }
-    assert.ok(products.includes(`slug: "${slug}"`), `Missing canonical tier slug: ${slug}`);
-    assert.ok(redirects.includes(`source: "/${legacy}", destination: "/${slug}"`), `Missing direct tier redirect: ${legacy}`);
+    assert.ok(products.includes(`slug: "${slug}"`), `Missing live *-weed slug: ${slug}`);
+    assert.ok(products.includes(`shortSlug: "${legacy}"`), `Missing short SCC slug: ${legacy}`);
+    assert.ok(
+      !redirects.includes(`source: "/${legacy}", destination: "/${slug}"`),
+      `Short path /${legacy} must not 301 to /${slug}`,
+    );
   }
 
   assert.ok(resources.includes('"slug": "weed-flower-guide"'));

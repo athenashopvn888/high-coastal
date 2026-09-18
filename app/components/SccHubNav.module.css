@@ -1,0 +1,67 @@
+.hub {
+  width: 100%;
+  margin: 18px 0 0;
+  text-align: left;
+}
+
+.kicker {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.hub a.link,
+.hub span.link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.current {
+  cursor: default;
+}
+
+.dark .kicker {
+  color: #86efac;
+}
+
+.dark a.link,
+.dark span.link {
+  border: 1px solid rgba(134, 239, 172, 0.28);
+  background: rgba(15, 23, 42, 0.76);
+  color: #f8fafc;
+}
+
+.dark span.current {
+  border-color: #86efac;
+  color: #86efac;
+}
+
+.light .kicker {
+  color: var(--green-dark, #1b4332);
+}
+
+.light a.link,
+.light span.link {
+  border: 1px solid rgba(45, 106, 79, 0.25);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--green-deep, #0b2d1b);
+}
+
+.light span.current {
+  border-color: var(--green-mid, #2d6a4f);
+  background: rgba(45, 106, 79, 0.12);
+}

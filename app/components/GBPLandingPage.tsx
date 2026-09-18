@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import styles from "./GBPLandingPage.module.css";
 import { lcWeedOwner as store } from "../lib/weedDiscovery";
 import { STORE_IDENTITY as nap, jsonLdHtml, landingPageJsonLd } from "../lib/storeIdentity";
+import { SccHubNav } from "./SccHubNav";
 
 const faqItems = [
   { question: "Where is High Coastal Cannabis?", answer: `High Coastal Cannabis is located at ${nap.addressDisplay}.` },
@@ -41,7 +42,7 @@ export function GBPLandingPage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdHtml(pageSchema) }} />
         <section className={styles.hero}>
           <p className={styles.eyebrow}>Open 24 Hours · Adults 19+ · {nap.neighborhood}</p>
-          <h1>High Coastal Cannabis — 24-Hour Weed Dispensary on Lakeshore Rd W, Mississauga</h1>
+          <h1>High Coastal Cannabis — Lakeshore / Clarkson / Port Credit Weed Dispensary in Mississauga</h1>
           <p className={styles.heroAddress}>{nap.addressDisplay}</p>
           <p className={styles.heroPhone}>
             <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>
@@ -52,6 +53,7 @@ export function GBPLandingPage() {
             <Link href="#find-your-weed" className={styles.primaryAction}>Find Your Weed</Link>
             <Link href="/visit" className={styles.secondaryAction}>Plan Your Visit</Link>
           </div>
+          <SccHubNav current={nap.landingPath} />
         </section>
 
         <section className={styles.section}>
@@ -103,6 +105,7 @@ export function GBPLandingPage() {
           <h2>Explore Flower by Tier</h2>
           <div className={styles.cardGrid}>{store.flowerTiers.map((item) => <Link href={item.href} className={styles.card} key={item.href}><span>{item.label}</span><small>{item.description}</small></Link>)}</div>
           <div className={styles.inlineGuide}><span>Want more context before choosing a tier?</span><Link href="/resources/weed-flower-guide">Read the Weed &amp; Flower Guide</Link></div>
+          <p>Short flower paths: <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>, <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link>.</p>
           <h3 className={styles.subheading}>Explore Cannabis by Format</h3>
           <div className={styles.cardGrid}>{store.categories.map((item) => <Link href={item.href} className={styles.card} key={item.href}><span>{item.label}</span><small>{item.description}</small></Link>)}</div>
           <p className={styles.note}>If you are looking for one specific item, call <a href={`tel:${nap.phoneIntl}`}><strong>{nap.phoneDisplay}</strong></a> before making a special trip.</p>
