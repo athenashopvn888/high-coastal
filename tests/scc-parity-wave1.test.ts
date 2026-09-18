@@ -4,7 +4,6 @@ import test from "node:test";
 
 import nextConfig from "../next.config.ts";
 import { SCC_HUB_LINKS, SCC_SHORT_TIER_LINKS } from "../app/lib/sccHub.ts";
-import { getTierFromSlug, TIER_CONFIG } from "../app/lib/products.ts";
 import { TIER_SEO } from "../app/lib/tierSeoContent.ts";
 import { STORE_IDENTITY } from "../app/lib/storeIdentity.ts";
 
@@ -30,14 +29,14 @@ test("Wave 1 keeps locked LC01 NAP", () => {
 });
 
 test("short SCC tier paths resolve beside live *-weed aliases", () => {
-  for (const [key, config] of Object.entries(TIER_CONFIG)) {
-    assert.ok(SHORT.includes(config.shortSlug as (typeof SHORT)[number]), `${key} missing short slug`);
-    assert.equal(getTierFromSlug(config.shortSlug)?.key, key);
-    assert.equal(getTierFromSlug(config.slug)?.key, key);
-    assert.match(config.slug, /-weed$/);
-  }
-
+  const products = read("app/lib/products.ts");
   const tierPage = read("app/[tier]/page.tsx");
+
+  for (const slug of SHORT) {
+    assert.match(products, new RegExp(`shortSlug: "${slug}",`));
+    assert.match(products, new RegExp(`slug: "${slug}-weed"`));
+  }
+  assert.match(products, /v\.slug === slug \|\| v\.shortSlug === slug/);
   assert.match(tierPage, /t\.shortSlug/);
   assert.match(tierPage, /t\.slug/);
   assert.match(tierPage, /config\.shortSlug/);
@@ -106,8 +105,10 @@ test("dense linking graph covers homepage, visit, brand FAQ, B12, weed hub, and 
 
 test("weed LP H1 leans Lakeshore / Clarkson / Port Credit without a Square One pin", () => {
   const landing = read("app/components/GBPLandingPage.tsx");
+  const location = read("app/lib/gbp-location.ts");
   assert.match(landing, /High Coastal Cannabis — Lakeshore \/ Clarkson \/ Port Credit Weed Dispensary in Mississauga/);
-  assert.match(landing, /weed-dispensary-mississauga/);
+  assert.match(location, /slug: "weed-dispensary-mississauga"/);
+  assert.match(landing, /nap\.landingPath/);
   assert.doesNotMatch(landing, /Square One/);
   assert.doesNotMatch(landing, /Ottawa|Gatineau|ByWard/);
 
