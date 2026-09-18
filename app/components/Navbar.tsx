@@ -24,6 +24,7 @@ const ALL_LINKS: { href: string; label: string; featured?: boolean }[] = [
 
   { href: "/visit", label: "Visit" },
   { href: "/24-hour-dispensary-mississauga", label: "Open Now" },
+  { href: "/high-coastal-visit", label: "Brand FAQ" },
   { href: "/faq", label: "FAQ" },
   { href: "/resources", label: "Resources" },
 ];

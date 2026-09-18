@@ -154,7 +154,9 @@ export default function OpenNowFaqPage() {
           <h2>Lakeshore visit guide</h2>
           <p>
             Need the Port Credit / Clarkson corridor pin, parking notes, and walk-in checklist in one article? Open the{" "}
-            <Link href={nap.visitPath}>Lakeshore Mississauga visit guide</Link>. The Mississauga store landing is{" "}
+            <Link href={nap.visitPath}>Lakeshore Mississauga visit guide</Link>. Confirming the current High Coastal
+            name versus older search phrases? Use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>.
+            The Mississauga store landing is{" "}
             <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. The{" "}
             <Link href="/">homepage</Link> remains the website URL for this store — not this FAQ and not the city
             landing.

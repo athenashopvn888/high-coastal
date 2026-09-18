@@ -7,6 +7,7 @@ export const STORE_IDENTITY = {
   landingPath: "/weed-dispensary-mississauga/",
   visitPath: "/visit",
   hoursPath: "/24-hour-dispensary-mississauga",
+  brandVisitPath: "/high-coastal-visit",
   streetAddress: "1720 Lakeshore Rd W",
   addressLocality: "Mississauga",
   addressRegion: "ON",
@@ -84,6 +85,33 @@ export const OPEN_NOW_FAQS = [
   {
     question: "What is the current store name on Lakeshore?",
     answer: "The current store name is High Coastal Cannabis. Use the homepage for the official name, address, phone, and hours. The website for this store is the High Coastal Cannabis homepage.",
+  },
+] as const;
+
+export const BRAND_VISIT_FAQS = [
+  {
+    question: "Is High Coastal dispensary the same as High Coastal Cannabis?",
+    answer: `Yes. High Coastal dispensary and High Coastal Cannabis are the same Lakeshore walk-in: ${STORE_IDENTITY.name} at ${STORE_IDENTITY.addressDisplay}. Call ${STORE_IDENTITY.phoneDisplay}. The official website is the High Coastal Cannabis homepage.`,
+  },
+  {
+    question: "I searched six nations medicine, 6ix nations, or six nations dispensary. Is this that store?",
+    answer: "Those are existing people-also-search phrases for this same Lakeshore pin. They are not the current store name. The store at 1720 Lakeshore Rd W, Mississauga is High Coastal Cannabis. This FAQ does not revive an old brand as the primary name.",
+  },
+  {
+    question: "What is the exact Lakeshore address?",
+    answer: `High Coastal Cannabis is at ${STORE_IDENTITY.addressDisplay}, near ${STORE_IDENTITY.intersection} in the ${STORE_IDENTITY.neighborhood} neighbourhood.`,
+  },
+  {
+    question: "What are the hours for High Coastal Cannabis?",
+    answer: "High Coastal Cannabis is open 24 hours a day, seven days a week. Overnight walk-ins use the same door at 1720 Lakeshore Rd W. Adults 19+ need valid government photo ID.",
+  },
+  {
+    question: "Does High Coastal Cannabis make Nation, reserve, or healing claims?",
+    answer: "No. High Coastal Cannabis is a retail cannabis dispensary for adults 19+. This page is visit and brand-clarification copy only. It does not make Indigenous, Nation, reserve, healing, or medical claims, and it does not rename Google Business Profile.",
+  },
+  {
+    question: "What website should I use for this store?",
+    answer: "Use the High Coastal Cannabis homepage for the official name, address, phone, and hours. The business website is the homepage, not a city landing URL and not this FAQ.",
   },
 ] as const;
 
@@ -198,6 +226,41 @@ export function openNowPageJsonLd() {
       {
         "@type": "FAQPage",
         mainEntity: OPEN_NOW_FAQS.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function brandVisitPageJsonLd() {
+  const n = STORE_IDENTITY;
+  const brandVisitUrl = `${n.websiteUrl}${n.brandVisitPath}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": brandVisitUrl,
+        url: brandVisitUrl,
+        name: "High Coastal Brand Visit FAQ — Lakeshore Pin + Existing Brand Queries",
+        description: `${n.name} is the High Coastal dispensary at ${n.addressDisplay}. This FAQ clarifies the Lakeshore pin and existing brand-search phrases without reviving an old name.`,
+        isPartOf: { "@id": n.websiteUrl },
+        about: { "@id": n.storeId },
+        mainEntity: { "@id": n.storeId },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: n.websiteUrl },
+          { "@type": "ListItem", position: 2, name: "High Coastal Brand Visit FAQ", item: brandVisitUrl },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: BRAND_VISIT_FAQS.map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: { "@type": "Answer", text: faq.answer },

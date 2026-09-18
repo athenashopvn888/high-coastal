@@ -64,6 +64,11 @@ export default function ContactPage() {
                   Lakeshore visit guide
                 </a>
               </p>
+              <p className={styles.infoText}>
+                <a href="/high-coastal-visit" className={styles.infoBtn}>
+                  High Coastal brand visit FAQ
+                </a>
+              </p>
             </div>
 
             {/* Hours */}

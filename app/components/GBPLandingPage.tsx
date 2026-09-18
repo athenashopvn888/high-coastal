@@ -95,6 +95,7 @@ export function GBPLandingPage() {
           <p>The 24-hour schedule gives adults 19+ flexibility to visit High Coastal Cannabis at the time that works for them. For a particular product, calling ahead is the safest way to confirm the details you need before making a special trip.</p>
           <p>Need the Port Credit / Clarkson corridor pin first? Use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>.</p>
           <p>Need open-now hours, late arrival, and ID in FAQ form? Use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>.</p>
+          <p>Confirming the current High Coastal name versus older search phrases? Use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>.</p>
         </section>
 
         <section className={styles.section} id="find-your-weed">
@@ -125,6 +126,7 @@ export function GBPLandingPage() {
           <div className={styles.inlineGuide}>
             <Link href="/visit">Lakeshore Visit Guide</Link>
             <Link href="/24-hour-dispensary-mississauga">24-Hour Open-Now FAQ</Link>
+            <Link href="/high-coastal-visit">High Coastal Brand Visit FAQ</Link>
             <Link href="/resources/cannabis-101">Cannabis 101</Link>
             <Link href="/resources/lakeshore-clarkson-first-visit-guide">First Visit on Lakeshore Road West</Link>
             <Link href="/resources/weed-flower-guide">Weed &amp; Flower Guide</Link>

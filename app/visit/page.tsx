@@ -166,7 +166,8 @@ export default function VisitPage() {
           <p>
             If an older listing or search result pointed you at this same Mississauga address, treat High Coastal
             Cannabis as the store you are visiting. This page does not make cultural, Nation, reserve, or medical
-            claims. It is a retail walk-in guide.
+            claims. It is a retail walk-in guide. For existing brand-search clarifiers, use the{" "}
+            <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>.
           </p>
         </section>
 
