@@ -16,6 +16,7 @@ export function WeedDiscoveryModule() {
           <Link href="/visit" className={styles.secondary}>Lakeshore Visit Guide</Link>
           <Link href="/24-hour-dispensary-mississauga" className={styles.secondary}>24-Hour Open-Now FAQ</Link>
           <Link href="/high-coastal-visit" className={styles.secondary}>High Coastal Brand Visit FAQ</Link>
+          <Link href="/cannabis-delivery-lakeshore" className={styles.secondary}>Cannabis Delivery on Lakeshore</Link>
           <Link href="/resources/weed-flower-guide" className={styles.secondary}>Explore the Weed &amp; Flower Guide</Link>
           <Link href="/exotic" className={styles.secondary}>Exotic Weed</Link>
           <Link href="/premium" className={styles.secondary}>Premium Weed</Link>

@@ -8,6 +8,8 @@ export const STORE_IDENTITY = {
   visitPath: "/visit",
   hoursPath: "/24-hour-dispensary-mississauga",
   brandVisitPath: "/high-coastal-visit",
+  deliveryPath: "/cannabis-delivery-lakeshore",
+  deliveryMenuPath: "/delivery",
   streetAddress: "1720 Lakeshore Rd W",
   addressLocality: "Mississauga",
   addressRegion: "ON",
@@ -261,6 +263,72 @@ export function brandVisitPageJsonLd() {
       {
         "@type": "FAQPage",
         mainEntity: BRAND_VISIT_FAQS.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export const DELIVERY_FAQS = [
+  {
+    question: "Does High Coastal Cannabis deliver to Lakeshore, Clarkson, or Port Credit?",
+    answer: `Yes. High Coastal Cannabis packs cannabis delivery from ${STORE_IDENTITY.addressDisplay}. The neighbourhood focus is Lakeshore Rd W, Clarkson, Port Credit, and nearby southwest Mississauga addresses the dispatcher accepts. This is not a Square One mall pin.`,
+  },
+  {
+    question: "Is High Coastal Cannabis delivery open 24 hours?",
+    answer: "No. The Lakeshore walk-in is open 24 hours. Cannabis delivery is a separate service. High Coastal does not publish a 24/7 delivery clock. LIVE ORDER on the delivery menu shows whether a dispatcher can take a new order, and the dispatcher confirms the window before an order is accepted.",
+  },
+  {
+    question: "How do I order cannabis delivery from High Coastal?",
+    answer: "Browse the High Coastal delivery menu, note the product names and weights, then select LIVE ORDER to open Web Chat. New customers complete a private selfie-with-ID step. The dispatcher confirms availability, your address, the $60 product minimum, and next steps.",
+  },
+  {
+    question: "What is the cannabis delivery minimum?",
+    answer: "The High Coastal Cannabis delivery menu lists a $60 product minimum. The dispatcher confirms the current minimum, fees if any, and whether your address is in range before an order is accepted.",
+  },
+  {
+    question: "Where does a Lakeshore delivery order come from?",
+    answer: `Orders come from High Coastal Cannabis at ${STORE_IDENTITY.addressDisplay}, near ${STORE_IDENTITY.intersection}. Confirm the homepage pin if a map shows a different Lakeshore number.`,
+  },
+  {
+    question: "Can I walk in instead of ordering delivery?",
+    answer: `Yes. The same store is a 24 hour walk-in at ${STORE_IDENTITY.streetAddress}. Use the Lakeshore visit guide for the pin, or the 24-hour open-now FAQ for late arrival and ID. Adults 19+ need valid government photo ID.`,
+  },
+  {
+    question: "What ID do I need for cannabis delivery?",
+    answer: "Adults 19+ only. New delivery customers complete a private selfie-with-ID check in Web Chat. Returning customers follow the dispatcher verification steps. That rule does not change after midnight, and delivery hours are still not the same as 24-hour walk-in hours.",
+  },
+] as const;
+
+export function deliveryPageJsonLd() {
+  const n = STORE_IDENTITY;
+  const deliveryUrl = `${n.websiteUrl}${n.deliveryPath}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": deliveryUrl,
+        url: deliveryUrl,
+        name: "Cannabis Delivery on Lakeshore — Clarkson / Port Credit",
+        description: `${n.name} offers cannabis delivery from ${n.addressDisplay} for the Lakeshore / Clarkson / Port Credit corridor. Delivery hours are confirmed by the dispatcher and are not 24/7 walk-in hours.`,
+        isPartOf: { "@id": n.websiteUrl },
+        about: { "@id": n.storeId },
+        mainEntity: { "@id": n.storeId },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: n.websiteUrl },
+          { "@type": "ListItem", position: 2, name: "Cannabis Delivery on Lakeshore", item: deliveryUrl },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: DELIVERY_FAQS.map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: { "@type": "Answer", text: faq.answer },

@@ -15,6 +15,7 @@ const HUB_SURFACES = [
   "app/visit/page.tsx",
   "app/high-coastal-visit/page.tsx",
   "app/24-hour-dispensary-mississauga/page.tsx",
+  "app/cannabis-delivery-lakeshore/page.tsx",
   "app/components/GBPLandingPage.tsx",
   "app/[tier]/page.tsx",
 ] as const;
@@ -79,7 +80,7 @@ test("each flower tier has a unique H1, title, and FAQ set", () => {
 test("dense linking graph covers homepage, visit, brand FAQ, B12, weed hub, and five short tiers", () => {
   assert.deepEqual(
     SCC_HUB_LINKS.map((link) => link.href),
-    ["/", "/visit", "/high-coastal-visit", "/24-hour-dispensary-mississauga", "/weed-dispensary-mississauga/"],
+    ["/", "/visit", "/high-coastal-visit", "/24-hour-dispensary-mississauga", "/weed-dispensary-mississauga/", "/cannabis-delivery-lakeshore"],
   );
   assert.deepEqual(
     SCC_SHORT_TIER_LINKS.map((link) => link.href),
@@ -129,6 +130,7 @@ test("Native wording stays inside B18 brand-visit clarifiers", () => {
   assert.doesNotMatch(hub, /six nations|reserve|medical/i);
   assert.doesNotMatch(tiers, /six nations|on[- ]reserve|Nation affiliation/i);
   assert.doesNotMatch(landing, /six nations|on[- ]reserve/i);
+  assert.doesNotMatch(read("app/cannabis-delivery-lakeshore/page.tsx"), /six nations|on[- ]reserve|Nation affiliation|healing/i);
   assert.doesNotMatch(brand, /we are Six Nations/i);
   assert.doesNotMatch(brand, /on[- ]reserve/);
 });

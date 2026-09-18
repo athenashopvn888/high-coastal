@@ -175,7 +175,8 @@ export default function BrandVisitFaqPage() {
             <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Need the pin first? Open the{" "}
             <Link href={nap.visitPath}>Lakeshore visit guide</Link>. Flower collections are on{" "}
             <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>,{" "}
-            <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link>.
+            <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link>. Ordering to a Lakeshore / Clarkson /
+            Port Credit address? Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page.
           </p>
         </section>
       </main>

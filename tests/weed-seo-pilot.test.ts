@@ -90,9 +90,15 @@ test("LC01 exact FMD identity is consistent", () => {
 });
 
 test("LC01 shopper copy avoids workflow and unsupported local language", () => {
-  const sources = [read("app/components/GBPLandingPage.tsx"), read("app/components/WeedDiscoveryModule.tsx")].join("\n").toLowerCase();
-  for (const blocked of ["this page", "site structure", "navigation shortcut", "search path", "clarkson go", "six nations", "parking", "delivery", "best seller", "bestseller", "trending"]) {
+  const sources = [read("app/components/GBPLandingPage.tsx"), read("app/components/WeedDiscoveryModule.tsx")]
+    .join("\n")
+    .replaceAll("/cannabis-delivery-lakeshore", "")
+    .replaceAll("cannabis delivery on Lakeshore", "")
+    .replaceAll("Cannabis Delivery on Lakeshore", "")
+    .toLowerCase();
+  for (const blocked of ["this page", "site structure", "navigation shortcut", "search path", "clarkson go", "six nations", "parking", "best seller", "bestseller", "trending"]) {
     assert.ok(!sources.includes(blocked), `Blocked shopper-copy phrase: ${blocked}`);
   }
+  assert.ok(!/\bdelivery\b/.test(sources), "Weed hub copy must not use leftover delivery workflow language");
 });
 

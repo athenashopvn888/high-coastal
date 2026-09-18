@@ -92,7 +92,7 @@ export default function FAQPage() {
           <div className={styles.ctaSection}>
             <h2 className={styles.ctaTitle}>Still have questions?</h2>
             <p className={styles.ctaText}>
-              Call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>, read the <a href="/visit">Lakeshore visit guide</a>, check the <a href="/24-hour-dispensary-mississauga">24-hour open-now FAQ</a>, read the <a href="/high-coastal-visit">High Coastal brand visit FAQ</a>, or use the store page before visiting.
+              Call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>, read the <a href="/visit">Lakeshore visit guide</a>, check the <a href="/24-hour-dispensary-mississauga">24-hour open-now FAQ</a>, read the <a href="/high-coastal-visit">High Coastal brand visit FAQ</a>, open <a href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</a>, or use the store page before visiting.
             </p>
           </div>
         </div>

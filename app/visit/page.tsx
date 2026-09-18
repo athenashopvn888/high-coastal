@@ -132,6 +132,11 @@ export default function VisitPage() {
             arrival, and ID in FAQ form, use the{" "}
             <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>.
           </p>
+          <p>
+            Cannabis delivery is a separate Lakeshore / Clarkson / Port Credit service. It does not inherit the 24-hour
+            walk-in clock. Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page{" "}
+            for the area, the $60 minimum, and how to start LIVE ORDER.
+          </p>
         </section>
 
         <section>
@@ -203,7 +208,8 @@ export default function VisitPage() {
             terminology on a first store visit, use the{" "}
             <Link href="/resources/lakeshore-clarkson-first-visit-guide">Lakeshore first-visit shopping guide</Link>.
             The category landing remains{" "}
-            <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>.
+            <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Ordering to a Lakeshore address instead
+            of walking in? Open <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link>.
           </p>
         </section>
 

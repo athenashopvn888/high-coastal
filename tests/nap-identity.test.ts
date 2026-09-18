@@ -29,6 +29,8 @@ test("canonical High Coastal NAP is locked", () => {
   assert.equal(STORE_IDENTITY.visitPath, "/visit");
   assert.equal(STORE_IDENTITY.hoursPath, "/24-hour-dispensary-mississauga");
   assert.equal(STORE_IDENTITY.brandVisitPath, "/high-coastal-visit");
+  assert.equal(STORE_IDENTITY.deliveryPath, "/cannabis-delivery-lakeshore");
+  assert.equal(STORE_IDENTITY.deliveryMenuPath, "/delivery");
 });
 
 test("Store schema website URL is the homepage only", () => {
@@ -66,6 +68,7 @@ test("required NAP surfaces import the locked identity", () => {
     "app/visit/page.tsx",
     "app/24-hour-dispensary-mississauga/page.tsx",
     "app/high-coastal-visit/page.tsx",
+    "app/cannabis-delivery-lakeshore/page.tsx",
   ]) {
     assert.match(read(path), /storeIdentity/, `${path} must import storeIdentity`);
   }
