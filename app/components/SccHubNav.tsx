@@ -18,7 +18,7 @@ export function SccHubNav({
 
   return (
     <nav className={`${styles.hub} ${styles[variant]}`} aria-label="Lakeshore store guides and flower tiers">
-      <p className={styles.kicker}>Lakeshore walk-in guides</p>
+      <p className={styles.kicker}>Lakeshore store guides</p>
       <div className={styles.row}>
         {SCC_HUB_LINKS.map((item) => {
           const isCurrent = currentNorm === normalize(item.href);

@@ -107,6 +107,12 @@ export default function OpenNowFaqPage() {
             </a>{" "}
             first.
           </p>
+          <p>
+            The 24-hour schedule is the walk-in door only. Cannabis delivery is a separate service with live dispatcher
+            hours — not a 24/7 delivery clock. Use the{" "}
+            <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> when you need a drop on
+            the Clarkson / Port Credit corridor instead of a late walk-in.
+          </p>
         </section>
 
         <section>
@@ -161,7 +167,8 @@ export default function OpenNowFaqPage() {
             The Mississauga store landing is{" "}
             <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Shop{" "}
             <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>,{" "}
-            <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower. The{" "}
+            <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower. Need a drop instead of a
+            walk-in? Open the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page. The{" "}
             <Link href="/">homepage</Link> remains the website URL for this store — not this FAQ and not the city
             landing.
           </p>

@@ -420,6 +420,7 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
           { title: "Lakeshore Mississauga Visit Guide", href: "/visit", text: "How to find 1720 Lakeshore Rd W from Port Credit, Clarkson, and the Lakeshore West corridor." },
           { title: "24-Hour Open-Now FAQ", href: "/24-hour-dispensary-mississauga", text: "Hours, Lakeshore late arrival, and ID for the 24 hour Mississauga dispensary." },
           { title: "High Coastal Brand Visit FAQ", href: "/high-coastal-visit", text: "Current High Coastal name, Lakeshore pin, and existing brand-search clarifiers." },
+          { title: "Cannabis Delivery on Lakeshore", href: "/cannabis-delivery-lakeshore", text: "Cannabis delivery for Lakeshore / Clarkson / Port Credit. Dispatcher hours are separate from 24-hour walk-in." },
           { title: "Weed Dispensary in Mississauga", href: "/weed-dispensary-mississauga/", text: "The High Coastal Cannabis store landing for Mississauga." },
           { title: "First Visit on Lakeshore Road West", href: "/resources/lakeshore-clarkson-first-visit-guide", text: "Plan a first High Coastal Cannabis visit and learn how to approach the menu before product names." },
         ],
@@ -456,6 +457,7 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
       { title: "Lakeshore Mississauga Visit Guide", href: "/visit", text: "Arrival notes for 1720 Lakeshore Rd W, Port Credit, and Clarkson." },
       { title: "24-Hour Open-Now FAQ", href: "/24-hour-dispensary-mississauga", text: "Hours, Lakeshore late arrival, and ID for overnight walk-ins." },
       { title: "High Coastal Brand Visit FAQ", href: "/high-coastal-visit", text: "Current High Coastal name and existing brand-search clarifiers for this Lakeshore pin." },
+      { title: "Cannabis Delivery on Lakeshore", href: "/cannabis-delivery-lakeshore", text: "Delivery area, $60 minimum, and LIVE ORDER steps for the Lakeshore corridor." },
     ],
   },
   "menu-guide": {

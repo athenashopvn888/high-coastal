@@ -69,6 +69,11 @@ export default function ContactPage() {
                   High Coastal brand visit FAQ
                 </a>
               </p>
+              <p className={styles.infoText}>
+                <a href="/cannabis-delivery-lakeshore" className={styles.infoBtn}>
+                  Cannabis delivery on Lakeshore
+                </a>
+              </p>
             </div>
 
             {/* Hours */}
