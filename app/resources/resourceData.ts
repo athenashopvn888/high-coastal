@@ -418,6 +418,7 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
         heading: "Plan a Lakeshore Visit",
         cards: [
           { title: "Lakeshore Mississauga Visit Guide", href: "/visit", text: "How to find 1720 Lakeshore Rd W from Port Credit, Clarkson, and the Lakeshore West corridor." },
+          { title: "24-Hour Open-Now FAQ", href: "/24-hour-dispensary-mississauga", text: "Hours, Lakeshore late arrival, and ID for the 24 hour Mississauga dispensary." },
           { title: "Weed Dispensary in Mississauga", href: "/weed-dispensary-mississauga/", text: "The High Coastal Cannabis store landing for Mississauga." },
           { title: "First Visit on Lakeshore Road West", href: "/resources/lakeshore-clarkson-first-visit-guide", text: "Plan a first High Coastal Cannabis visit and learn how to approach the menu before product names." },
         ],
@@ -452,6 +453,7 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
   "lakeshore-clarkson-first-visit-guide": {
     appendCards: [
       { title: "Lakeshore Mississauga Visit Guide", href: "/visit", text: "Arrival notes for 1720 Lakeshore Rd W, Port Credit, and Clarkson." },
+      { title: "24-Hour Open-Now FAQ", href: "/24-hour-dispensary-mississauga", text: "Hours, Lakeshore late arrival, and ID for overnight walk-ins." },
     ],
   },
   "menu-guide": {

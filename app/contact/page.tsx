@@ -104,6 +104,11 @@ export default function ContactPage() {
                 <span className={styles.openDot}></span>
                 Open 24/7 — Never Closed
               </div>
+              <p className={styles.infoText}>
+                <a href="/24-hour-dispensary-mississauga" className={styles.infoBtn}>
+                  24-hour open-now FAQ
+                </a>
+              </p>
             </div>
 
             {/* Walk-in */}

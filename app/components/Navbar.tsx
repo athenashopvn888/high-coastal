@@ -23,6 +23,7 @@ const ALL_LINKS: { href: string; label: string; featured?: boolean }[] = [
     { href: "/careers/budtender", label: "Join Team", featured: true },
 
   { href: "/visit", label: "Visit" },
+  { href: "/24-hour-dispensary-mississauga", label: "Open Now" },
   { href: "/faq", label: "FAQ" },
   { href: "/resources", label: "Resources" },
 ];
@@ -53,10 +54,10 @@ export default function Navbar({ hideThcVape = false }: { hideThcVape?: boolean 
           </span>
         </Link>
         <div className={styles.topBarRight}>
-          <span className={styles.open}>
+          <Link href="/24-hour-dispensary-mississauga" className={styles.open}>
             <span className={styles.dot}></span>
             Open 24 Hours
-          </span>
+          </Link>
         </div>
       </div>
 

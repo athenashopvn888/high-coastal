@@ -13,6 +13,7 @@ export function WeedDiscoveryModule() {
         <div className={styles.actions}>
           <Link href={nap.landingPath} className={styles.primary}>Explore Weed &amp; Cannabis</Link>
           <Link href="/visit" className={styles.secondary}>Lakeshore Visit Guide</Link>
+          <Link href="/24-hour-dispensary-mississauga" className={styles.secondary}>24-Hour Open-Now FAQ</Link>
           <Link href="/resources/weed-flower-guide" className={styles.secondary}>Explore the Weed &amp; Flower Guide</Link>
         </div>
       </div>

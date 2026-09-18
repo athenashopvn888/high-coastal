@@ -126,7 +126,9 @@ export default function VisitPage() {
           </p>
           <p>
             A 24 hour dispensary in Mississauga still requires adult ID. If you are coming after midnight for one
-            listed item, call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a> first.
+            listed item, call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a> first. For open-now hours, late
+            arrival, and ID in FAQ form, use the{" "}
+            <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>.
           </p>
         </section>
 
