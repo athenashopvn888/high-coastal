@@ -15,6 +15,7 @@
     "test:nap": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/nap-identity.test.ts",
     "test:visit": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/visit-guide.test.ts",
     "test:open-now": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/open-now-faq.test.ts",
+    "test:brand-visit": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/brand-visit-faq.test.ts",
     "test:knowledge-base": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/knowledge-base-v2ss.test.ts",
     "test:staff-photo": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/staff-photo.test.ts",
     "verify:delivery-images": "node scripts/verify-athena-delivery-images.mjs"

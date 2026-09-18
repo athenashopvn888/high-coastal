@@ -28,6 +28,7 @@ test("canonical High Coastal NAP is locked", () => {
   assert.equal(STORE_IDENTITY.landingPath, "/weed-dispensary-mississauga/");
   assert.equal(STORE_IDENTITY.visitPath, "/visit");
   assert.equal(STORE_IDENTITY.hoursPath, "/24-hour-dispensary-mississauga");
+  assert.equal(STORE_IDENTITY.brandVisitPath, "/high-coastal-visit");
 });
 
 test("Store schema website URL is the homepage only", () => {
@@ -64,6 +65,7 @@ test("required NAP surfaces import the locked identity", () => {
     "app/page.tsx",
     "app/visit/page.tsx",
     "app/24-hour-dispensary-mississauga/page.tsx",
+    "app/high-coastal-visit/page.tsx",
   ]) {
     assert.match(read(path), /storeIdentity/, `${path} must import storeIdentity`);
   }
@@ -72,11 +74,22 @@ test("required NAP surfaces import the locked identity", () => {
 
 test("live copy does not present old brand names as current identity", () => {
   const files = walkFiles("app");
-  const blocked = [/Six Nations Medicine/i, /Lakeshore Cannabis/i, /905-220-7878/, /220-7878/];
+  const blockedEverywhere = [/Lakeshore Cannabis/i, /905-220-7878/, /220-7878/];
+  const clarifierFiles = new Set([
+    join("app", "lib", "storeIdentity.ts"),
+    join("app", "high-coastal-visit", "page.tsx"),
+  ]);
   for (const file of files) {
     const source = read(file);
-    for (const pattern of blocked) {
+    for (const pattern of blockedEverywhere) {
       assert.doesNotMatch(source, pattern, `${file} must not surface ${pattern}`);
     }
+    if (clarifierFiles.has(file)) {
+      assert.match(source, /High Coastal Cannabis/, `${file} must keep High Coastal as the current name`);
+      assert.match(source, /people also search|people-also-search|existing demand/i, `${file} may mention legacy brand terms only as search clarifiers`);
+      assert.doesNotMatch(source, /current store name is Six Nations/i, `${file} must not present Six Nations as the current name`);
+      continue;
+    }
+    assert.doesNotMatch(source, /Six Nations Medicine/i, `${file} must not surface Six Nations Medicine`);
   }
 });

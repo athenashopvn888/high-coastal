@@ -56,6 +56,7 @@ export default function Footer() {
               <Link href="/resources">Resources</Link>
               <Link href="/visit">Lakeshore Visit Guide</Link>
               <Link href="/24-hour-dispensary-mississauga">24-Hour Open-Now FAQ</Link>
+              <Link href="/high-coastal-visit">High Coastal Brand Visit FAQ</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/delivery">Delivery Menu</Link>
               <Link href="/info/mississauga-weed-dispensary">Mississauga Dispensary</Link>
