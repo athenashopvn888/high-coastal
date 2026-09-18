@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./WeedDiscoveryModule.module.css";
 import { STORE_IDENTITY as nap } from "../lib/storeIdentity";
+import { SccHubNav } from "./SccHubNav";
 
 export function WeedDiscoveryModule() {
   return (
@@ -16,7 +17,13 @@ export function WeedDiscoveryModule() {
           <Link href="/24-hour-dispensary-mississauga" className={styles.secondary}>24-Hour Open-Now FAQ</Link>
           <Link href="/high-coastal-visit" className={styles.secondary}>High Coastal Brand Visit FAQ</Link>
           <Link href="/resources/weed-flower-guide" className={styles.secondary}>Explore the Weed &amp; Flower Guide</Link>
+          <Link href="/exotic" className={styles.secondary}>Exotic Weed</Link>
+          <Link href="/premium" className={styles.secondary}>Premium Weed</Link>
+          <Link href="/aaa" className={styles.secondary}>AAA+ Weed</Link>
+          <Link href="/aa" className={styles.secondary}>AA Weed</Link>
+          <Link href="/budget" className={styles.secondary}>Budget Weed</Link>
         </div>
+        <SccHubNav current="/" />
       </div>
     </section>
   );

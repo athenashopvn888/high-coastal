@@ -10,41 +10,42 @@ import FlowerCard from "./components/FlowerCard";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
 import { allFlowers } from "./lib/products";
 import { STORE_IDENTITY as nap, jsonLdHtml } from "./lib/storeIdentity";
+import { SccHubNav } from "./components/SccHubNav";
 import Papa from "papaparse";
 
 /* ── Bento Mosaic Config ── */
 const BENTO_TIERS = [
   {
     name: "Exotic Weed",
-    slug: "exotic-weed",
+    slug: "exotic",
     price: "$10-$12/g",
     banner: "/banners/exotics_banner.webp",
     className: styles.bentoExotic,
   },
   {
     name: "Premium Weed",
-    slug: "premium-weed",
+    slug: "premium",
     price: "$7-$10/g",
     banner: "/banners/premium_banner.webp",
     className: styles.bentoPremium,
   },
   {
     name: "AAA+ Weed",
-    slug: "aaa-weed",
+    slug: "aaa",
     price: "$5-$6/g",
     banner: "/banners/aaa_plus_banner.webp",
     className: styles.bentoTile,
   },
   {
     name: "AA Weed",
-    slug: "aa-weed",
+    slug: "aa",
     price: "$4/g",
     banner: "/banners/aa_banner.webp",
     className: styles.bentoTile,
   },
   {
     name: "Budget Weed",
-    slug: "budget-weed",
+    slug: "budget",
     price: "$3/g",
     banner: "/banners/budget_banner.webp",
     className: styles.bentoTile,
@@ -90,6 +91,10 @@ const LOCAL_FAQS = [
   {
     q: "What is the cheapest weed at High Coastal Cannabis?",
     a: "Our Budget Weed flower starts at just $3/g. We also offer AA Weed daily drivers from $4/g and AAA+ Weed heavy hitters from $5-$6/g. View our Budget Weed menu for our latest deals.",
+  },
+  {
+    q: "Where do I browse Exotic, Premium, AAA+, AA, and Budget flower?",
+    a: "High Coastal Cannabis organizes flower into five walk-in collections at 1720 Lakeshore Rd W, Mississauga. Open Exotic, Premium, AAA+, AA, or Budget from the homepage, then use the Lakeshore visit guide, the High Coastal brand visit FAQ, the 24-hour open-now FAQ, or the Mississauga weed dispensary page if you need the pin first.",
   },
 ];
 
@@ -234,6 +239,7 @@ export default function HomePage() {
             <Link href="/24-hour-dispensary-mississauga" className={styles.brandBadge}>
               Open 24 Hours
             </Link>
+            <SccHubNav current="/" variant="light" />
           </div>
 
           {/* Bento Grid */}
@@ -326,7 +332,7 @@ export default function HomePage() {
               Looking for a weed dispensary in Mississauga or a cannabis store on Lakeshore Rd W? Confirm the current identity: High Coastal Cannabis, 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5, +1 (289) 815-5222, Open 24 Hours.
             </p>
             <p className={styles.seoPanelText}>
-              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>. For open-now hours and late-night ID, use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>. For current brand-name clarifiers, use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>.
+              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>. For open-now hours and late-night ID, use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>. For current brand-name clarifiers, use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>. City flower context stays on the <Link href="/weed-dispensary-mississauga/">Mississauga weed dispensary hub</Link>. Shop <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>, <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower.
             </p>
           </div>
         </div>
@@ -434,6 +440,10 @@ export default function HomePage() {
                 <a href={`tel:${nap.phoneIntl}`} className={styles.storeLink}>
                   {nap.phoneDisplay}
                 </a>
+                <br />
+                <Link href="/weed-dispensary-mississauga/" className={styles.storeLink}>
+                  Mississauga weed hub
+                </Link>
               </p>
             </div>
             <div className={styles.storeCard}>

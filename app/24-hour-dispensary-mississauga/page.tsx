@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { SccHubNav } from "../components/SccHubNav";
 import {
   OPEN_NOW_FAQS,
   STORE_IDENTITY as nap,
@@ -84,6 +85,7 @@ export default function OpenNowFaqPage() {
             <Link href="/">Homepage NAP</Link>
             <Link href={nap.visitPath}>Lakeshore visit guide</Link>
           </div>
+          <SccHubNav current={nap.hoursPath} />
         </section>
 
         <section>
@@ -157,7 +159,9 @@ export default function OpenNowFaqPage() {
             <Link href={nap.visitPath}>Lakeshore Mississauga visit guide</Link>. Confirming the current High Coastal
             name versus older search phrases? Use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>.
             The Mississauga store landing is{" "}
-            <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. The{" "}
+            <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Shop{" "}
+            <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>,{" "}
+            <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower. The{" "}
             <Link href="/">homepage</Link> remains the website URL for this store — not this FAQ and not the city
             landing.
           </p>

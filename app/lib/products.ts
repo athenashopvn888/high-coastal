@@ -86,7 +86,7 @@ export async function fetchLiveProducts(): Promise<{
 export const TIER_CONFIG: Record<
   string,
   {
-    name: string; slug: string; color: string; icon: string; tagline: string; banner: string;
+    name: string; slug: string; shortSlug: string; color: string; icon: string; tagline: string; banner: string;
     unitPrice: number; /* $/g */
     deal3g: { label: string; total: string; price: number } | null; /* 3g bundle pricing */
     deal6g: { label: string; total: string; price: number } | null; /* 6g bundle pricing (top 3 only) */
@@ -95,6 +95,7 @@ export const TIER_CONFIG: Record<
   EXOTIC: {
     name: "Exotic Weed",
     slug: "exotic-weed",
+    shortSlug: "exotic",
     color: "#f59e0b",
     icon: "\uD83D\uDD25",
     tagline: "Explore the Exotic Weed flower tier",
@@ -106,6 +107,7 @@ export const TIER_CONFIG: Record<
   PREMIUM: {
     name: "Premium Weed",
     slug: "premium-weed",
+    shortSlug: "premium",
     color: "#a78bfa",
     icon: "\uD83D\uDC8E",
     tagline: "Explore the Premium Weed flower tier",
@@ -117,6 +119,7 @@ export const TIER_CONFIG: Record<
   "AAA+": {
     name: "AAA+ Weed",
     slug: "aaa-weed",
+    shortSlug: "aaa",
     color: "#22d3ee",
     icon: "\u26A1",
     tagline: "Explore the AAA+ Weed flower tier",
@@ -128,6 +131,7 @@ export const TIER_CONFIG: Record<
   AA: {
     name: "AA Weed",
     slug: "aa-weed",
+    shortSlug: "aa",
     color: "#34d399",
     icon: "\u2726",
     tagline: "Explore the AA Weed flower tier",
@@ -139,6 +143,7 @@ export const TIER_CONFIG: Record<
   BUDGET: {
     name: "Budget Weed",
     slug: "budget-weed",
+    shortSlug: "budget",
     color: "#94a3b8",
     icon: "\uD83D\uDCB0",
     tagline: "Explore the Budget Weed flower tier",
@@ -266,10 +271,14 @@ export function getTierFromSlug(
   slug: string
 ): { key: string; config: (typeof TIER_CONFIG)[string] } | undefined {
   const entry = Object.entries(TIER_CONFIG).find(
-    ([, v]) => v.slug === slug
+    ([, v]) => v.slug === slug || v.shortSlug === slug
   );
   if (!entry) return undefined;
   return { key: entry[0], config: entry[1] };
+}
+
+export function allTierRouteSlugs(): string[] {
+  return Object.values(TIER_CONFIG).flatMap((t) => [t.slug, t.shortSlug]);
 }
 
 export function getCategoryFromSlug(

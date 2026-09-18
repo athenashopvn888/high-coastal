@@ -20,12 +20,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/delivery`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
   ];
 
-  const tierPages: MetadataRoute.Sitemap = Object.values(TIER_CONFIG).map((t) => ({
-    url: `${BASE}/${t.slug}`,
-    lastModified: now,
-    changeFrequency: "daily" as const,
-    priority: 0.9,
-  }));
+  const tierPages: MetadataRoute.Sitemap = Object.values(TIER_CONFIG).flatMap((t) => [
+    {
+      url: `${BASE}/${t.shortSlug}`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${BASE}/${t.slug}`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.85,
+    },
+  ]);
 
   const itemPages: MetadataRoute.Sitemap = Object.values(CATEGORY_CONFIG).map((c) => ({
     url: `${BASE}/items/${c.slug}`,

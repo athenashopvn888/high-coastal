@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { SccHubNav } from "../components/SccHubNav";
 import {
   BRAND_VISIT_FAQS,
   STORE_IDENTITY as nap,
@@ -84,6 +85,7 @@ export default function BrandVisitFaqPage() {
             <Link href="/">Homepage NAP</Link>
             <Link href={nap.landingPath}>Mississauga dispensary</Link>
           </div>
+          <SccHubNav current={nap.brandVisitPath} />
         </section>
 
         <section>
@@ -171,7 +173,9 @@ export default function BrandVisitFaqPage() {
             The <Link href="/">homepage</Link> remains the website URL for this store — not this FAQ and not the city
             landing. Browse the Mississauga store page at{" "}
             <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Need the pin first? Open the{" "}
-            <Link href={nap.visitPath}>Lakeshore visit guide</Link>.
+            <Link href={nap.visitPath}>Lakeshore visit guide</Link>. Flower collections are on{" "}
+            <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>,{" "}
+            <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link>.
           </p>
         </section>
       </main>
