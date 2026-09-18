@@ -104,7 +104,10 @@
     "isHot": false,
     "isSale": false,
     "thc": "26%",
-    "price3g": null,
+    "price3g": {
+      "regular": 10,
+      "sale": null
+    },
     "price5g": null,
     "price14g": null,
     "price28g": {
@@ -148,7 +151,10 @@
       "regular": 20,
       "sale": null
     },
-    "price14g": null,
+    "price14g": {
+      "regular": 45,
+      "sale": null
+    },
     "price28g": null,
     "image": "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/204-ROYAL-GORILLA2.webp"
   },
@@ -166,7 +172,10 @@
       "regular": 20,
       "sale": null
     },
-    "price14g": null,
+    "price14g": {
+      "regular": 45,
+      "sale": null
+    },
     "price28g": null,
     "image": "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/205-PINK-STICKY-ALIEN.webp"
   },
@@ -289,7 +298,10 @@
       "regular": 20,
       "sale": null
     },
-    "price14g": null,
+    "price14g": {
+      "regular": 40,
+      "sale": null
+    },
     "price28g": null,
     "image": "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/99244-275-SUGAR-COOKIES.webp"
   },
@@ -715,10 +727,7 @@
       "regular": 20,
       "sale": null
     },
-    "price14g": {
-      "regular": 50,
-      "sale": null
-    },
+    "price14g": null,
     "price28g": null,
     "image": ""
   },
@@ -749,7 +758,10 @@
     "isHot": false,
     "isSale": false,
     "thc": "31%",
-    "price3g": null,
+    "price3g": {
+      "regular": 20,
+      "sale": null
+    },
     "price5g": {
       "regular": 30,
       "sale": null
@@ -813,7 +825,10 @@
       "regular": 20,
       "sale": null
     },
-    "price5g": null,
+    "price5g": {
+      "regular": 30,
+      "sale": null
+    },
     "price14g": null,
     "price28g": null,
     "image": "https://pub-eb3e1fe18a43477eabc885cfb791d97c.r2.dev/products/353_PINK_PANTHER_showcase.webp"
@@ -908,7 +923,10 @@
     "isHot": false,
     "isSale": false,
     "thc": "32%",
-    "price3g": null,
+    "price3g": {
+      "regular": 30,
+      "sale": null
+    },
     "price5g": {
       "regular": 45,
       "sale": null
@@ -1032,7 +1050,7 @@
     "isSale": false,
     "thc": "36%",
     "price3g": {
-      "regular": 45,
+      "regular": 40,
       "sale": null
     },
     "price5g": {
@@ -1053,7 +1071,7 @@
     "isSale": false,
     "thc": "",
     "price3g": {
-      "regular": 45,
+      "regular": 40,
       "sale": null
     },
     "price5g": {

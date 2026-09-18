@@ -1,6 +1,6 @@
 {
   "storeCode": "LC01",
-  "stockDate": "2026-09-18T12:19:50.000Z",
+  "stockDate": "2026-09-18T17:37:55.000Z",
   "flowerCount": 54,
   "itemCount": 62,
   "tiers": {
@@ -20,7 +20,7 @@
     "VAPE PENS": 5,
     "MAGIC & OTHERS": 4
   },
-  "source": "https://script.google.com/macros/s/AKfycbx09_sDal1eMVF1r-hUck4e7oq_XBHEWhGvA79JuhZNQ6P4CdhCas0xE3FfexWQ3hq4/exec?store=LC01",
-  "usedEnvUrl": false,
-  "writtenAt": "2026-09-18T16:45:14.163Z"
+  "source": "https://script.google.com/macros/s/AKfycbx09_sDal1eMVF1r-hUck4e7oq_XBHEWhGvA79JuhZNQ6P4CdhCas0xE3FfexWQ3hq4/exec?store=LC01&stock=1 + https://script.google.com/macros/s/AKfycbx09_sDal1eMVF1r-hUck4e7oq_XBHEWhGvA79JuhZNQ6P4CdhCas0xE3FfexWQ3hq4/exec?store=LC01&catalog=1",
+  "usedEnvUrl": true,
+  "writtenAt": "2026-09-18T23:53:27.256Z"
 }
