@@ -59,6 +59,11 @@ export default function ContactPage() {
                   Call {nap.phoneDisplay}
                 </a>
               </p>
+              <p className={styles.infoText}>
+                <a href="/visit" className={styles.infoBtn}>
+                  Lakeshore visit guide
+                </a>
+              </p>
             </div>
 
             {/* Hours */}

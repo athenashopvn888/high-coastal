@@ -5,6 +5,7 @@ export const STORE_IDENTITY = {
   websiteUrl: "https://www.highcoastalcannabis.com",
   storeId: "https://www.highcoastalcannabis.com",
   landingPath: "/weed-dispensary-mississauga/",
+  visitPath: "/visit",
   streetAddress: "1720 Lakeshore Rd W",
   addressLocality: "Mississauga",
   addressRegion: "ON",
@@ -23,6 +24,36 @@ export const STORE_IDENTITY = {
   hasMap: "https://www.google.com/maps/search/?api=1&query=1720+Lakeshore+Rd+W,+Mississauga,+ON+L5J+1J5",
   doorTestAreas: ["Lakeshore Rd W", "Clarkson", "Mississauga", "Port Credit", "Lorne Park"],
 } as const;
+
+export const mapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(STORE_IDENTITY.addressDisplay)}`;
+export const mapsEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(STORE_IDENTITY.addressDisplay)}&z=16&output=embed`;
+
+export const VISIT_FAQS = [
+  {
+    question: "Where is the Mississauga dispensary on Lakeshore?",
+    answer: `High Coastal Cannabis is the walk-in dispensary at ${STORE_IDENTITY.addressDisplay}, near ${STORE_IDENTITY.intersection}. Call ${STORE_IDENTITY.phoneDisplay}.`,
+  },
+  {
+    question: "Is there a dispensary near me in Port Credit or Clarkson?",
+    answer: `Yes, if you are on the Lakeshore West corridor. High Coastal Cannabis is at ${STORE_IDENTITY.streetAddress} in the ${STORE_IDENTITY.neighborhood} neighbourhood, between Port Credit and Clarkson.`,
+  },
+  {
+    question: "Is High Coastal Cannabis a 24 hour dispensary in Mississauga?",
+    answer: "Yes. High Coastal Cannabis is open 24 hours a day, seven days a week. The same Lakeshore Rd W door is used after midnight. Adults 19+ need valid government photo ID.",
+  },
+  {
+    question: "What should I bring for a walk-in?",
+    answer: "Bring valid government photo ID. You must be 19 or older. Plaza parking is available for customers, and evening street parking is often available on Lakeshore Rd W. No appointment is required.",
+  },
+  {
+    question: "What is the current store name?",
+    answer: "The current store name is High Coastal Cannabis. Use the homepage for the official name, address, phone, and hours. The website for this store is the High Coastal Cannabis homepage.",
+  },
+  {
+    question: "How do I confirm a product before I travel?",
+    answer: `Call High Coastal Cannabis at ${STORE_IDENTITY.phoneDisplay}. Menu names and stock can change, so calling ahead is the safest check when one item is the reason for the trip.`,
+  },
+] as const;
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
 
@@ -100,6 +131,41 @@ export function landingPageJsonLd(faqs: readonly { question: string; answer: str
       {
         "@type": "FAQPage",
         mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function visitPageJsonLd() {
+  const n = STORE_IDENTITY;
+  const visitUrl = `${n.websiteUrl}${n.visitPath}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": visitUrl,
+        url: visitUrl,
+        name: "Lakeshore Mississauga Dispensary Visit Guide — Port Credit / Clarkson Corridor",
+        description: `${n.name} is the 24-hour Mississauga dispensary at ${n.addressDisplay}. This visit guide covers arrival from Port Credit, Clarkson, and Lakeshore West.`,
+        isPartOf: { "@id": n.websiteUrl },
+        about: { "@id": n.storeId },
+        mainEntity: { "@id": n.storeId },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: n.websiteUrl },
+          { "@type": "ListItem", position: 2, name: "Lakeshore Visit Guide", item: visitUrl },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: VISIT_FAQS.map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: { "@type": "Answer", text: faq.answer },

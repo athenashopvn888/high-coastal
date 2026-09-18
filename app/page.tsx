@@ -324,7 +324,7 @@ export default function HomePage() {
               Looking for a weed dispensary in Mississauga or a cannabis store on Lakeshore Rd W? Confirm the current identity: High Coastal Cannabis, 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5, +1 (289) 815-5222, Open 24 Hours.
             </p>
             <p className={styles.seoPanelText}>
-              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available.
+              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>.
             </p>
           </div>
         </div>
@@ -450,6 +450,10 @@ export default function HomePage() {
                 No appointment needed
                 <br />
                 <span className={styles.storeHighlight}>Lakeshore Rd W & Clarkson Rd N, Mississauga</span>
+                <br />
+                <Link href="/visit" className={styles.storeLink}>
+                  Lakeshore visit guide
+                </Link>
               </p>
             </div>
           </div>

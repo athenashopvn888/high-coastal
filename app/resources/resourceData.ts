@@ -415,6 +415,14 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
   "": {
     groups: [
       {
+        heading: "Plan a Lakeshore Visit",
+        cards: [
+          { title: "Lakeshore Mississauga Visit Guide", href: "/visit", text: "How to find 1720 Lakeshore Rd W from Port Credit, Clarkson, and the Lakeshore West corridor." },
+          { title: "Weed Dispensary in Mississauga", href: "/weed-dispensary-mississauga/", text: "The High Coastal Cannabis store landing for Mississauga." },
+          { title: "First Visit on Lakeshore Road West", href: "/resources/lakeshore-clarkson-first-visit-guide", text: "Plan a first High Coastal Cannabis visit and learn how to approach the menu before product names." },
+        ],
+      },
+      {
         heading: "Start With Cannabis Basics",
         cards: [
           { title: "Cannabis Dispensary vs Weed Dispensary", href: "/resources/cannabis-dispensary-vs-weed-dispensary", text: "Understand the different words adults use when they are looking for the same kind of local cannabis store." },
@@ -440,6 +448,11 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
     ],
     appendSections: [{ heading: "Current Product Information", body: ["High Coastal Cannabis resources explain stable menu and product terminology. Use current category and product pages for changing details such as product names, prices, package formats and availability."] }],
     kind: "collection",
+  },
+  "lakeshore-clarkson-first-visit-guide": {
+    appendCards: [
+      { title: "Lakeshore Mississauga Visit Guide", href: "/visit", text: "Arrival notes for 1720 Lakeshore Rd W, Port Credit, and Clarkson." },
+    ],
   },
   "menu-guide": {
     appendSections: [{ heading: "Learn the Language Behind the Menu", body: ["Once you know which product category you want, Cannabis 101 and the Weed & Flower Guide explain the terminology behind flower tiers, THC, genetics, aroma and everyday Weed slang."], subsections: [], }],
@@ -503,7 +516,9 @@ function applySupportingEnhancement(page: ResourcePage): ResourcePage {
 
 export const RESOURCE_PAGES: ResourcePage[] = [
   ...BASE_RESOURCE_PAGES.map((page) => applySupportingEnhancement(adcBySlug.get(page.slug) ?? page)),
-  ...adcPages.filter((page) => !BASE_RESOURCE_PAGES.some((candidate) => candidate.slug === page.slug)),
+  ...adcPages
+    .filter((page) => !BASE_RESOURCE_PAGES.some((candidate) => candidate.slug === page.slug))
+    .map((page) => applySupportingEnhancement(page)),
 ];
 
 export const RESOURCE_HOME = RESOURCE_PAGES[0];
