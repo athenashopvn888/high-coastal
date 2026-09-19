@@ -91,9 +91,9 @@ export const SEO_PAGES: SeoPageData[] = [
     showTierGrid: false,
     showVisitSection: false,
     relatedLink: {
-      href: "/info/native-cigarettes-mississauga",
-      label: "Read the Native Cigarettes Mississauga guide",
-      body: "Looking for the separate cigarette resource? Use the verified High Coastal Cannabis guide for Mississauga.",
+      href: "/nicotine-vape-lakeshore",
+      label: "Open the Nicotine Vape on Lakeshore walk-in page",
+      body: "This article supports the live Lakeshore nicotine vape LP. Use that page for the Clarkson / Port Credit pin, then come back here for the five-card reference set.",
     },
     sections: [
       {
@@ -213,6 +213,11 @@ export const SEO_PAGES: SeoPageData[] = [
       "products": NATIVE_HERO_PRODUCTS,
       "disclosure": NATIVE_HERO_DISCLOSURE
     },
+    "relatedLink": {
+      "href": "/native-cigarettes-lakeshore",
+      "label": "Open Native Cigarettes on Lakeshore",
+      "body": "This article supports the live Lakeshore Native cigarettes LP. Use that page for the Clarkson / Port Credit walk-in, then confirm current carton names on the cigarette menu."
+    },
     "sections": [
       {
         "heading": "Start With The Cigarette Category",
@@ -238,7 +243,7 @@ export const SEO_PAGES: SeoPageData[] = [
       },
       {
         "q": "Where should shoppers start?",
-        "a": "Open the cigarette category, then use the store page for directions, contact options, and listed hours."
+        "a": "Start on Native cigarettes on Lakeshore for the pin, then open the cigarette category and confirm current names before visiting."
       }
     ]
   },

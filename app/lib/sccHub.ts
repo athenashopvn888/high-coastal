@@ -6,6 +6,8 @@ export const SCC_HUB_LINKS = [
   { href: "/24-hour-dispensary-mississauga", label: "24-hour open-now FAQ" },
   { href: "/weed-dispensary-mississauga/", label: "Weed dispensary in Mississauga" },
   { href: "/cannabis-delivery-lakeshore", label: "Cannabis delivery on Lakeshore" },
+  { href: "/native-cigarettes-lakeshore", label: "Native cigarettes on Lakeshore" },
+  { href: "/nicotine-vape-lakeshore", label: "Nicotine vape on Lakeshore" },
 ] as const;
 
 export const SCC_SHORT_TIER_LINKS = [

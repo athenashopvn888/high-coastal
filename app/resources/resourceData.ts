@@ -309,6 +309,11 @@ const BASE_RESOURCE_PAGES: ResourcePage[] = [
     "intro": "High Coastal presents Native smokes through its cigarette category. This page supplies a way to read brand families, variant wording, and carton-style notes before checking the current public entries.",
     "cards": [
       {
+        "title": "Native Cigarettes on Lakeshore",
+        "href": "/native-cigarettes-lakeshore",
+        "text": "Live Lakeshore / Clarkson / Port Credit walk-in page this resource supports."
+      },
+      {
         "title": "Cigarette Menu",
         "href": "/items/cigarettes",
         "text": "Open the current cigarette category before making the trip."
@@ -361,6 +366,11 @@ const BASE_RESOURCE_PAGES: ResourcePage[] = [
     "eyebrow": "Native Cigarettes Guide",
     "intro": "The quickest reading order for High Coastal cigarettes is family name, variant, carton detail, and posted price. That sequence helps separate similarly named entries on the current page.",
     "cards": [
+      {
+        "title": "Native Cigarettes on Lakeshore",
+        "href": "/native-cigarettes-lakeshore",
+        "text": "Live Lakeshore / Clarkson / Port Credit walk-in page this guide supports."
+      },
       {
         "title": "Cigarette Menu",
         "href": "/items/cigarettes",
@@ -421,6 +431,8 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
           { title: "24-Hour Open-Now FAQ", href: "/24-hour-dispensary-mississauga", text: "Hours, Lakeshore late arrival, and ID for the 24 hour Mississauga dispensary." },
           { title: "High Coastal Brand Visit FAQ", href: "/high-coastal-visit", text: "Current High Coastal name, Lakeshore pin, and existing brand-search clarifiers." },
           { title: "Cannabis Delivery on Lakeshore", href: "/cannabis-delivery-lakeshore", text: "Cannabis delivery for Lakeshore / Clarkson / Port Credit. Dispatcher hours are separate from 24-hour walk-in." },
+          { title: "Native Cigarettes on Lakeshore", href: "/native-cigarettes-lakeshore", text: "Retail Native cigarettes walk-in for Lakeshore / Clarkson / Port Credit. No Nation, reserve, or medical claims." },
+          { title: "Nicotine Vape on Lakeshore", href: "/nicotine-vape-lakeshore", text: "Nicotine vape walk-in for Lakeshore / Clarkson / Port Credit. Kept separate from THC vape. Adults 19+." },
           { title: "Weed Dispensary in Mississauga", href: "/weed-dispensary-mississauga/", text: "The High Coastal Cannabis store landing for Mississauga." },
           { title: "First Visit on Lakeshore Road West", href: "/resources/lakeshore-clarkson-first-visit-guide", text: "Plan a first High Coastal Cannabis visit and learn how to approach the menu before product names." },
         ],
@@ -458,6 +470,8 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
       { title: "24-Hour Open-Now FAQ", href: "/24-hour-dispensary-mississauga", text: "Hours, Lakeshore late arrival, and ID for overnight walk-ins." },
       { title: "High Coastal Brand Visit FAQ", href: "/high-coastal-visit", text: "Current High Coastal name and existing brand-search clarifiers for this Lakeshore pin." },
       { title: "Cannabis Delivery on Lakeshore", href: "/cannabis-delivery-lakeshore", text: "Delivery area, $60 minimum, and LIVE ORDER steps for the Lakeshore corridor." },
+      { title: "Native Cigarettes on Lakeshore", href: "/native-cigarettes-lakeshore", text: "Retail cigarette walk-in for the Lakeshore corridor." },
+      { title: "Nicotine Vape on Lakeshore", href: "/nicotine-vape-lakeshore", text: "Nicotine vape walk-in, kept separate from THC vape." },
     ],
   },
   "menu-guide": {

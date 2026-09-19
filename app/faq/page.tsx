@@ -42,7 +42,7 @@ const FAQ_CATEGORIES = [
     faqs: [
       { q: "Does High Coastal Cannabis list Native cigarettes?", a: "The cigarette menu may show Native smoke brands such as Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, Canadian Menthol, Canadian Classics Original, and Canadian Classics Silver. Confirm current options through the menu or staff." },
       { q: "Where can I confirm carton details?", a: "Where $25 carton-style listings are shown, confirm current price and menu details through the menu or staff." },
-      { q: "Where should cigarette shoppers start?", a: "Open the cigarette category first, then use the store page for directions, contact options, and listed hours." },
+      { q: "Where should cigarette shoppers start?", a: "Start on Native cigarettes on Lakeshore, then open the cigarette category and confirm current names before visiting." },
     ],
   },
 ];
@@ -92,7 +92,7 @@ export default function FAQPage() {
           <div className={styles.ctaSection}>
             <h2 className={styles.ctaTitle}>Still have questions?</h2>
             <p className={styles.ctaText}>
-              Call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>, read the <a href="/visit">Lakeshore visit guide</a>, check the <a href="/24-hour-dispensary-mississauga">24-hour open-now FAQ</a>, read the <a href="/high-coastal-visit">High Coastal brand visit FAQ</a>, open <a href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</a>, or use the store page before visiting.
+              Call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>, read the <a href="/visit">Lakeshore visit guide</a>, check the <a href="/24-hour-dispensary-mississauga">24-hour open-now FAQ</a>, read the <a href="/high-coastal-visit">High Coastal brand visit FAQ</a>, open <a href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</a>, compare <a href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</a> or <a href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</a>, or use the store page before visiting.
             </p>
           </div>
         </div>

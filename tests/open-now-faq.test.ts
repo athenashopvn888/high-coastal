@@ -17,7 +17,7 @@ test("B12 open-now FAQ is a dedicated 24h surface beside visit and the Mississau
   const sitemap = read("app/sitemap.ts");
 
   assert.equal(STORE_IDENTITY.hoursPath, "/24-hour-dispensary-mississauga");
-  assert.match(page, /24-Hour Mississauga Dispensary on Lakeshore — Open-Now FAQ/);
+  assert.match(page, /24-Hour Lakeshore Dispensary — Clarkson \/ Port Credit Open-Now FAQ/);
   assert.match(page, /1720 Lakeshore Rd W/);
   assert.match(page, /href="\/"/);
   assert.match(page, /nap\.landingPath|weed-dispensary-mississauga/);
@@ -43,9 +43,12 @@ test("open-now schema describes the page and keeps the business website on the h
   assert.equal(webpage.url, "https://www.highcoastalcannabis.com/24-hour-dispensary-mississauga");
   assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com");
   assert.equal(storeJsonLd().url, "https://www.highcoastalcannabis.com");
-  assert.ok(OPEN_NOW_FAQS.length >= 5);
+  assert.ok(OPEN_NOW_FAQS.length >= 10);
   assert.ok(OPEN_NOW_FAQS.some((faq) => /24 hour dispensary in Mississauga/i.test(faq.question)));
   assert.ok(OPEN_NOW_FAQS.some((faq) => /24\/7 dispensary in Mississauga/i.test(faq.question)));
+  assert.ok(OPEN_NOW_FAQS.some((faq) => /24 hour dispensary in Clarkson/i.test(faq.question)));
+  assert.ok(OPEN_NOW_FAQS.some((faq) => /24 hour dispensary near Port Credit/i.test(faq.question)));
+  assert.ok(OPEN_NOW_FAQS.some((faq) => /delivery open 24 hours/i.test(faq.question)));
 });
 
 test("open-now FAQ is linked from hub surfaces without a second indexed article URL", async () => {
@@ -69,6 +72,15 @@ test("open-now FAQ is linked from hub surfaces without a second indexed article 
         redirect.permanent === true,
     ),
     "descriptive local-guide path must permanently redirect to /24-hour-dispensary-mississauga",
+  );
+  assert.ok(
+    redirects.some(
+      (redirect) =>
+        redirect.source === "/24-hour-lakeshore-mississauga-dispensary" &&
+        redirect.destination === "/24-hour-dispensary-mississauga" &&
+        redirect.permanent === true,
+    ),
+    "short Lakeshore 24h alias must permanently redirect to B12 without a second indexed article",
   );
 });
 

@@ -135,6 +135,16 @@ export default async function ItemsCategoryPage({
             <p className={styles.visitText}>
               {nap.addressDisplay} · {nap.hoursDisplay} · {nap.phoneDisplay}
             </p>
+            {catInfo.key === "CIGARETTES" ? (
+              <p className={styles.visitText}>
+                Neighbourhood guide: <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link>.
+              </p>
+            ) : null}
+            {catInfo.key === "VAPE PENS" ? (
+              <p className={styles.visitText}>
+                Neighbourhood guide: <Link href={nap.nicotineVapePath}>Nicotine vape on Lakeshore</Link>.
+              </p>
+            ) : null}
           </div>
         </div>
       </section>

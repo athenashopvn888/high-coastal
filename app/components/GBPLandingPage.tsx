@@ -99,6 +99,7 @@ export function GBPLandingPage() {
           <p>Need open-now hours, late arrival, and ID in FAQ form? Use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>.</p>
           <p>Confirming the current High Coastal name versus older search phrases? Use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>.</p>
           <p>Ordering to a Lakeshore / Clarkson / Port Credit address instead of walking in? Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page.</p>
+          <p>Comparing listed tobacco-nicotine categories? Use <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link> or <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.</p>
         </section>
 
         <section className={styles.section} id="find-your-weed">
@@ -132,6 +133,8 @@ export function GBPLandingPage() {
             <Link href="/24-hour-dispensary-mississauga">24-Hour Open-Now FAQ</Link>
             <Link href="/high-coastal-visit">High Coastal Brand Visit FAQ</Link>
             <Link href="/cannabis-delivery-lakeshore">Cannabis Delivery on Lakeshore</Link>
+            <Link href="/native-cigarettes-lakeshore">Native Cigarettes on Lakeshore</Link>
+            <Link href="/nicotine-vape-lakeshore">Nicotine Vape on Lakeshore</Link>
             <Link href="/resources/cannabis-101">Cannabis 101</Link>
             <Link href="/resources/lakeshore-clarkson-first-visit-guide">First Visit on Lakeshore Road West</Link>
             <Link href="/resources/weed-flower-guide">Weed &amp; Flower Guide</Link>

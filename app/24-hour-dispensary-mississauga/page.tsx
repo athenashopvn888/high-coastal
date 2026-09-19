@@ -13,18 +13,20 @@ import {
 import styles from "../visit/visit.module.css";
 
 const canonical = `${nap.websiteUrl}${nap.hoursPath}`;
-const title = "24-Hour Mississauga Dispensary on Lakeshore — Open-Now FAQ";
+const title = "24-Hour Lakeshore Dispensary — Clarkson / Port Credit Open-Now FAQ";
 const description =
-  "Open now 24 hours at High Coastal Cannabis, 1720 Lakeshore Rd W, Mississauga. 24 hour and 24/7 dispensary FAQ for Lakeshore late arrival and ID. Call +1 (289) 815-5222. Adults 19+.";
+  "Open now 24 hours at High Coastal Cannabis, 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. 24 hour walk-in FAQ for Lakeshore / Clarkson / Port Credit. Delivery hours are separate. Call +1 (289) 815-5222. Adults 19+.";
 
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
   keywords: [
+    "24 hour dispensary lakeshore",
+    "24 hour dispensary clarkson",
+    "24 hour dispensary port credit",
     "24 hour dispensary mississauga",
     "24/7 dispensary mississauga",
     "24 hour dispensary near me",
-    "dispensary near me",
     "high coastal cannabis",
   ],
   alternates: { canonical },
@@ -60,8 +62,8 @@ export default function OpenNowFaqPage() {
       <Navbar />
       <main className={styles.main}>
         <section className={styles.hero}>
-          <p className={styles.eyebrow}>Open now · 24 hours · Lakeshore Mississauga · Adults 19+</p>
-          <h1>24-Hour Mississauga Dispensary on Lakeshore — Open-Now FAQ</h1>
+          <p className={styles.eyebrow}>Open now · 24 hours · Lakeshore / Clarkson / Port Credit · Adults 19+</p>
+          <h1>24-Hour Lakeshore Dispensary — Clarkson / Port Credit Open-Now FAQ</h1>
           <p className={`${styles.nap} nap`}>
             <strong>{nap.name}</strong>
             <br />
@@ -72,10 +74,10 @@ export default function OpenNowFaqPage() {
             {nap.hoursDisplay}
           </p>
           <p className={styles.lede}>
-            This FAQ answers whether High Coastal Cannabis is open now, how late arrival works on Lakeshore Rd W, and
-            what ID you need. The <Link href="/">homepage</Link> is the name, address, and phone hub. The{" "}
-            <Link href={nap.landingPath}>Mississauga dispensary page</Link> is the store landing. Use the{" "}
-            <Link href={nap.visitPath}>Lakeshore visit guide</Link> for the pin and corridor walk-in notes.
+            This FAQ answers whether High Coastal Cannabis is open now on Lakeshore Rd W, how late arrival works from
+            Clarkson and Port Credit, and what ID you need. The 24-hour claim is the <strong>walk-in door only</strong>.
+            The <Link href="/">homepage</Link> is the name, address, and phone hub. Use the{" "}
+            <Link href={nap.visitPath}>Lakeshore visit guide</Link> for the pin.
           </p>
           <div className={styles.actions}>
             <a href={`tel:${nap.phoneIntl}`}>Call {nap.phoneDisplay}</a>
@@ -96,9 +98,10 @@ export default function OpenNowFaqPage() {
             this Lakeshore walk-in.
           </p>
           <p>
-            If you searched for a 24/7 dispensary in Mississauga or a 24 hour dispensary near me, this is the Lakeshore
-            Rd W door: <strong>{nap.addressDisplay}</strong>. Overnight shoppers use the same storefront as daytime
-            visits. Posted menu names can still change; the 24-hour schedule does not freeze a SKU.
+            If you searched for a 24-hour Mississauga dispensary on Lakeshore, a 24/7 dispensary in Mississauga, or a
+            24 hour dispensary near me, this is the Lakeshore Rd W door: <strong>{nap.addressDisplay}</strong>. Overnight
+            shoppers use the same storefront as daytime visits. Posted menu names can still change; the 24-hour schedule
+            does not freeze a SKU.
           </p>
           <p>
             If one listed item is the reason you are coming after midnight, call{" "}
@@ -112,6 +115,29 @@ export default function OpenNowFaqPage() {
             hours — not a 24/7 delivery clock. Use the{" "}
             <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> when you need a drop on
             the Clarkson / Port Credit corridor instead of a late walk-in.
+          </p>
+        </section>
+
+        <section>
+          <h2>Clarkson / Port Credit — not a Square One 24h pin</h2>
+          <p>
+            High Coastal Cannabis is the 24 hour walk-in for the Lakeshore West corridor: Clarkson, Port Credit, Lorne
+            Park, and nearby southwest Mississauga. From Port Credit, stay on Lakeshore Rd W heading west to 1720 near
+            Clarkson Rd N. From Clarkson, treat Lakeshore Rd W as the destination road.
+          </p>
+          <p>
+            This is <strong>not a Square One mall pin</strong> and not a city-centre counter. If a map shows a different
+            Lakeshore number or a mall unit, you are not at this store. Confirm the homepage address before you leave.
+          </p>
+        </section>
+
+        <section>
+          <h2>Overnight walk-in — flower, Native cigarettes, nicotine vape</h2>
+          <p>
+            Adults 19+ can walk in any hour for listed flower, Native cigarettes, and nicotine vape. Confirm current
+            packs on the <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link> page and the{" "}
+            <Link href={nap.nicotineVapePath}>nicotine vape on Lakeshore</Link> page, then call when one name is the
+            reason for a late trip. Stock still moves after midnight.
           </p>
         </section>
 
@@ -168,9 +194,12 @@ export default function OpenNowFaqPage() {
             <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Shop{" "}
             <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>,{" "}
             <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower. Need a drop instead of a
-            walk-in? Open the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page. The{" "}
-            <Link href="/">homepage</Link> remains the website URL for this store — not this FAQ and not the city
-            landing.
+            walk-in? Open the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page —
+            delivery hours stay separate from this 24-hour door. Compare{" "}
+            <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link> or{" "}
+            <Link href={nap.nicotineVapePath}>nicotine vape on Lakeshore</Link> before an overnight carton or device
+            trip. The <Link href="/">homepage</Link> remains the website URL for this store — not this FAQ and not the
+            city landing.
           </p>
         </section>
       </main>
