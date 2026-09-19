@@ -309,6 +309,11 @@ const BASE_RESOURCE_PAGES: ResourcePage[] = [
     "intro": "High Coastal presents Native smokes through its cigarette category. This page supplies a way to read brand families, variant wording, and carton-style notes before checking the current public entries.",
     "cards": [
       {
+        "title": "Native Cigarettes on Lakeshore",
+        "href": "/native-cigarettes-lakeshore",
+        "text": "Live Lakeshore / Clarkson / Port Credit walk-in page this resource supports."
+      },
+      {
         "title": "Cigarette Menu",
         "href": "/items/cigarettes",
         "text": "Open the current cigarette category before making the trip."
@@ -361,6 +366,11 @@ const BASE_RESOURCE_PAGES: ResourcePage[] = [
     "eyebrow": "Native Cigarettes Guide",
     "intro": "The quickest reading order for High Coastal cigarettes is family name, variant, carton detail, and posted price. That sequence helps separate similarly named entries on the current page.",
     "cards": [
+      {
+        "title": "Native Cigarettes on Lakeshore",
+        "href": "/native-cigarettes-lakeshore",
+        "text": "Live Lakeshore / Clarkson / Port Credit walk-in page this guide supports."
+      },
       {
         "title": "Cigarette Menu",
         "href": "/items/cigarettes",

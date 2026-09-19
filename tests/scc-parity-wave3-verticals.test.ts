@@ -144,6 +144,45 @@ test("Wave 3 Native wording care stays off product LPs and does not invent 24h d
   assert.ok(!redirects.some((redirect) => redirect.source === "/24-hour-dispensary-mississauga"));
 });
 
+test("Master GO: four Lakeshore pillars have FAQs, hub cards, and tied supporting articles", () => {
+  const pillars = [
+    "/24-hour-dispensary-mississauga",
+    "/cannabis-delivery-lakeshore",
+    "/native-cigarettes-lakeshore",
+    "/nicotine-vape-lakeshore",
+  ] as const;
+
+  const hub = read("app/lib/sccHub.ts");
+  const discovery = read("app/lib/weedDiscovery.ts");
+  const home = read("app/page.tsx");
+  const delivery = read("app/cannabis-delivery-lakeshore/page.tsx");
+  const info = read("app/lib/seoPages.ts");
+  const resources = read("app/resources/resourceData.ts");
+  const identity = read("app/lib/storeIdentity.ts");
+  const cig = read("app/native-cigarettes-lakeshore/page.tsx");
+  const vape = read("app/nicotine-vape-lakeshore/page.tsx");
+
+  for (const path of pillars) {
+    assert.ok(SCC_HUB_LINKS.some((link) => link.href === path), `hub missing ${path}`);
+    assert.match(discovery, new RegExp(`href: "${path}"`), `weed hub cards missing ${path}`);
+    assert.match(home, new RegExp(path.replaceAll("/", "\\/")), `homepage missing ${path}`);
+  }
+
+  assert.match(delivery, /LIVE ORDER/);
+  assert.match(delivery, /liveOrder=1/);
+  assert.match(identity, /NATIVE_CIGARETTE_FAQS/);
+  assert.match(identity, /NICOTINE_VAPE_FAQS/);
+  assert.match(identity, /OPEN_NOW_FAQS/);
+  assert.match(identity, /DELIVERY_FAQS/);
+  assert.match(cig, /does not claim Indigenous Nation affiliation/);
+  assert.doesNotMatch(cig + vape, /six nations|6ix nations/i);
+  assert.match(info, /href: "\/nicotine-vape-lakeshore"/);
+  assert.match(info, /"href": "\/native-cigarettes-lakeshore"/);
+  assert.match(resources, /href": "\/native-cigarettes-lakeshore"/);
+  assert.doesNotMatch(read("app/lib/gbp-location.ts"), /LEARN_MORE|Updates/);
+  assert.match(read("app/lib/gbp-location.ts"), /menuUrl: "\/"/);
+});
+
 test("Wave 3 does not touch the menu swimlane or invent pouches/grabba LPs", () => {
   const hub = read("app/lib/sccHub.ts");
   const redirects = read("next.config.ts");

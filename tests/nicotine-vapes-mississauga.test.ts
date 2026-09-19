@@ -22,7 +22,7 @@ test("Mississauga nicotine page renders only the five live-checked products", ()
   assert.equal(page.heroPreview.warning, "Adults 19+. Nicotine is addictive.");
   assert.equal(page.showTierGrid, false);
   assert.equal(page.showVisitSection, false);
-  assert.equal(page.relatedLink?.href, "/info/native-cigarettes-mississauga");
+  assert.equal(page.relatedLink?.href, "/nicotine-vape-lakeshore");
 
   const serialized = JSON.stringify(page);
   for (const excluded of [

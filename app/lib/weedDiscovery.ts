@@ -12,6 +12,15 @@ export const lcWeedOwner: WeedOwnerConfig = {
     { label: "Pre-Rolls", description: "Explore cannabis in a pre-roll format.", href: "/items/prerolls" }, { label: "Edibles", description: "Explore the edibles category by format.", href: "/items/edibles" }, { label: "Nicotine Vape", description: "Explore the Nicotine Vape category, kept separate from THC Vape.", href: "/items/vapes" }, { label: "Concentrates", description: "Explore the concentrates category.", href: "/items/concentrates" }, { label: "Accessories", description: "Explore accessories for cannabis shoppers.", href: "/items/add-ons" },
   ],
   guides: [
-    { label: "Lakeshore Visit Guide", description: "How to find 1720 Lakeshore Rd W from Port Credit, Clarkson, and Lakeshore West.", href: "/visit" }, { label: "24-Hour Open-Now FAQ", description: "Hours, Lakeshore late arrival, and ID for the 24 hour Mississauga dispensary.", href: "/24-hour-dispensary-mississauga" }, { label: "High Coastal Brand Visit FAQ", description: "Current High Coastal name, Lakeshore pin, and existing brand-search clarifiers.", href: "/high-coastal-visit" }, { label: "Menu Guide", description: "Compare flower, pre-rolls, edibles, vapes, concentrates and other cannabis formats.", href: "/resources/menu-guide" }, { label: "Weed & Flower Guide", description: "Find more context before choosing a Weed flower collection.", href: "/resources/weed-flower-guide" }, { label: "Value Guide", description: "Understand value-oriented choices without relying on a current price or promotion.", href: "/resources/value-guide" }, { label: "Pre-Roll Guide", description: "Focus specifically on the pre-roll format.", href: "/resources/pre-roll-guide" },
+    { label: "24-Hour Open-Now FAQ", description: "Hours, Lakeshore late arrival, and ID for the 24 hour Mississauga dispensary.", href: "/24-hour-dispensary-mississauga" },
+    { label: "Cannabis Delivery on Lakeshore", description: "Live Lakeshore / Clarkson / Port Credit delivery. Dispatcher hours are not the 24-hour walk-in clock.", href: "/cannabis-delivery-lakeshore" },
+    { label: "Native Cigarettes on Lakeshore", description: "Retail Native cigarettes walk-in for Lakeshore / Clarkson / Port Credit.", href: "/native-cigarettes-lakeshore" },
+    { label: "Nicotine Vape on Lakeshore", description: "Nicotine vape walk-in, kept separate from THC vape. Adults 19+.", href: "/nicotine-vape-lakeshore" },
+    { label: "Lakeshore Visit Guide", description: "How to find 1720 Lakeshore Rd W from Port Credit, Clarkson, and Lakeshore West.", href: "/visit" },
+    { label: "High Coastal Brand Visit FAQ", description: "Current High Coastal name, Lakeshore pin, and existing brand-search clarifiers.", href: "/high-coastal-visit" },
+    { label: "Menu Guide", description: "Compare flower, pre-rolls, edibles, vapes, concentrates and other cannabis formats.", href: "/resources/menu-guide" },
+    { label: "Weed & Flower Guide", description: "Find more context before choosing a Weed flower collection.", href: "/resources/weed-flower-guide" },
+    { label: "Value Guide", description: "Understand value-oriented choices without relying on a current price or promotion.", href: "/resources/value-guide" },
+    { label: "Pre-Roll Guide", description: "Focus specifically on the pre-roll format.", href: "/resources/pre-roll-guide" },
   ],
 };
