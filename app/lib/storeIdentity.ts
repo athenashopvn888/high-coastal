@@ -7,9 +7,14 @@ export const STORE_IDENTITY = {
   landingPath: "/weed-dispensary-mississauga/",
   visitPath: "/visit",
   hoursPath: "/24-hour-dispensary-mississauga",
+  hoursAliasPath: "/24-hour-lakeshore-mississauga-dispensary",
   brandVisitPath: "/high-coastal-visit",
   deliveryPath: "/cannabis-delivery-lakeshore",
   deliveryMenuPath: "/delivery",
+  nativeCigarettesPath: "/native-cigarettes-lakeshore",
+  nicotineVapePath: "/nicotine-vape-lakeshore",
+  cigarettesMenuPath: "/items/cigarettes",
+  nicotineVapeMenuPath: "/items/vapes",
   streetAddress: "1720 Lakeshore Rd W",
   addressLocality: "Mississauga",
   addressRegion: "ON",
@@ -87,6 +92,26 @@ export const OPEN_NOW_FAQS = [
   {
     question: "What is the current store name on Lakeshore?",
     answer: "The current store name is High Coastal Cannabis. Use the homepage for the official name, address, phone, and hours. The website for this store is the High Coastal Cannabis homepage.",
+  },
+  {
+    question: "Is there a 24 hour dispensary in Clarkson?",
+    answer: `Yes. High Coastal Cannabis is the 24 hour walk-in at ${STORE_IDENTITY.streetAddress} in the Clarkson / Lakeshore neighbourhood. This is not a Square One mall pin. Call ${STORE_IDENTITY.phoneDisplay}.`,
+  },
+  {
+    question: "Is there a 24 hour dispensary near Port Credit?",
+    answer: `Yes, on the Lakeshore West corridor. From Port Credit, stay on Lakeshore Rd W heading west to ${STORE_IDENTITY.streetAddress} near ${STORE_IDENTITY.intersection}. The door is open 24 hours. Adults 19+ need valid government photo ID.`,
+  },
+  {
+    question: "Is the 24-hour Lakeshore walk-in a Square One mall pin?",
+    answer: "No. High Coastal Cannabis is the shoreline walk-in at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Do not treat a Square One or other Mississauga mall pin as this store.",
+  },
+  {
+    question: "Can I buy Native cigarettes or nicotine vape after midnight?",
+    answer: "The Lakeshore walk-in is open 24 hours for adults 19+. Native cigarettes and nicotine vape are sold at this counter when listed. Posted names and stock still change overnight, so call +1 (289) 815-5222 when one pack is the reason for the trip. Cannabis delivery hours are separate and are not 24/7.",
+  },
+  {
+    question: "Is High Coastal Cannabis delivery open 24 hours?",
+    answer: "No. The 24-hour claim is the walk-in door only. Cannabis delivery is a separate Lakeshore / Clarkson / Port Credit service. High Coastal does not publish a 24/7 delivery clock. Use the cannabis delivery on Lakeshore page, then LIVE ORDER on the delivery menu.",
   },
 ] as const;
 
@@ -212,8 +237,8 @@ export function openNowPageJsonLd() {
         "@type": "WebPage",
         "@id": hoursUrl,
         url: hoursUrl,
-        name: "24-Hour Mississauga Dispensary on Lakeshore — Open-Now FAQ",
-        description: `${n.name} is a 24 hour dispensary in Mississauga at ${n.addressDisplay}. This FAQ covers open-now hours, late arrival on Lakeshore Rd W, and ID.`,
+        name: "24-Hour Lakeshore Dispensary — Clarkson / Port Credit Open-Now FAQ",
+        description: `${n.name} is a 24 hour dispensary at ${n.addressDisplay} on the Lakeshore / Clarkson / Port Credit corridor. This FAQ covers open-now hours, late arrival, and ID. Delivery hours are separate.`,
         isPartOf: { "@id": n.websiteUrl },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },
@@ -329,6 +354,130 @@ export function deliveryPageJsonLd() {
       {
         "@type": "FAQPage",
         mainEntity: DELIVERY_FAQS.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export const NATIVE_CIGARETTE_FAQS = [
+  {
+    question: "Does High Coastal Cannabis sell Native cigarettes on Lakeshore?",
+    answer: `Yes. High Coastal Cannabis lists Native cigarettes at the 24 hour walk-in at ${STORE_IDENTITY.addressDisplay}. Open the cigarette category for current brand names. Adults 19+ only. Call ${STORE_IDENTITY.phoneDisplay} when one carton is the reason for the trip.`,
+  },
+  {
+    question: "Which Native cigarette brands may be on the Lakeshore menu?",
+    answer: "The cigarette menu may show carton-style listings around $25, with brand names such as Canadian Lights, Canadian Full, Putters, Canadian Goose Full, Canadian Goose Lights, Canadian Menthol, Canadian Classics Original, and Canadian Classics Silver. Names and stock change. Confirm in the cigarette category or by phone.",
+  },
+  {
+    question: "Are Native cigarettes on Lakeshore a Nation, reserve, or medical product?",
+    answer: "No. This page is retail walk-in copy for adults 19+. High Coastal Cannabis does not make Indigenous Nation, reserve, healing, or medical claims. Staff sell the posted cigarette menu. They do not give medical advice.",
+  },
+  {
+    question: "Can I buy Native cigarettes after midnight in Clarkson or Port Credit?",
+    answer: `The walk-in at ${STORE_IDENTITY.streetAddress} is open 24 hours. That clock is the door, not a promise that every carton stays in stock overnight. Call ${STORE_IDENTITY.phoneDisplay} first. Cannabis delivery hours are a separate service.`,
+  },
+  {
+    question: "Where is the Lakeshore Native cigarettes counter?",
+    answer: `High Coastal Cannabis is at ${STORE_IDENTITY.addressDisplay}, near ${STORE_IDENTITY.intersection} in the Clarkson / Lakeshore neighbourhood. This is not a Square One mall pin. Use the homepage to confirm the address before you leave.`,
+  },
+  {
+    question: "Are nicotine vapes the same as Native cigarettes?",
+    answer: "No. Native cigarettes are tobacco cartons on the cigarette menu. Nicotine vape is a separate category. Keep both separate from THC vape and flower.",
+  },
+] as const;
+
+export const NICOTINE_VAPE_FAQS = [
+  {
+    question: "Does High Coastal Cannabis sell nicotine vape on Lakeshore?",
+    answer: `Yes. High Coastal Cannabis lists nicotine vape products at ${STORE_IDENTITY.addressDisplay}. Use the nicotine vape category for current names. Adults 19+ only. Nicotine is addictive. Call ${STORE_IDENTITY.phoneDisplay} when one device is the reason for the trip.`,
+  },
+  {
+    question: "Are nicotine vapes the same as THC vapes?",
+    answer: "No. Nicotine vape stays in its own category. THC vape is a cannabis category. Do not treat nicotine product names, strengths, or puff counts as cannabis facts.",
+  },
+  {
+    question: "Can I buy a nicotine vape after midnight in Clarkson or Port Credit?",
+    answer: "The Lakeshore walk-in is open 24 hours for adults 19+. Overnight stock still changes. Call +1 (289) 815-5222 before a late trip. Cannabis delivery is a separate service and is not a 24/7 clock.",
+  },
+  {
+    question: "Where should I compare nicotine vape listings?",
+    answer: "Start on the nicotine vape category. The Lakeshore nicotine vape page is neighbourhood context. Product names, nicotine strength, and puff-count notes belong on the current listing, not as performance promises.",
+  },
+  {
+    question: "Is the nicotine vape counter a Square One pin?",
+    answer: `No. High Coastal Cannabis is the shoreline walk-in at ${STORE_IDENTITY.addressDisplay}, near Clarkson and Port Credit on Lakeshore Rd W.`,
+  },
+  {
+    question: "Does this page sell nicotine pouches?",
+    answer: "This page is the nicotine vape walk-in guide. Nicotine pouch tins, when listed, stay on the cigarette menu. Confirm current names in store or by phone.",
+  },
+] as const;
+
+export function nativeCigarettesPageJsonLd() {
+  const n = STORE_IDENTITY;
+  const pageUrl = `${n.websiteUrl}${n.nativeCigarettesPath}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": pageUrl,
+        url: pageUrl,
+        name: "Native Cigarettes on Lakeshore — Clarkson / Port Credit",
+        description: `${n.name} lists Native cigarettes at the 24 hour walk-in at ${n.addressDisplay}. Adults 19+. Retail counter only — no Nation, reserve, or medical claims.`,
+        isPartOf: { "@id": n.websiteUrl },
+        about: { "@id": n.storeId },
+        mainEntity: { "@id": n.storeId },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: n.websiteUrl },
+          { "@type": "ListItem", position: 2, name: "Native Cigarettes on Lakeshore", item: pageUrl },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: NATIVE_CIGARETTE_FAQS.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: { "@type": "Answer", text: faq.answer },
+        })),
+      },
+    ],
+  };
+}
+
+export function nicotineVapePageJsonLd() {
+  const n = STORE_IDENTITY;
+  const pageUrl = `${n.websiteUrl}${n.nicotineVapePath}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": pageUrl,
+        url: pageUrl,
+        name: "Nicotine Vape on Lakeshore — Clarkson / Port Credit",
+        description: `${n.name} lists nicotine vape at the 24 hour walk-in at ${n.addressDisplay}. Adults 19+. Nicotine is addictive. Kept separate from THC vape.`,
+        isPartOf: { "@id": n.websiteUrl },
+        about: { "@id": n.storeId },
+        mainEntity: { "@id": n.storeId },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: n.websiteUrl },
+          { "@type": "ListItem", position: 2, name: "Nicotine Vape on Lakeshore", item: pageUrl },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: NICOTINE_VAPE_FAQS.map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: { "@type": "Answer", text: faq.answer },

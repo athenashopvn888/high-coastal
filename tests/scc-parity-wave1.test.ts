@@ -16,6 +16,8 @@ const HUB_SURFACES = [
   "app/high-coastal-visit/page.tsx",
   "app/24-hour-dispensary-mississauga/page.tsx",
   "app/cannabis-delivery-lakeshore/page.tsx",
+  "app/native-cigarettes-lakeshore/page.tsx",
+  "app/nicotine-vape-lakeshore/page.tsx",
   "app/components/GBPLandingPage.tsx",
   "app/[tier]/page.tsx",
 ] as const;
@@ -80,7 +82,7 @@ test("each flower tier has a unique H1, title, and FAQ set", () => {
 test("dense linking graph covers homepage, visit, brand FAQ, B12, weed hub, and five short tiers", () => {
   assert.deepEqual(
     SCC_HUB_LINKS.map((link) => link.href),
-    ["/", "/visit", "/high-coastal-visit", "/24-hour-dispensary-mississauga", "/weed-dispensary-mississauga/", "/cannabis-delivery-lakeshore"],
+    ["/", "/visit", "/high-coastal-visit", "/24-hour-dispensary-mississauga", "/weed-dispensary-mississauga/", "/cannabis-delivery-lakeshore", "/native-cigarettes-lakeshore", "/nicotine-vape-lakeshore"],
   );
   assert.deepEqual(
     SCC_SHORT_TIER_LINKS.map((link) => link.href),
@@ -135,9 +137,9 @@ test("Native wording stays inside B18 brand-visit clarifiers", () => {
   assert.doesNotMatch(brand, /on[- ]reserve/);
 });
 
-test("Wave 1 does not add Tri-gated smoke SEO LPs", () => {
+test("Wave 1 lock still forbids unsold grabba and pouches LPs", () => {
   const hub = read("app/lib/sccHub.ts");
   const redirects = read("next.config.ts");
-  assert.doesNotMatch(hub, /native-cigarettes-lakeshore|nicotine-pouches-lakeshore|grabba-lakeshore/);
+  assert.doesNotMatch(hub, /nicotine-pouches-lakeshore|grabba-lakeshore/);
   assert.doesNotMatch(redirects, /native-cigarettes-lakeshore|nicotine-pouches-lakeshore|grabba-lakeshore/);
 });

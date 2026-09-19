@@ -100,6 +100,14 @@ const LOCAL_FAQS = [
     q: "Does High Coastal Cannabis deliver on Lakeshore?",
     a: "Yes. High Coastal Cannabis offers cannabis delivery for the Lakeshore / Clarkson / Port Credit corridor from 1720 Lakeshore Rd W. Delivery is a separate service from 24-hour walk-in hours. Start on the cannabis delivery on Lakeshore page, then open the delivery menu to start LIVE ORDER.",
   },
+  {
+    q: "Is there a 24 hour dispensary in Clarkson or Port Credit?",
+    a: "Yes. High Coastal Cannabis is the 24 hour walk-in at 1720 Lakeshore Rd W on the Lakeshore / Clarkson / Port Credit corridor. This is not a Square One mall pin. Use the 24-hour open-now FAQ for late arrival and ID. Delivery hours stay separate.",
+  },
+  {
+    q: "Does High Coastal Cannabis sell Native cigarettes and nicotine vape on Lakeshore?",
+    a: "Yes. Adults 19+ can compare Native cigarettes and nicotine vape at the Lakeshore walk-in. Start on the Native cigarettes on Lakeshore page or the nicotine vape on Lakeshore page, then confirm current names in the matching category. Nicotine is addictive.",
+  },
 ];
 
 interface Review {
@@ -336,7 +344,7 @@ export default function HomePage() {
               Looking for a weed dispensary in Mississauga or a cannabis store on Lakeshore Rd W? Confirm the current identity: High Coastal Cannabis, 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5, +1 (289) 815-5222, Open 24 Hours.
             </p>
             <p className={styles.seoPanelText}>
-              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>. For open-now hours and late-night ID, use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>. For current brand-name clarifiers, use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>. Need cannabis delivery on the Lakeshore / Clarkson / Port Credit corridor? Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page — delivery hours are dispatcher-confirmed and are not the 24-hour walk-in clock. City flower context stays on the <Link href="/weed-dispensary-mississauga/">Mississauga weed dispensary hub</Link>. Shop <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>, <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower.
+              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>. For open-now hours and late-night ID, use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>. For current brand-name clarifiers, use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>. Need cannabis delivery on the Lakeshore / Clarkson / Port Credit corridor? Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page — delivery hours are dispatcher-confirmed and are not the 24-hour walk-in clock. Compare <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link> or <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link> before a carton or device trip. City flower context stays on the <Link href="/weed-dispensary-mississauga/">Mississauga weed dispensary hub</Link>. Shop <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>, <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower.
             </p>
           </div>
         </div>
@@ -481,6 +489,14 @@ export default function HomePage() {
                 <br />
                 <Link href="/cannabis-delivery-lakeshore" className={styles.storeLink}>
                   Cannabis delivery on Lakeshore
+                </Link>
+                <br />
+                <Link href="/native-cigarettes-lakeshore" className={styles.storeLink}>
+                  Native cigarettes on Lakeshore
+                </Link>
+                <br />
+                <Link href="/nicotine-vape-lakeshore" className={styles.storeLink}>
+                  Nicotine vape on Lakeshore
                 </Link>
               </p>
             </div>

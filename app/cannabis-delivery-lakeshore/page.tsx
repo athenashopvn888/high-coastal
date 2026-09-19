@@ -198,7 +198,9 @@ export default function LakeshoreDeliveryPage() {
             <Link href={nap.hoursPath}>24-hour open-now FAQ</Link>. Shop the live floor collections from{" "}
             <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>,{" "}
             <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link>, or start the order on the{" "}
-            <Link href={nap.deliveryMenuPath}>delivery menu</Link>.
+            <Link href={nap.deliveryMenuPath}>delivery menu</Link>. Walk-in smoke categories stay on{" "}
+            <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link> and{" "}
+            <Link href={nap.nicotineVapePath}>nicotine vape on Lakeshore</Link>.
           </p>
         </section>
       </main>

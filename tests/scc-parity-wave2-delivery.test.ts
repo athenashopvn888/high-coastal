@@ -19,6 +19,8 @@ const HUB_SURFACES = [
   "app/high-coastal-visit/page.tsx",
   "app/24-hour-dispensary-mississauga/page.tsx",
   "app/cannabis-delivery-lakeshore/page.tsx",
+  "app/native-cigarettes-lakeshore/page.tsx",
+  "app/nicotine-vape-lakeshore/page.tsx",
   "app/components/GBPLandingPage.tsx",
   "app/components/Footer.tsx",
   "app/[tier]/page.tsx",
@@ -124,7 +126,7 @@ test("delivery LP stays Lakeshore-true with Native-wording care and no smoke SEO
   assert.doesNotMatch(page + faqs, /Ottawa|Gatineau|ByWard/i);
   assert.match(page, /not a Square One mall pin/);
   assert.doesNotMatch(page + faqs, /six nations|on[- ]reserve|Nation affiliation|healing ceremony|medical (card|claim)/i);
-  assert.doesNotMatch(hub, /native-cigarettes-lakeshore|nicotine-pouches-lakeshore|grabba-lakeshore/);
+  assert.doesNotMatch(hub, /nicotine-pouches-lakeshore|grabba-lakeshore/);
   assert.doesNotMatch(redirects, /native-cigarettes-lakeshore|nicotine-pouches-lakeshore|grabba-lakeshore/);
   assert.ok(!redirectList.some((redirect) => redirect.source === "/cannabis-delivery-lakeshore"));
 });

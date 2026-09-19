@@ -209,7 +209,9 @@ export default function VisitPage() {
             <Link href="/resources/lakeshore-clarkson-first-visit-guide">Lakeshore first-visit shopping guide</Link>.
             The category landing remains{" "}
             <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Ordering to a Lakeshore address instead
-            of walking in? Open <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link>.
+            of walking in? Open <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link>. Coming
+            for cartons or a nicotine device? Use <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link>{" "}
+            or <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.
           </p>
         </section>
 

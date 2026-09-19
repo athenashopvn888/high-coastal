@@ -16,8 +16,9 @@
     "test:visit": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/visit-guide.test.ts",
     "test:open-now": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/open-now-faq.test.ts",
     "test:brand-visit": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/brand-visit-faq.test.ts",
-    "test:scc-parity": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/scc-parity-wave1.test.ts tests/scc-parity-wave2-delivery.test.ts",
+    "test:scc-parity": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/scc-parity-wave1.test.ts tests/scc-parity-wave2-delivery.test.ts tests/scc-parity-wave3-verticals.test.ts",
     "test:scc-wave2": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/scc-parity-wave2-delivery.test.ts",
+    "test:scc-wave3": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/scc-parity-wave3-verticals.test.ts",
     "test:knowledge-base": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/knowledge-base-v2ss.test.ts",
     "test:staff-photo": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/staff-photo.test.ts",
     "verify:delivery-images": "node scripts/verify-athena-delivery-images.mjs"
