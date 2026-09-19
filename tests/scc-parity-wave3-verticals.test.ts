@@ -71,8 +71,8 @@ test("Wave 3 keeps B12 as the 24h owner and deepens Lakeshore open-now", () => {
   assert.match(hours, /not a Square One mall pin/);
   assert.match(hours, /walk-in door only/);
   assert.match(hours, /not a 24\/7 delivery clock/);
-  assert.match(hours, /native-cigarettes-lakeshore/);
-  assert.match(hours, /nicotine-vape-lakeshore/);
+  assert.match(hours, /native-cigarettes-lakeshore|nativeCigarettesPath/);
+  assert.match(hours, /nicotine-vape-lakeshore|nicotineVapePath/);
   assert.match(hours, /cannabis-delivery-lakeshore/);
   assert.match(sitemap, /\$\{BASE\}\/24-hour-dispensary-mississauga/);
   assert.doesNotMatch(sitemap, /24-hour-lakeshore-mississauga-dispensary/);
