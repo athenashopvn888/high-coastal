@@ -3,7 +3,7 @@ export const STORE_IDENTITY = {
   name: "High Coastal Cannabis",
   domain: "www.highcoastalcannabis.com",
   websiteUrl: "https://www.highcoastalcannabis.com",
-  storeId: "https://www.highcoastalcannabis.com",
+  storeId: "https://www.highcoastalcannabis.com/#store",
   landingPath: "/weed-dispensary-mississauga/",
   visitPath: "/visit",
   hoursPath: "/24-hour-dispensary-mississauga",
@@ -148,14 +148,39 @@ export function jsonLdHtml(data: unknown) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
-/** Business website URL is the homepage only — never the local landing path. */
-export function storeJsonLd() {
+export const serializeJsonLd = jsonLdHtml;
+
+export function faqPageGraphNode(faqs: readonly { q: string; a: string }[]) {
+  return {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+}
+
+export function websiteGraphNode() {
   const n = STORE_IDENTITY;
   return {
-    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${n.websiteUrl}/#website`,
+    url: n.websiteUrl,
+    name: n.name,
+    publisher: { "@id": `${n.websiteUrl}/#store` },
+  };
+}
+
+export function cannabisStoreGraphNode() {
+  const n = STORE_IDENTITY;
+  return {
     "@type": "Store",
     additionalType: "https://schema.org/LocalBusiness",
-    "@id": n.storeId,
+    "@id": `${n.websiteUrl}/#store`,
     name: n.name,
     description: `Cannabis dispensary at ${n.streetAddress} in ${n.addressLocality}, ON. Browse Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed flower collections plus edibles, prerolls, and vapes. ${n.hoursDisplay}.`,
     url: n.websiteUrl,
@@ -189,6 +214,14 @@ export function storeJsonLd() {
       { "@type": "City", name: "Mississauga" },
       { "@type": "Place", name: "Clarkson" },
     ],
+  };
+}
+
+/** Business website URL is the homepage only — never the local landing path. */
+export function storeJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    ...cannabisStoreGraphNode(),
   };
 }
 
@@ -243,7 +276,7 @@ export function landingPageJsonLd(faqs: readonly { question: string; answer: str
         url: landingUrl,
         name: "Weed Dispensary in Mississauga | High Coastal Cannabis",
         description: `${n.name} is a 24-hour weed dispensary at ${n.addressDisplay} on the Lakeshore / Clarkson / Port Credit corridor.`,
-        isPartOf: { "@id": n.websiteUrl },
+        isPartOf: { "@id": `${n.websiteUrl}/#website` },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },
       },
@@ -278,7 +311,7 @@ export function openNowPageJsonLd() {
         url: hoursUrl,
         name: "24-Hour Lakeshore Dispensary — Clarkson / Port Credit Open-Now FAQ",
         description: `${n.name} is a 24 hour dispensary at ${n.addressDisplay} on the Lakeshore / Clarkson / Port Credit corridor. This FAQ covers open-now hours, late arrival, and ID. Delivery hours are separate.`,
-        isPartOf: { "@id": n.websiteUrl },
+        isPartOf: { "@id": `${n.websiteUrl}/#website` },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },
       },
@@ -313,7 +346,7 @@ export function brandVisitPageJsonLd() {
         url: brandVisitUrl,
         name: "High Coastal Brand Visit FAQ — Lakeshore Pin + Existing Brand Queries",
         description: `${n.name} is the High Coastal dispensary at ${n.addressDisplay}. This FAQ clarifies the Lakeshore pin and existing brand-search phrases without reviving an old name.`,
-        isPartOf: { "@id": n.websiteUrl },
+        isPartOf: { "@id": `${n.websiteUrl}/#website` },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },
       },
@@ -379,7 +412,7 @@ export function deliveryPageJsonLd() {
         url: deliveryUrl,
         name: "Cannabis Delivery on Lakeshore — Clarkson / Port Credit",
         description: `${n.name} offers cannabis delivery from ${n.addressDisplay} for the Lakeshore / Clarkson / Port Credit corridor. Delivery hours are confirmed by the dispatcher and are not 24/7 walk-in hours.`,
-        isPartOf: { "@id": n.websiteUrl },
+        isPartOf: { "@id": `${n.websiteUrl}/#website` },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },
       },
@@ -468,7 +501,7 @@ export function nativeCigarettesPageJsonLd() {
         url: pageUrl,
         name: "Native Cigarettes on Lakeshore — Clarkson / Port Credit",
         description: `${n.name} lists Native cigarettes at the 24 hour walk-in at ${n.addressDisplay}. Adults 19+. Retail counter only — no Nation, reserve, or medical claims.`,
-        isPartOf: { "@id": n.websiteUrl },
+        isPartOf: { "@id": `${n.websiteUrl}/#website` },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },
       },
@@ -503,7 +536,7 @@ export function nicotineVapePageJsonLd() {
         url: pageUrl,
         name: "Nicotine Vape on Lakeshore — Clarkson / Port Credit",
         description: `${n.name} lists nicotine vape at the 24 hour walk-in at ${n.addressDisplay}. Adults 19+. Nicotine is addictive. Kept separate from THC vape.`,
-        isPartOf: { "@id": n.websiteUrl },
+        isPartOf: { "@id": `${n.websiteUrl}/#website` },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },
       },
@@ -538,7 +571,7 @@ export function visitPageJsonLd() {
         url: visitUrl,
         name: "Lakeshore Mississauga Dispensary Visit Guide — Port Credit / Clarkson Corridor",
         description: `${n.name} is the 24-hour Mississauga dispensary at ${n.addressDisplay}. This visit guide covers arrival from Port Credit, Clarkson, and Lakeshore West.`,
-        isPartOf: { "@id": n.websiteUrl },
+        isPartOf: { "@id": `${n.websiteUrl}/#website` },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },
       },

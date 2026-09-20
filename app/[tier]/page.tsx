@@ -10,7 +10,8 @@ import {
   TIER_CONFIG,
 } from "../lib/products";
 import { TIER_EDUCATION_LINKS, TIER_SEO } from "../lib/tierSeoContent";
-import { jsonLdHtml } from "../lib/storeIdentity";
+import { STORE_IDENTITY, faqPageGraphNode, serializeJsonLd } from "../lib/storeIdentity";
+import { buildTierCollectionJsonLd } from "../lib/tierStructuredData";
 import styles from "./tier.module.css";
 
 /* -- Generate short SCC paths and live *-weed aliases at build -- */
@@ -37,7 +38,7 @@ export async function generateMetadata({
     title: seo?.seoTitle || `${tierInfo.config.name} Cannabis Flower — ${flowers.length} Strains`,
     description: seo?.seoIntro || `Shop ${flowers.length} ${tierInfo.config.name.toLowerCase()} cannabis strains at High Coastal Cannabis.`,
     alternates: {
-      canonical: `https://www.highcoastalcannabis.com/${tierInfo.config.shortSlug}`,
+      canonical: `${STORE_IDENTITY.websiteUrl}/${tierInfo.config.shortSlug}`,
     },
     openGraph: {
       title: seo?.seoTitle || `${tierInfo.config.name} Flower | High Coastal Cannabis`,
@@ -62,26 +63,28 @@ export default async function TierPage({
 
   const saleFlowers = flowers.filter((f) => f.isSale);
   const regularFlowers = flowers.filter((f) => !f.isSale);
+  const displayFlowers = [...saleFlowers, ...regularFlowers];
   const hotFlowers = flowers.filter((f) => f.isHot);
+  const collectionJsonLd = buildTierCollectionJsonLd({
+    canonicalPath: `/${config.shortSlug}`,
+    name: seo?.h1 || config.name,
+    description: seo?.seoIntro || `Browse the current ${config.name.toLowerCase()} flower collection at High Coastal Cannabis.`,
+    flowers: displayFlowers,
+  });
+  const tierJsonLd = {
+    ...collectionJsonLd,
+    "@graph": [
+      ...collectionJsonLd["@graph"],
+      ...(seo?.faqs.length ? [faqPageGraphNode(seo.faqs)] : []),
+    ],
+  };
 
   return (
     <main className={styles.main}>
-      {seo && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: jsonLdHtml({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: seo.faqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.q,
-                acceptedAnswer: { "@type": "Answer", text: faq.a },
-              })),
-            }),
-          }}
-        />
-      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(tierJsonLd) }}
+      />
       <Navbar />
 
       {/* ── Banner Image (standalone, no overlay text) ── */}

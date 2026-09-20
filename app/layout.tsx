@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import AgeGate from "./components/AgeGate";
-import { STORE_IDENTITY, jsonLdHtml, storeJsonLd } from "./lib/storeIdentity";
+import { STORE_IDENTITY, cannabisStoreGraphNode, serializeJsonLd, websiteGraphNode } from "./lib/storeIdentity";
 
 export const metadata: Metadata = {
   metadataBase: new URL(STORE_IDENTITY.websiteUrl),
@@ -73,7 +73,10 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = storeJsonLd();
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [websiteGraphNode(), cannabisStoreGraphNode()],
+};
 
 export default function RootLayout({
   children,
@@ -95,7 +98,7 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLdHtml(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLDK412BJR"></script>
         <script

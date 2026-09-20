@@ -41,7 +41,7 @@ test("Store schema website URL is the homepage only", () => {
   assert.equal(schema["@type"], "Store");
   assert.equal(schema.name, "High Coastal Cannabis");
   assert.equal(schema.url, "https://www.highcoastalcannabis.com");
-  assert.equal(schema["@id"], "https://www.highcoastalcannabis.com");
+  assert.equal(schema["@id"], "https://www.highcoastalcannabis.com/#store");
   assert.equal(schema.telephone, "+12898155222");
   assert.equal(schema.address.streetAddress, "1720 Lakeshore Rd W");
   assert.equal(schema.address.addressLocality, "Mississauga");
@@ -57,7 +57,7 @@ test("landing schema describes the page without hijacking the business website U
   assert.ok(!types.includes("Store"));
   const webpage = landing["@graph"].find((node) => node["@type"] === "WebPage") as { url: string; mainEntity: { "@id": string } };
   assert.equal(webpage.url, "https://www.highcoastalcannabis.com/weed-dispensary-mississauga/");
-  assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com");
+  assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com/#store");
   assert.doesNotMatch(read("app/components/GBPLandingPage.tsx"), /"@type": "Store"/);
 });
 
