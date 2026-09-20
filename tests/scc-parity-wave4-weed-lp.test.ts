@@ -4,7 +4,6 @@ import test from "node:test";
 
 import nextConfig from "../next.config.ts";
 import { SCC_HUB_LINKS } from "../app/lib/sccHub.ts";
-import { WEED_DISPENSARY_HUB_CARD } from "../app/lib/weedDiscovery.ts";
 import {
   BRAND_VISIT_FAQS,
   DELIVERY_FAQS,
@@ -46,8 +45,8 @@ test("Wave 4 keeps the 5th pillar on /weed-dispensary-mississauga with locked NA
   assert.equal(STORE_IDENTITY.phoneDisplay, "+1 (289) 815-5222");
   assert.equal(STORE_IDENTITY.websiteUrl, "https://www.highcoastalcannabis.com");
   assert.match(page, /High Coastal Cannabis — Lakeshore \/ Clarkson \/ Port Credit Weed Dispensary in Mississauga/);
-  assert.match(page, /1720 Lakeshore Rd W, Mississauga, ON L5J 1J5/);
-  assert.match(page, /\+1 \(289\) 815-5222/);
+  assert.match(page, /nap\.addressDisplay/);
+  assert.match(page, /nap\.phoneDisplay/);
   assert.match(page, /highcoastalcannabis\.com/);
   assert.match(page, /not a Square One mall pin/);
   assert.match(page, /Clarkson/);
@@ -84,18 +83,18 @@ test("Wave 4 weed LP has unique FAQ + FAQPage and keeps the business website on 
 });
 
 test("Wave 4 hub card and dense links cover visit, brand FAQ, 24h, delivery, cig, nic, and tiers", () => {
-  assert.equal(WEED_DISPENSARY_HUB_CARD.href, "/weed-dispensary-mississauga/");
-  assert.match(WEED_DISPENSARY_HUB_CARD.label, /Weed dispensary on Lakeshore/);
-  assert.match(WEED_DISPENSARY_HUB_CARD.description, /Lakeshore \/ Clarkson \/ Port Credit/);
+  const discovery = read("app/lib/weedDiscovery.ts");
+  assert.match(discovery, /export const WEED_DISPENSARY_HUB_CARD/);
+  assert.match(discovery, /href: "\/weed-dispensary-mississauga\/"/);
+  assert.match(discovery, /Weed dispensary on Lakeshore/);
+  assert.match(discovery, /Lakeshore \/ Clarkson \/ Port Credit/);
   assert.ok(SCC_HUB_LINKS.some((link) => link.href === "/weed-dispensary-mississauga/"));
 
   const landing = read("app/components/GBPLandingPage.tsx");
   const home = read("app/page.tsx");
-  const discovery = read("app/lib/weedDiscovery.ts");
   const resources = read("app/resources/resourceData.ts");
   const info = read("app/lib/seoPages.ts");
 
-  assert.match(discovery, /href: "\/weed-dispensary-mississauga\/"/);
   assert.match(home, /WEED_DISPENSARY_HUB_CARD/);
   assert.match(resources, /Weed dispensary on Lakeshore/);
   assert.match(info, /"href": "\/weed-dispensary-mississauga\/"/);

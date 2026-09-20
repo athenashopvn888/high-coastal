@@ -31,7 +31,11 @@ export function GBPLandingPage() {
         <section className={styles.hero}>
           <p className={styles.eyebrow}>Open 24 Hours · Adults 19+ · {nap.neighborhood}</p>
           <h1>High Coastal Cannabis — Lakeshore / Clarkson / Port Credit Weed Dispensary in Mississauga</h1>
-          <p className={styles.heroAddress}>{nap.addressDisplay}</p>
+          <p className={`${styles.heroAddress} nap`}>
+            <strong>{nap.name}</strong>
+            <br />
+            {nap.addressDisplay}
+          </p>
           <p className={styles.heroPhone}>
             <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>
             <span aria-hidden="true"> · </span>
