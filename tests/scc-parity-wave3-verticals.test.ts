@@ -92,7 +92,7 @@ test("Wave 3 vertical schema keeps the business website on the homepage", () => 
       url: string;
       mainEntity: { "@id": string };
     };
-    assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com");
+    assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com/#store");
   }
   assert.equal(nativeCigarettesPageJsonLd()["@graph"].find((node) => node["@type"] === "WebPage")?.url, "https://www.highcoastalcannabis.com/native-cigarettes-lakeshore");
   assert.equal(nicotineVapePageJsonLd()["@graph"].find((node) => node["@type"] === "WebPage")?.url, "https://www.highcoastalcannabis.com/nicotine-vape-lakeshore");

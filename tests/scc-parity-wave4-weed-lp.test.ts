@@ -69,7 +69,7 @@ test("Wave 4 weed LP has unique FAQ + FAQPage and keeps the business website on 
     mainEntity: { "@id": string };
   };
   assert.equal(webpage.url, "https://www.highcoastalcannabis.com/weed-dispensary-mississauga/");
-  assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com");
+  assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com/#store");
   assert.equal(storeJsonLd().url, "https://www.highcoastalcannabis.com");
   assert.ok(WEED_DISPENSARY_FAQS.length >= 5);
   assert.ok(WEED_DISPENSARY_FAQS.some((faq) => /Clarkson or Port Credit/i.test(faq.question)));

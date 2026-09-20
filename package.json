@@ -20,6 +20,7 @@
     "test:scc-wave2": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/scc-parity-wave2-delivery.test.ts",
     "test:scc-wave3": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/scc-parity-wave3-verticals.test.ts",
     "test:scc-wave4": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/scc-parity-wave4-weed-lp.test.ts",
+    "test:tier-schema": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/tier-collection-schema.test.ts",
     "test:knowledge-base": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/knowledge-base-v2ss.test.ts",
     "test:staff-photo": "node --experimental-strip-types --experimental-specifier-resolution=node --test tests/staff-photo.test.ts",
     "verify:delivery-images": "node scripts/verify-athena-delivery-images.mjs"

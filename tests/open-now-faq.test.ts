@@ -41,7 +41,7 @@ test("open-now schema describes the page and keeps the business website on the h
     mainEntity: { "@id": string };
   };
   assert.equal(webpage.url, "https://www.highcoastalcannabis.com/24-hour-dispensary-mississauga");
-  assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com");
+  assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com/#store");
   assert.equal(storeJsonLd().url, "https://www.highcoastalcannabis.com");
   assert.ok(OPEN_NOW_FAQS.length >= 10);
   assert.ok(OPEN_NOW_FAQS.some((faq) => /24 hour dispensary in Mississauga/i.test(faq.question)));

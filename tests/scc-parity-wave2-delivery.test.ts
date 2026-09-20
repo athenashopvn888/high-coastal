@@ -68,7 +68,7 @@ test("delivery schema describes the page and keeps the business website on the h
     mainEntity: { "@id": string };
   };
   assert.equal(webpage.url, "https://www.highcoastalcannabis.com/cannabis-delivery-lakeshore");
-  assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com");
+  assert.equal(webpage.mainEntity["@id"], "https://www.highcoastalcannabis.com/#store");
   assert.equal(storeJsonLd().url, "https://www.highcoastalcannabis.com");
   assert.ok(DELIVERY_FAQS.length >= 5);
   assert.ok(DELIVERY_FAQS.some((faq) => /24 hours/i.test(faq.question)));
