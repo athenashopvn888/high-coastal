@@ -192,7 +192,46 @@ export function storeJsonLd() {
   };
 }
 
-export function landingPageJsonLd(faqs: readonly { question: string; answer: string }[]) {
+export const WEED_DISPENSARY_FAQS = [
+  {
+    question: "Is there a weed dispensary on Lakeshore in Clarkson or Port Credit?",
+    answer: `Yes. High Coastal Cannabis is the neighbourhood weed dispensary at ${STORE_IDENTITY.addressDisplay}, near ${STORE_IDENTITY.intersection} on the Lakeshore / Clarkson / Port Credit corridor. Call ${STORE_IDENTITY.phoneDisplay}.`,
+  },
+  {
+    question: "Is the Mississauga weed dispensary a Square One mall pin?",
+    answer: "No. High Coastal Cannabis is the shoreline walk-in at 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5. Do not treat a Square One or other Mississauga mall pin as this store.",
+  },
+  {
+    question: "What flower tiers can I browse at the Lakeshore weed dispensary?",
+    answer: "Adults 19+ can browse Budget Weed, AA Weed, AAA+ Weed, Premium Weed, and Exotic Weed, plus pre-rolls, edibles, vapes, concentrates, and accessories. Short flower paths are Exotic, Premium, AAA+, AA, and Budget.",
+  },
+  {
+    question: "Is the Lakeshore weed dispensary open 24 hours?",
+    answer: `Yes. The walk-in door at ${STORE_IDENTITY.streetAddress} is open 24 hours. For late arrival and ID, use the 24-hour open-now FAQ. Cannabis delivery on Lakeshore is a separate service.`,
+  },
+  {
+    question: "Can I order from the Lakeshore weed dispensary instead of walking in?",
+    answer: "Yes. Use the cannabis delivery on Lakeshore page for Lakeshore / Clarkson / Port Credit drops. Dispatcher hours are not the 24-hour walk-in clock. Start LIVE ORDER on the delivery menu.",
+  },
+  {
+    question: "Does the Lakeshore weed dispensary also list Native cigarettes and nicotine vape?",
+    answer: "Yes. Adults 19+ can compare Native cigarettes on Lakeshore and nicotine vape on Lakeshore at the same 1720 Lakeshore Rd W counter. Keep those categories separate from flower.",
+  },
+  {
+    question: "Where should I start if I need the pin or the current store name?",
+    answer: "Use the Lakeshore visit guide for the Port Credit / Clarkson corridor pin. Use the High Coastal brand visit FAQ for the current name. The homepage remains the official website URL.",
+  },
+  {
+    question: "Do I need to be 19+ at the Lakeshore weed dispensary?",
+    answer: "Yes. High Coastal Cannabis is for adults 19+ only. Bring valid government photo ID for every visit.",
+  },
+  {
+    question: "What is the difference between weed and cannabis at the Lakeshore store?",
+    answer: "Weed is everyday language for cannabis. Cannabis is the broader term and can describe flower as well as pre-rolls, edibles, vapes, and concentrates. Both point to the same High Coastal Cannabis walk-in on Lakeshore Rd W.",
+  },
+] as const;
+
+export function landingPageJsonLd(faqs: readonly { question: string; answer: string }[] = WEED_DISPENSARY_FAQS) {
   const n = STORE_IDENTITY;
   const landingUrl = `${n.websiteUrl}${n.landingPath}`;
   return {
@@ -203,7 +242,7 @@ export function landingPageJsonLd(faqs: readonly { question: string; answer: str
         "@id": landingUrl,
         url: landingUrl,
         name: "Weed Dispensary in Mississauga | High Coastal Cannabis",
-        description: `${n.name} is a 24-hour weed dispensary at ${n.addressDisplay} in the ${n.neighborhood} neighbourhood.`,
+        description: `${n.name} is a 24-hour weed dispensary at ${n.addressDisplay} on the Lakeshore / Clarkson / Port Credit corridor.`,
         isPartOf: { "@id": n.websiteUrl },
         about: { "@id": n.storeId },
         mainEntity: { "@id": n.storeId },

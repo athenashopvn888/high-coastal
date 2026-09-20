@@ -144,12 +144,13 @@ test("Wave 3 Native wording care stays off product LPs and does not invent 24h d
   assert.ok(!redirects.some((redirect) => redirect.source === "/24-hour-dispensary-mississauga"));
 });
 
-test("Master GO: four Lakeshore pillars have FAQs, hub cards, and tied supporting articles", () => {
+test("Master GO: five Lakeshore pillars have FAQs, hub cards, and tied supporting articles", () => {
   const pillars = [
     "/24-hour-dispensary-mississauga",
     "/cannabis-delivery-lakeshore",
     "/native-cigarettes-lakeshore",
     "/nicotine-vape-lakeshore",
+    "/weed-dispensary-mississauga/",
   ] as const;
 
   const hub = read("app/lib/sccHub.ts");
@@ -174,6 +175,7 @@ test("Master GO: four Lakeshore pillars have FAQs, hub cards, and tied supportin
   assert.match(identity, /NICOTINE_VAPE_FAQS/);
   assert.match(identity, /OPEN_NOW_FAQS/);
   assert.match(identity, /DELIVERY_FAQS/);
+  assert.match(identity, /WEED_DISPENSARY_FAQS/);
   assert.match(cig, /does not claim Indigenous Nation affiliation/);
   assert.doesNotMatch(cig + vape, /six nations|6ix nations/i);
   assert.match(info, /href: "\/nicotine-vape-lakeshore"/);

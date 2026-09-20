@@ -135,6 +135,11 @@ export const SEO_PAGES: SeoPageData[] = [
     "h1": "High Coastal Cannabis Weed Dispensary in Mississauga",
     "icon": "*",
     "heroTagline": "Menu shopping around Clarkson / Lakeshore",
+    "relatedLink": {
+      "href": "/weed-dispensary-mississauga/",
+      "label": "Open the Lakeshore / Clarkson / Port Credit weed dispensary",
+      "body": "This article supports the live neighbourhood weed dispensary LP. Use that page for the Lakeshore / Clarkson / Port Credit walk-in, then choose a flower tier or category."
+    },
     "sections": [
       {
         "heading": "Shop High Coastal Cannabis With A Plan",
@@ -254,6 +259,11 @@ export const SEO_PAGES: SeoPageData[] = [
     "h1": "Weed Store Near Clarkson / Lakeshore",
     "icon": ">",
     "heroTagline": "Local visit notes for Clarkson / Lakeshore, Lakeshore Rd W, Clarkson, Mississauga",
+    "relatedLink": {
+      "href": "/weed-dispensary-mississauga/",
+      "label": "Open the Lakeshore weed dispensary landing",
+      "body": "This article supports the live neighbourhood weed dispensary LP at 1720 Lakeshore Rd W. Use that page for Clarkson / Port Credit context, then confirm the pin on the homepage."
+    },
     "sections": [
       {
         "heading": "Confirm The Right Store Page",

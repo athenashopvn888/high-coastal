@@ -433,7 +433,7 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
           { title: "Cannabis Delivery on Lakeshore", href: "/cannabis-delivery-lakeshore", text: "Cannabis delivery for Lakeshore / Clarkson / Port Credit. Dispatcher hours are separate from 24-hour walk-in." },
           { title: "Native Cigarettes on Lakeshore", href: "/native-cigarettes-lakeshore", text: "Retail Native cigarettes walk-in for Lakeshore / Clarkson / Port Credit. No Nation, reserve, or medical claims." },
           { title: "Nicotine Vape on Lakeshore", href: "/nicotine-vape-lakeshore", text: "Nicotine vape walk-in for Lakeshore / Clarkson / Port Credit. Kept separate from THC vape. Adults 19+." },
-          { title: "Weed Dispensary in Mississauga", href: "/weed-dispensary-mississauga/", text: "The High Coastal Cannabis store landing for Mississauga." },
+          { title: "Weed dispensary on Lakeshore", href: "/weed-dispensary-mississauga/", text: "Neighbourhood weed dispensary for Lakeshore / Clarkson / Port Credit at 1720 Lakeshore Rd W." },
           { title: "First Visit on Lakeshore Road West", href: "/resources/lakeshore-clarkson-first-visit-guide", text: "Plan a first High Coastal Cannabis visit and learn how to approach the menu before product names." },
         ],
       },
@@ -472,6 +472,7 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
       { title: "Cannabis Delivery on Lakeshore", href: "/cannabis-delivery-lakeshore", text: "Delivery area, $60 minimum, and LIVE ORDER steps for the Lakeshore corridor." },
       { title: "Native Cigarettes on Lakeshore", href: "/native-cigarettes-lakeshore", text: "Retail cigarette walk-in for the Lakeshore corridor." },
       { title: "Nicotine Vape on Lakeshore", href: "/nicotine-vape-lakeshore", text: "Nicotine vape walk-in, kept separate from THC vape." },
+      { title: "Weed dispensary on Lakeshore", href: "/weed-dispensary-mississauga/", text: "Neighbourhood weed dispensary for Lakeshore / Clarkson / Port Credit." },
     ],
   },
   "menu-guide": {

@@ -3,6 +3,12 @@ import { STORE_IDENTITY as nap } from "./storeIdentity";
 export type WeedDiscoveryLink = { label: string; description: string; href: string };
 export type WeedOwnerConfig = { storeName: string; city: string; address: string; streetAddress: string; province: string; postalCode: string; phoneDisplay: string; phoneIntl: string; ownerPath: string; flowerTiers: WeedDiscoveryLink[]; categories: WeedDiscoveryLink[]; guides: WeedDiscoveryLink[] };
 
+export const WEED_DISPENSARY_HUB_CARD: WeedDiscoveryLink = {
+  label: "Weed dispensary on Lakeshore",
+  description: "Neighbourhood weed dispensary for Lakeshore / Clarkson / Port Credit at 1720 Lakeshore Rd W.",
+  href: "/weed-dispensary-mississauga/",
+};
+
 export const lcWeedOwner: WeedOwnerConfig = {
   storeName: nap.name, city: nap.addressLocality, address: nap.addressDisplay, streetAddress: nap.streetAddress, province: nap.addressRegion, postalCode: nap.postalCode, phoneDisplay: nap.phoneDisplay, phoneIntl: nap.phoneIntl, ownerPath: nap.landingPath,
   flowerTiers: [

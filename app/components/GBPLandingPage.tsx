@@ -3,20 +3,8 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import styles from "./GBPLandingPage.module.css";
 import { lcWeedOwner as store } from "../lib/weedDiscovery";
-import { STORE_IDENTITY as nap, jsonLdHtml, landingPageJsonLd } from "../lib/storeIdentity";
+import { STORE_IDENTITY as nap, WEED_DISPENSARY_FAQS, jsonLdHtml, landingPageJsonLd } from "../lib/storeIdentity";
 import { SccHubNav } from "./SccHubNav";
-
-const faqItems = [
-  { question: "Where is High Coastal Cannabis?", answer: `High Coastal Cannabis is located at ${nap.addressDisplay}.` },
-  { question: "Is High Coastal Cannabis open 24 hours?", answer: "Yes. High Coastal Cannabis is open 24 hours a day, seven days a week." },
-  { question: "Is High Coastal Cannabis on Lakeshore Rd W in Mississauga?", answer: `Yes. High Coastal Cannabis is at ${nap.streetAddress} in Mississauga, in the ${nap.neighborhood} neighbourhood, near ${nap.intersection}.` },
-  { question: "What cannabis categories can I explore?", answer: "Adults 19+ can explore Budget Weed, AA Weed, AAA+ Weed, Premium Weed and Exotic Weed flower collections, along with pre-rolls, edibles, vapes, concentrates and accessories." },
-  { question: "What is the difference between weed and cannabis?", answer: "Weed is common everyday terminology for cannabis. Cannabis is the broader term and can describe flower as well as other formats such as pre-rolls, edibles, vapes and concentrates." },
-  { question: "What is the difference between bud and flower?", answer: "Flower is the category term for dried cannabis flower. Bud is a common informal word people use for flower." },
-  { question: "Can I browse different flower tiers?", answer: "Yes. High Coastal Cannabis has dedicated sections for Budget Weed, AA Weed, AAA+ Weed, Premium Weed and Exotic Weed flower browsing." },
-  { question: "How can I check on a specific product before visiting?", answer: `Call High Coastal Cannabis at ${nap.phoneDisplay} if you are looking for a specific product before making a special trip.` },
-  { question: "Do I need to be 19+?", answer: "Yes. High Coastal Cannabis is for adults 19+." },
-];
 
 function withPhone(text: string) {
   if (!text.includes(nap.phoneDisplay)) return text;
@@ -33,7 +21,7 @@ function withPhone(text: string) {
 }
 
 export function GBPLandingPage() {
-  const pageSchema = landingPageJsonLd(faqItems);
+  const pageSchema = landingPageJsonLd(WEED_DISPENSARY_FAQS);
 
   return (
     <>
@@ -43,9 +31,15 @@ export function GBPLandingPage() {
         <section className={styles.hero}>
           <p className={styles.eyebrow}>Open 24 Hours · Adults 19+ · {nap.neighborhood}</p>
           <h1>High Coastal Cannabis — Lakeshore / Clarkson / Port Credit Weed Dispensary in Mississauga</h1>
-          <p className={styles.heroAddress}>{nap.addressDisplay}</p>
+          <p className={`${styles.heroAddress} nap`}>
+            <strong>{nap.name}</strong>
+            <br />
+            {nap.addressDisplay}
+          </p>
           <p className={styles.heroPhone}>
             <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>
+            <span aria-hidden="true"> · </span>
+            <a href={nap.websiteUrl}>www.highcoastalcannabis.com</a>
             <span aria-hidden="true"> · </span>
             {nap.hoursDisplay}
           </p>
@@ -57,18 +51,17 @@ export function GBPLandingPage() {
         </section>
 
         <section className={styles.section}>
-          <h2>Weed and Cannabis in Mississauga, Open 24 Hours</h2>
-          <p>High Coastal Cannabis is located at <strong>{nap.streetAddress}</strong> in Mississauga and is open <strong>24 hours a day, seven days a week</strong>.</p>
-          <p>At High Coastal Cannabis, adults 19+ can begin with flower and choose from Budget Weed, AA Weed, AAA+ Weed, Premium Weed or Exotic Weed, or focus on a format such as pre-rolls, edibles, vapes, concentrates or accessories. The Lakeshore Road West location is open 24 hours, giving shoppers flexibility in when they visit.</p>
-          <p>If you already know what you are looking for, call <a href={`tel:${nap.phoneIntl}`}><strong>{nap.phoneDisplay}</strong></a> before making a special trip.</p>
+          <h2>Weed dispensary on Lakeshore — Clarkson / Port Credit</h2>
+          <p>High Coastal Cannabis is the neighbourhood weed dispensary at <strong>{nap.streetAddress}</strong>, Mississauga, {nap.addressRegion} {nap.postalCode}, near <strong>{nap.intersection}</strong>. The walk-in is open <strong>24 hours a day, seven days a week</strong>.</p>
+          <p>Adults 19+ can begin with flower — Budget Weed, AA Weed, AAA+ Weed, Premium Weed or Exotic Weed — or focus on pre-rolls, edibles, vapes, concentrates or accessories. If one listed item is the reason for the trip, call <a href={`tel:${nap.phoneIntl}`}><strong>{nap.phoneDisplay}</strong></a> first.</p>
         </section>
 
         <section className={styles.section}>
-          <p className={styles.kicker}>Clarkson / Lakeshore neighbourhood</p>
-          <h2>24-Hour Dispensary on Lakeshore Rd W</h2>
-          <p>High Coastal Cannabis is a 24-hour cannabis dispensary at <strong>{nap.addressDisplay}</strong>, in the {nap.neighborhood} neighbourhood of southwest Mississauga. Adults 19+ can walk in any hour for flower, pre-rolls, edibles, vapes, concentrates and accessories.</p>
-          <p>Shoppers looking for a weed dispensary on Lakeshore Rd W, a 24-hour dispensary in Mississauga, or a cannabis store near Clarkson can confirm the current store identity: <strong>{nap.name}</strong>, {nap.addressDisplay}, {nap.phoneDisplay}, {nap.hoursDisplay}.</p>
-          <p>The store sits on Lakeshore Rd W near Clarkson Rd N, convenient for Clarkson, Port Credit, Lorne Park and the Lakeshore corridor.</p>
+          <p className={styles.kicker}>Lakeshore / Clarkson / Port Credit</p>
+          <h2>Shoreline walk-in — not a Square One mall pin</h2>
+          <p>High Coastal Cannabis is a 24-hour weed dispensary at <strong>{nap.addressDisplay}</strong> on the Lakeshore West corridor. Clarkson is the neighbourhood around 1720. Port Credit sits east along Lakeshore Rd W. Lorne Park is the next inland cue.</p>
+          <p>This is <strong>not a Square One mall pin</strong> and not a city-centre counter. If a map shows a different Lakeshore number or a mall unit, you are not at this store. Confirm the current identity: <strong>{nap.name}</strong>, {nap.addressDisplay}, {nap.phoneDisplay}, {nap.hoursDisplay}.</p>
+          <p>The official website is the <Link href="/">homepage</Link> at www.highcoastalcannabis.com — not a city landing URL.</p>
           <div className={styles.areaRow}>
             {nap.doorTestAreas.map((area) => (
               <span className={styles.areaChip} key={area}>{area}</span>
@@ -150,7 +143,7 @@ export function GBPLandingPage() {
         <section className={styles.section} id="faq">
           <h2>Frequently Asked Questions</h2>
           <div className={styles.faqList}>
-            {faqItems.map((item) => (
+            {WEED_DISPENSARY_FAQS.map((item) => (
               <article className={styles.faqItem} key={item.question}>
                 <h3>{item.question}</h3>
                 <p>{withPhone(item.answer)}</p>

@@ -112,7 +112,7 @@ test("weed LP H1 leans Lakeshore / Clarkson / Port Credit without a Square One p
   assert.match(landing, /High Coastal Cannabis — Lakeshore \/ Clarkson \/ Port Credit Weed Dispensary in Mississauga/);
   assert.match(location, /slug: "weed-dispensary-mississauga"/);
   assert.match(landing, /nap\.landingPath/);
-  assert.doesNotMatch(landing, /Square One/);
+  assert.match(landing, /not a Square One mall pin/);
   assert.doesNotMatch(landing, /Ottawa|Gatineau|ByWard/);
 
   const sitemap = read("app/sitemap.ts");

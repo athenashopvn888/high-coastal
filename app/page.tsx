@@ -10,6 +10,7 @@ import FlowerCard from "./components/FlowerCard";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
 import { allFlowers } from "./lib/products";
 import { STORE_IDENTITY as nap, jsonLdHtml } from "./lib/storeIdentity";
+import { WEED_DISPENSARY_HUB_CARD } from "./lib/weedDiscovery";
 import { SccHubNav } from "./components/SccHubNav";
 import Papa from "papaparse";
 
@@ -443,18 +444,20 @@ export default function HomePage() {
           <div className={styles.storeGrid}>
             <div className={styles.storeCard}>
               <span className={styles.storeIcon}>📍</span>
-              <h3 className={styles.storeCardTitle}>Location</h3>
+              <h3 className={styles.storeCardTitle}>{WEED_DISPENSARY_HUB_CARD.label}</h3>
               <p className={styles.storeCardText}>
                 {nap.streetAddress}
                 <br />
                 {nap.addressLocality}, {nap.addressRegion} {nap.postalCode}
                 <br />
+                Lakeshore / Clarkson / Port Credit
+                <br />
                 <a href={`tel:${nap.phoneIntl}`} className={styles.storeLink}>
                   {nap.phoneDisplay}
                 </a>
                 <br />
-                <Link href="/weed-dispensary-mississauga/" className={styles.storeLink}>
-                  Mississauga weed hub
+                <Link href={WEED_DISPENSARY_HUB_CARD.href} className={styles.storeLink}>
+                  {WEED_DISPENSARY_HUB_CARD.label}
                 </Link>
               </p>
             </div>
