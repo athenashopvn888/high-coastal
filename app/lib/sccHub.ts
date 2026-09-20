@@ -4,7 +4,7 @@ export const SCC_HUB_LINKS = [
   { href: "/visit", label: "Lakeshore visit guide" },
   { href: "/high-coastal-visit", label: "High Coastal brand visit FAQ" },
   { href: "/24-hour-dispensary-mississauga", label: "24-hour open-now FAQ" },
-  { href: "/weed-dispensary-mississauga/", label: "Weed dispensary in Mississauga" },
+  { href: "/weed-dispensary-mississauga/", label: "Weed dispensary on Lakeshore" },
   { href: "/cannabis-delivery-lakeshore", label: "Cannabis delivery on Lakeshore" },
   { href: "/native-cigarettes-lakeshore", label: "Native cigarettes on Lakeshore" },
   { href: "/nicotine-vape-lakeshore", label: "Nicotine vape on Lakeshore" },
