@@ -10,9 +10,10 @@ test("LC01 keeps the protected owner and exact metadata", () => {
   const sitemap = read("app/sitemap.ts");
   assert.match(location, /Weed Dispensary in Mississauga \| High Coastal Cannabis/);
   assert.match(location, /High Coastal Cannabis is open 24 hours at 1720 Lakeshore Rd W/);
-  assert.match(sitemap, /weed-dispensary-mississauga\//);
+  assert.match(sitemap, /weed-dispensary-mississauga`/);
+  assert.doesNotMatch(sitemap, /weed-dispensary-mississauga\//);
   assert.match(page, /title: \{ absolute: gbpLocation\.seoTitle \}/);
-  assert.match(page, /canonical:.*gbpLocation\.slug/s);
+  assert.match(page, /canonical: `https:\/\/\$\{gbpLocation\.domain\}\/\$\{gbpLocation\.slug\}`/);
 });
 
 test("refreshed metadata relies on the root template for one brand suffix", () => {
@@ -101,4 +102,3 @@ test("LC01 shopper copy avoids workflow and unsupported local language", () => {
   }
   assert.ok(!/\bdelivery\b/.test(sources), "Weed hub copy must not use leftover delivery workflow language");
 });
-
