@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: { absolute: gbpLocation.seoTitle },
   description: gbpLocation.metaDescription,
   alternates: {
-    canonical: `https://${gbpLocation.domain}/${gbpLocation.slug}/`,
+    canonical: `https://${gbpLocation.domain}/${gbpLocation.slug}`,
   },
   openGraph: {
     title: gbpLocation.seoTitle,
