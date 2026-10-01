@@ -224,6 +224,8 @@
   margin-bottom: 14px;
   color: var(--text-primary);
 }
+.boardIntro { margin: -6px 0 12px; font-size: 13px; font-weight: 800; color: #2D6A4F; }
+.boardFootnote { font-size: 13px; color: var(--text-secondary); margin: 0 0 10px; }
 
 /* Table-style pricing — 3 columns */
 .priceTable {
@@ -285,6 +287,7 @@
 .dealBanner strong {
   color: #1B4332;
 }
+.dealBannerMeta { font-weight: 700; }
 
 .priceTableRowSale {
   background: rgba(220, 38, 38, 0.04);
