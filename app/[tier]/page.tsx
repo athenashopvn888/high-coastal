@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FlowerCard from "../components/FlowerCard";
@@ -13,6 +14,7 @@ import { TIER_EDUCATION_LINKS, TIER_SEO } from "../lib/tierSeoContent";
 import { STORE_IDENTITY, faqPageGraphNode, serializeJsonLd } from "../lib/storeIdentity";
 import { buildTierCollectionJsonLd } from "../lib/tierStructuredData";
 import { formatAsLowAsAfterPromos, formatPerGram, isBogoDeal, type BoardDeal } from "../lib/flowerDeals";
+import { getTierGuideLinks } from "../lib/guideRegistry";
 import styles from "./tier.module.css";
 
 /* -- Generate short SCC paths and live *-weed aliases at build -- */
@@ -61,6 +63,7 @@ export default async function TierPage({
   const flowers = getFlowersByTier(tierInfo.key);
   const { config } = tierInfo;
   const seo = TIER_SEO[tierInfo.key];
+  const guideLinks = getTierGuideLinks(`/${tierSlug}`);
 
   const saleFlowers = flowers.filter((f) => f.isSale);
   const regularFlowers = flowers.filter((f) => !f.isSale);
@@ -140,6 +143,15 @@ export default async function TierPage({
           </div>
         </div>
       </section>
+
+      {guideLinks.length > 0 && (
+        <nav className={styles.guideStrip} aria-label={`Popular ${config.name} strain guides`}>
+          <h2>Popular strain guides</h2>
+          <div className={styles.guideLinks}>
+            {guideLinks.map((guide) => <Link key={guide.slug} href={`/guides/${guide.slug}`}>{guide.name}</Link>)}
+          </div>
+        </nav>
+      )}
 
       {/* ── Product grid ── */}
       <section className={styles.products}>

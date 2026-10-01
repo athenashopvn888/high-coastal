@@ -177,4 +177,8 @@
   transition: background 0.2s;
 }
 .visitBtn:hover { background: #1B4332; }
-
+.guideStrip { width: min(1120px, calc(100% - 48px)); margin: 24px auto; padding: 20px; border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--bg-primary); }
+.guideGroup + .guideGroup { margin-top: 18px; }
+.guideGroup h2 { margin: 0 0 10px; font-size: 18px; color: var(--text-primary); }
+.guideGroup div { display: flex; flex-wrap: wrap; gap: 9px; }
+.guideGroup a { padding: 8px 12px; border: 1px solid var(--border-subtle); border-radius: 999px; color: var(--green-dark); font-weight: 700; text-decoration: none; }
