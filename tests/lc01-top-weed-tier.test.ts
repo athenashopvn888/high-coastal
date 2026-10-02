@@ -28,7 +28,7 @@ test("exact strip and approved homepage stack are present", () => {
   const banner = read("app/components/FleetAnnouncementBanner.tsx");
   const sequence = ["<FlowerBogoStrip hero", "data-exotic-tier-banner", "data-cigarette-deal", "data-bb-light-deal", "data-cig-mix-banner", "data-bb-premium-banner"].map((needle) => banner.indexOf(needle));
   assert.ok(sequence.every((position, index) => position > -1 && (index === 0 || position > sequence[index - 1])));
-  for (const file of ["public/banners/top-weed-tier-lc01.webp", "public/banners/2pack5cig.webp", "public/banners/bb-premium-grade-full-lights.webp"]) assert.ok(fs.statSync(file).size > 1000, file);
+  for (const file of ["public/banners/top-weed-tier-lc01.webp", "public/banners/2pack5cig.webp", "public/banners/BB_Belmont_Premium_Grade.webp"]) assert.ok(fs.statSync(file).size > 1000, file);
 });
 
 test("mobile strip wraps in one red bar and TV is untouched", () => {
