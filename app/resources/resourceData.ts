@@ -542,10 +542,14 @@ export const RESOURCE_PAGES: ResourcePage[] = [
     .map((page) => applySupportingEnhancement(page)),
 ];
 
+RESOURCE_PAGES[0].cards = [
+  { title: "Name Guides", href: "/guides", text: "Browse every High Coastal Cannabis strain, Native Cigarettes, Nicotine Vape, and THC Vape guide." },
+  ...RESOURCE_PAGES[0].cards.filter((card) => card.href !== "/guides"),
+];
+
 export const RESOURCE_HOME = RESOURCE_PAGES[0];
 
 export function getResourcePage(slug: string) {
   const cleanSlug = slug.replace(/^\/+|\/+$/g, "");
   return RESOURCE_PAGES.find((page) => page.slug === cleanSlug);
 }
-
