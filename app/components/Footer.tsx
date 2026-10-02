@@ -54,6 +54,7 @@ export default function Footer() {
               <Link href="/items/cigarettes">Cigarettes</Link>
               <Link href="/items/vapes">Nicotine Vape</Link>
               <Link href="/resources">Resources</Link>
+              <Link href="/guides">Guides</Link>
               <Link href="/visit">Lakeshore Visit Guide</Link>
               <Link href="/24-hour-dispensary-mississauga">24-Hour Open-Now FAQ</Link>
               <Link href="/high-coastal-visit">High Coastal Brand Visit FAQ</Link>

@@ -81,5 +81,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guidePages];
+  const guideIndex: MetadataRoute.Sitemap = [
+    { url: `${BASE}/guides`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+  ];
+
+  return [...guideIndex, ...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guidePages];
 }

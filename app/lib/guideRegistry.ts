@@ -60,6 +60,20 @@ export const GUIDE_REGISTRY: GuideEntry[] = seeds.map((seed) => ({
   relatedSlugs: clusterFor(seed),
 }));
 
+const GUIDE_LANES: { lane: GuideLane; label: string }[] = [
+  { lane: "strain", label: "Strains" },
+  { lane: "native_cig", label: "Native Cigarettes" },
+  { lane: "nic_vape", label: "Nicotine Vape" },
+  { lane: "thc_vape", label: "THC Vape" },
+];
+
+export function getGuidesByLane() {
+  return GUIDE_LANES.map((group) => ({
+    ...group,
+    guides: GUIDE_REGISTRY.filter((guide) => guide.lane === group.lane),
+  })).filter((group) => group.guides.length > 0);
+}
+
 export function getGuide(slug: string) {
   return GUIDE_REGISTRY.find((guide) => guide.slug === slug);
 }
@@ -91,4 +105,3 @@ export function getCategoryGuideGroups(categoryPath: string) {
   }
   return [];
 }
-
