@@ -170,7 +170,7 @@ export function websiteGraphNode() {
     "@type": "WebSite",
     "@id": `${n.websiteUrl}/#website`,
     url: n.websiteUrl,
-    name: n.name,
+    name: "High Coastal Cannabis Dispensary Weed Delivery",
     publisher: { "@id": `${n.websiteUrl}/#store` },
   };
 }
@@ -181,7 +181,7 @@ export function cannabisStoreGraphNode() {
     "@type": "Store",
     additionalType: "https://schema.org/LocalBusiness",
     "@id": `${n.websiteUrl}/#store`,
-    name: n.name,
+    name: "High Coastal Cannabis Dispensary Weed Delivery",
     description: `Cannabis dispensary at ${n.streetAddress} in ${n.addressLocality}, ON. Browse Exotic Weed, Premium Weed, AAA+ Weed, AA Weed, and Budget Weed flower collections plus edibles, prerolls, and vapes. ${n.hoursDisplay}.`,
     url: n.websiteUrl,
     telephone: n.phoneIntl,
