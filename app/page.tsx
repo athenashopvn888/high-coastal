@@ -224,7 +224,7 @@ export default function HomePage() {
         <div className={styles.welcomeBannerContainer}>
           <img
             src="/banners/welcome_banner.webp"
-            alt="Welcome to High Coastal Cannabis — Premium Mississauga Cannabis Dispensary"
+            alt="High Coastal Cannabis Dispensary Weed Delivery"
             className={styles.welcomeBannerImg}
           />
         </div>
