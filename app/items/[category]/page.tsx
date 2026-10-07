@@ -13,7 +13,10 @@ import {
   CATEGORY_CONFIG,
   type ItemProduct,
 } from "../../lib/products";
+import { getResolvedItems } from "../../lib/resolvedProducts";
 import styles from "./items.module.css";
+
+export const revalidate = 0;
 
 /* ── Generate all category pages ── */
 export function generateStaticParams() {
@@ -29,7 +32,7 @@ export async function generateMetadata({
   const { category: catSlug } = await params;
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) return {};
-  const items = getItemsByCategory(catInfo.key);
+  const items = getItemsByCategory(catInfo.key, await getResolvedItems());
 
   return {
     title: catInfo.config.seoTitle || `${catInfo.config.name} — ${items.length} Products`,
@@ -50,9 +53,10 @@ export default async function ItemsCategoryPage({
   if (!catInfo) notFound();
 
   /* Pre-Rolls also shows accessories (ADD ONS) */
-  let items = getItemsByCategory(catInfo.key);
+  const resolvedItems = await getResolvedItems();
+  let items = getItemsByCategory(catInfo.key, resolvedItems);
   if (catInfo.key === "PREROLLS") {
-    const accessories = getItemsByCategory("ADD ONS");
+    const accessories = getItemsByCategory("ADD ONS", resolvedItems);
     const existingIds = new Set(items.map(i => i.sku));
     const uniqueAccessories = accessories.filter(a => !existingIds.has(a.sku));
     items = [...items, ...uniqueAccessories];
