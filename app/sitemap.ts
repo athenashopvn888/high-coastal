@@ -31,6 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/high-coastal-visit`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/hours`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/delivery`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/cannabis-delivery-lakeshore`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${BASE}/native-cigarettes-lakeshore`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
