@@ -1,4 +1,4 @@
-import { HOME_TITLE } from "./lib/homeDelivery";
+import { HOME_DOC_TITLE } from "./lib/homeDelivery";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
@@ -7,7 +7,7 @@ import { STORE_IDENTITY, cannabisStoreGraphNode, serializeJsonLd, websiteGraphNo
 export const metadata: Metadata = {
   metadataBase: new URL(STORE_IDENTITY.websiteUrl),
   title: {
-    default: HOME_TITLE,
+    default: HOME_DOC_TITLE,
     template: "%s | High Coastal Cannabis",
   },
   description:
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     locale: "en_CA",
     url: STORE_IDENTITY.websiteUrl,
     siteName: STORE_IDENTITY.name,
-    title: HOME_TITLE,
+    title: HOME_DOC_TITLE,
     description:
       "Browse flower tiers and menu categories for High Coastal Cannabis at 1720 Lakeshore Rd W. Open 24 Hours.",
     images: [
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: HOME_TITLE,
+    title: HOME_DOC_TITLE,
     description: "Browse current menu categories. Open 24 Hours at 1720 Lakeshore Rd W, Mississauga.",
     images: ["https://www.highcoastalcannabis.com/wp-content/uploads/2026/04/46Oi5.jpg"],
   },
