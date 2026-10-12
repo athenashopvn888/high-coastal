@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+import { resolveItemBanner } from "../../lib/corePromotionBanners";
 import SafeImage from "../../components/SafeImage";
 import { getItemPriceDisplay } from "../../lib/itemPricing";
 import Footer from "../../components/Footer";
@@ -62,6 +63,7 @@ export default async function ItemsCategoryPage({
     items = [...items, ...uniqueAccessories];
   }
   const { config } = catInfo;
+  const categoryBanner = resolveItemBanner(catSlug, config.banner);
   const guideGroups = getCategoryGuideGroups(`/items/${catSlug}`);
   const isVapeCategory = catInfo.key === "VAPE PENS" || catInfo.key === "VAPE DISPOSABLE";
   const SeoHeading = config.banner && !isVapeCategory ? "h1" : "h2";
@@ -75,7 +77,7 @@ export default async function ItemsCategoryPage({
         {config.banner ? (
           <>
             <img
-              src={config.banner}
+              src={categoryBanner}
               alt={config.name}
               style={{ width: "100%", height: "auto", display: "block", objectFit: "contain" }}
             />
