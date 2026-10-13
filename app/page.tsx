@@ -215,6 +215,7 @@ export default function HomePage() {
   return (
     <main className={styles.main}>
       <Navbar />
+      <h1 data-home-store-title="" style={{ margin: 0, padding: "14px 16px", background: "#111827", color: "#ffffff", textAlign: "center", fontSize: "clamp(1.1rem, 3vw, 2rem)", fontWeight: 900, lineHeight: 1.2, position: "relative", zIndex: 60 }}>{HOME_TITLE}</h1>
       <HomepageTopNotices />
       <FleetAnnouncementBanner />
       {/* ── NAVBAR ── */}
@@ -254,7 +255,6 @@ export default function HomePage() {
           {/* Brand branding */}
           <div className={styles.brandBlock}>
             <img src="/storeFavicon.webp" alt="High Coastal Cannabis Icon" style={{ height: "60px", width: "60px", objectFit: "contain", borderRadius: "8px", marginBottom: "8px" }} />
-            <h1 className={styles.brandTitle}>{HOME_TITLE}</h1>
             <CohortDeliveryActions variant="hero" />
             <p className={styles.brandSub}>24-Hour Cannabis Dispensary · Lakeshore Rd W, Mississauga</p>
             <Link href="/24-hour-dispensary-mississauga" className={styles.brandBadge}>
