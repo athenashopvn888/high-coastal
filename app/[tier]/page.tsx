@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
-import { isReplacementCategory, resolveTierBanner } from "../lib/corePromotionBanners";
 import Footer from "../components/Footer";
 import FlowerCard from "../components/FlowerCard";
 import { SccHubNav } from "../components/SccHubNav";
@@ -66,7 +65,6 @@ export default async function TierPage({
 
   const flowers = getFlowersByTier(tierInfo.key, await getResolvedFlowers());
   const { config } = tierInfo;
-  const categoryBanner = resolveTierBanner(tierSlug, config.banner);
   const seo = TIER_SEO[tierInfo.key];
   const guideLinks = getTierGuideLinks(`/${tierSlug}`);
 
@@ -97,9 +95,9 @@ export default async function TierPage({
       <Navbar />
 
       {/* ── Banner Image (standalone, no overlay text) ── */}
-        <section className={styles.bannerSection} data-category-banner-replacement={isReplacementCategory(tierSlug) ? "true" : undefined}>
+      <section className={styles.bannerSection}>
         <img
-          src={categoryBanner}
+          src={config.banner}
           alt={`${config.name} Cannabis Flower — ${config.tagline}`}
           className={styles.bannerImg}
         />
