@@ -18,6 +18,7 @@ import { buildTierCollectionJsonLd } from "../lib/tierStructuredData";
 import { formatAsLowAsAfterPromos, formatPerGram, isBogoDeal, type BoardDeal } from "../lib/flowerDeals";
 import { getTierGuideLinks } from "../lib/guideRegistry";
 import styles from "./tier.module.css";
+import nearMeFaq from "../lib/nearMeFaq.json";
 
 export const revalidate = 0;
 
@@ -201,6 +202,7 @@ export default async function TierPage({
           <div className={styles.container}>
             <h2 className={styles.seoMainTitle}>{seo.seoTitle}</h2>
             <p className={styles.seoIntro}>{seo.seoIntro}</p>
+            {/^(exotic|premium|aaa)(-weed)?$/.test(tierSlug) ? <p className={styles.seoIntro} data-tier-near-line="">{nearMeFaq.tierLine}</p> : null}
 
             {seo.sections.map((s, i) => (
               <div key={i} className={styles.seoBlock}>
