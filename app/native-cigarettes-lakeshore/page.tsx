@@ -1,3 +1,4 @@
+import CigaretteSeasonalNotice from "../components/CigaretteSeasonalNotice";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "../components/Footer";
@@ -58,6 +59,7 @@ export default function NativeCigarettesLakeshorePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdHtml(nativeCigarettesPageJsonLd()) }} />
       <Navbar />
+      <CigaretteSeasonalNotice sticky />
       <main className={styles.main}>
         <section className={styles.hero}>
           <p className={styles.eyebrow}>Native cigarettes · Lakeshore / Clarkson / Port Credit · Adults 19+</p>

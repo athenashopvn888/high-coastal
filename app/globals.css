@@ -528,3 +528,10 @@ body:has(#home-delivery-heading) main > .deliveryHoursAnnouncement {
   [data-belmont-mix-match-banner] { flex-direction: column; padding: 9px 12px; font-size: 13px; letter-spacing: .025em; line-height: 1.25; }
   [data-belmont-offer-lead], [data-belmont-offer-tail] { display: block; max-width: 100%; text-wrap: balance; }
 }
+/* Pinned nav: opaque (no content showing through) and above page content, in the store's own nav colour so nav text stays readable. */
+#main-nav {
+  z-index: 1000 !important;
+  background: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 255, 255) !important;
+  backdrop-filter: none !important;
+}
