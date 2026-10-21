@@ -1,3 +1,5 @@
+import { visibleFaqs } from "./siteConfig.ts";
+
 /** Canonical LC01 NAP. Import this everywhere identity is rendered or emitted. */
 export const STORE_IDENTITY = {
   name: "High Coastal Cannabis",
@@ -290,7 +292,7 @@ export function landingPageJsonLd(faqs: readonly { question: string; answer: str
       },
       {
         "@type": "FAQPage",
-        mainEntity: faqs.map((faq) => ({
+        mainEntity: visibleFaqs(faqs).map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: { "@type": "Answer", text: faq.answer },
@@ -325,7 +327,7 @@ export function openNowPageJsonLd() {
       },
       {
         "@type": "FAQPage",
-        mainEntity: OPEN_NOW_FAQS.map((faq) => ({
+        mainEntity: visibleFaqs(OPEN_NOW_FAQS).map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: { "@type": "Answer", text: faq.answer },
@@ -550,7 +552,7 @@ export function nicotineVapePageJsonLd() {
       },
       {
         "@type": "FAQPage",
-        mainEntity: NICOTINE_VAPE_FAQS.map((faq) => ({
+        mainEntity: visibleFaqs(NICOTINE_VAPE_FAQS).map((faq) => ({
           "@type": "Question",
           name: faq.question,
           acceptedAnswer: { "@type": "Answer", text: faq.answer },

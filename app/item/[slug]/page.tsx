@@ -1,5 +1,7 @@
 import { getLiveMenu } from "../../lib/liveMenu";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { VAPE_PAGE_PATH } from "../../lib/siteConfig";
+import { isHiddenCigaretteItem } from "../../lib/cigaretteVisibility";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
@@ -36,6 +38,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const item = __menu.items.find((i) => i.slug === slug);
   if (!item) return {};
+  if (isHiddenCigaretteItem(item)) redirect(VAPE_PAGE_PATH);
 
   const itemData = getItemData(item.category, item.name);
 
@@ -134,6 +137,7 @@ export default async function ItemPage({
   const { slug } = await params;
   const item = __menu.items.find((i) => i.slug === slug);
   if (!item) notFound();
+  if (isHiddenCigaretteItem(item)) redirect(VAPE_PAGE_PATH);
 
   const catInfo = Object.values(CATEGORY_CONFIG).find(c => c.name.toUpperCase() === item.category.toUpperCase() || c.name === item.category);
   const catColor = catInfo?.color || "#94a3b8";

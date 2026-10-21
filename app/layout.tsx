@@ -4,6 +4,7 @@ import { HOME_DOC_TITLE } from "./lib/homeDelivery";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import { SHOW_CIGARETTES } from "./lib/siteConfig";
 import { STORE_IDENTITY, cannabisStoreGraphNode, serializeJsonLd, websiteGraphNode } from "./lib/storeIdentity";
 
 export const metadata: Metadata = {
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     "edibles Mississauga",
     "vapes",
     "pre-rolls",
-    "native cigarettes Mississauga",
+    ...(SHOW_CIGARETTES ? ["native cigarettes Mississauga"] : []),
     "weed store Mississauga",
   ],
   openGraph: {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import { STORE_IDENTITY as nap } from "../lib/storeIdentity";
 
 export default function Footer() {
@@ -51,7 +52,7 @@ export default function Footer() {
               <Link href="/aa-weed">AA Weed</Link>
               <Link href="/budget-weed">Budget Weed</Link>
               <Link href="/items/edibles">Edibles</Link>
-              <Link href="/items/cigarettes">Cigarettes</Link>
+              {SHOW_CIGARETTES ? <Link href="/items/cigarettes">Cigarettes</Link> : null}
               <Link href="/items/vapes">Nicotine Vape</Link>
               <Link href="/resources">Resources</Link>
               <Link href="/guides">Guides</Link>
@@ -62,11 +63,11 @@ export default function Footer() {
               <Link href="/hours">Store Hours</Link>
               <Link href="/delivery">Delivery Menu</Link>
               <Link href="/cannabis-delivery-lakeshore">Cannabis Delivery on Lakeshore</Link>
-              <Link href="/native-cigarettes-lakeshore">Native Cigarettes on Lakeshore</Link>
+              {SHOW_CIGARETTES ? <Link href="/native-cigarettes-lakeshore">Native Cigarettes on Lakeshore</Link> : null}
               <Link href="/nicotine-vape-lakeshore">Nicotine Vape on Lakeshore</Link>
               <Link href="/info/mississauga-weed-dispensary">Mississauga Dispensary</Link>
               <Link href="/info/cheap-weed-mississauga">Cheap Weed Mississauga</Link>
-              <Link href="/info/native-cigarettes-mississauga">Native Cigarettes</Link>
+              {SHOW_CIGARETTES ? <Link href="/info/native-cigarettes-mississauga">Native Cigarettes</Link> : null}
               <Link href="/info/nicotine-vapes-mississauga">Nicotine Vapes Mississauga</Link>
               <Link href="/info/weed-store-near-clarkson-lakeshore">Weed Store Near Clarkson</Link>
               <Link href="/weed-dispensary-mississauga/">High Coastal Cannabis Weed Dispensary in Mississauga</Link>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SCC_HUB_LINKS, SCC_SHORT_TIER_LINKS } from "../lib/sccHub";
+import { SHOW_CIGARETTES, isCigaretteHref } from "../lib/siteConfig";
 import styles from "./SccHubNav.module.css";
 
 function normalize(path: string) {
@@ -15,12 +16,13 @@ export function SccHubNav({
   variant?: "dark" | "light";
 }) {
   const currentNorm = current ? normalize(current) : "";
+  const hubLinks = SCC_HUB_LINKS.filter((item) => SHOW_CIGARETTES || !isCigaretteHref(item.href));
 
   return (
     <nav className={`${styles.hub} ${styles[variant]}`} aria-label="Lakeshore store guides and flower tiers">
       <p className={styles.kicker}>Lakeshore store guides</p>
       <div className={styles.row}>
-        {SCC_HUB_LINKS.map((item) => {
+        {hubLinks.map((item) => {
           const isCurrent = currentNorm === normalize(item.href);
           if (isCurrent) {
             return (
