@@ -1,5 +1,5 @@
 "use client";
-import { SHOW_CIGARETTES, isKeptSmokeAccessoryName } from "../lib/siteConfig";
+import { SHOW_CIGARETTES, isGrabbaName, isKeptSmokeAccessoryName } from "../lib/siteConfig";
 import { isNicotineItem } from "../tv/flashMessages";
 import { CIGARETTE_FLASH_MESSAGE, isCigaretteFlashWindow } from "../tv/flashMessages";
 import { useState, useEffect, useCallback, useRef } from "react";
@@ -315,10 +315,10 @@ export default function TV2Page() {
           <div className={styles.grid}>
             {CARD_CONFIG.map(card => {
               if (!SHOW_CIGARETTES && card.id === "CIGARETTES") {
-                const kept = items.filter((it) => it.category === "CIGARETTES" && isKeptSmokeAccessoryName(it.name));
+                const kept = items.filter((it) => it.category === "CIGARETTES" && isKeptSmokeAccessoryName(it.name) && !isGrabbaName(it.name));
                 if (kept.length === 0) return null;
                 return (
-                  <ItemCard key={card.id} title="BACKWOODS & GRABBA" accent={card.accent}
+                  <ItemCard key={card.id} title="BACKWOODS" accent={card.accent}
                     items={kept} hiIdx={highlights[card.id] || 0} preset="" />
                 );
               }

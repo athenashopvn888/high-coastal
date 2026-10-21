@@ -2,7 +2,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "./resources.module.css";
-import { SHOW_CIGARETTES, isCigaretteHref, isKeptSmokeAccessoryName, publicCopy, visibleQa } from "../lib/siteConfig";
+import { SHOW_CIGARETTES, isCigaretteHref, isGrabbaName, isKeptSmokeAccessoryName, publicCopy, stripNativeCigarettePhrase, visibleQa } from "../lib/siteConfig";
 import type { ResourceCard, ResourcePage, ResourceSection } from "./resourceData";
 
 type ResourceViewProps = {
@@ -12,9 +12,14 @@ type ResourceViewProps = {
 function keepCard(card: ResourceCard) {
   if (SHOW_CIGARETTES) return true;
   if (isCigaretteHref(card.href)) return false;
-  const blob = `${card.title} ${card.href} ${card.text || ""}`;
+  const blob = stripNativeCigarettePhrase(`${card.title} ${card.href} ${card.text || ""}`);
+  if (isGrabbaName(blob) && !isKeptSmokeAccessoryName(blob)) return false;
   if (isKeptSmokeAccessoryName(blob)) return true;
   return publicCopy(blob).length > 0;
+}
+
+function shown(text: string) {
+  return SHOW_CIGARETTES ? text : stripNativeCigarettePhrase(text);
 }
 
 function visibleSection(section: ResourceSection): ResourceSection | null {
@@ -73,8 +78,8 @@ export default function ResourceView({ page }: ResourceViewProps) {
           <div className={styles.grid}>
             {cards.map((card) => (
               <Link key={card.href} href={card.href} className={styles.card}>
-                <span>{card.title}</span>
-                {card.text && <p>{card.text}</p>}
+                <span>{shown(card.title)}</span>
+                {card.text && shown(card.text) ? <p>{shown(card.text)}</p> : null}
               </Link>
             ))}
           </div>
@@ -88,8 +93,8 @@ export default function ResourceView({ page }: ResourceViewProps) {
             <div className={styles.grid}>
               {group.cards.map((card) => (
                 <Link key={card.href} href={card.href} className={styles.card}>
-                  <span>{card.title}</span>
-                  {card.text && <p>{card.text}</p>}
+                  <span>{shown(card.title)}</span>
+                  {card.text && shown(card.text) ? <p>{shown(card.text)}</p> : null}
                 </Link>
               ))}
             </div>

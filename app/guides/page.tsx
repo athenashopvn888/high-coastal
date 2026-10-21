@@ -27,7 +27,7 @@ export default function GuidesPage() {
   const guideGroups = getGuidesByLane().flatMap((group) => {
     if (SHOW_CIGARETTES || group.lane !== "native_cig") return [group];
     const guides = group.guides.filter((guide) => isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`));
-    return guides.length ? [{ ...group, label: "Backwoods and Grabba", guides }] : [];
+    return guides.length ? [{ ...group, label: "Backwoods", guides }] : [];
   });
   return <main className={styles.main}>
     <Navbar />
