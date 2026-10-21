@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./WeedDiscoveryModule.module.css";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import { STORE_IDENTITY as nap } from "../lib/storeIdentity";
 import { SccHubNav } from "./SccHubNav";
 
@@ -17,7 +18,7 @@ export function WeedDiscoveryModule() {
           <Link href="/24-hour-dispensary-mississauga" className={styles.secondary}>24-Hour Open-Now FAQ</Link>
           <Link href="/high-coastal-visit" className={styles.secondary}>High Coastal Brand Visit FAQ</Link>
           <Link href="/cannabis-delivery-lakeshore" className={styles.secondary}>Cannabis Delivery on Lakeshore</Link>
-          <Link href="/native-cigarettes-lakeshore" className={styles.secondary}>Native Cigarettes on Lakeshore</Link>
+          {SHOW_CIGARETTES ? <Link href="/native-cigarettes-lakeshore" className={styles.secondary}>Native Cigarettes on Lakeshore</Link> : null}
           <Link href="/nicotine-vape-lakeshore" className={styles.secondary}>Nicotine Vape on Lakeshore</Link>
           <Link href="/resources/weed-flower-guide" className={styles.secondary}>Explore the Weed &amp; Flower Guide</Link>
           <Link href="/exotic" className={styles.secondary}>Exotic Weed</Link>

@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import styles from "./GBPLandingPage.module.css";
 import { lcWeedOwner as store } from "../lib/weedDiscovery";
+import { SHOW_CIGARETTES, isCigaretteHref, visibleFaqs } from "../lib/siteConfig";
 import { STORE_IDENTITY as nap, WEED_DISPENSARY_FAQS, jsonLdHtml, landingPageJsonLd } from "../lib/storeIdentity";
 import { SccHubNav } from "./SccHubNav";
 
@@ -21,7 +22,9 @@ function withPhone(text: string) {
 }
 
 export function GBPLandingPage() {
-  const pageSchema = landingPageJsonLd(WEED_DISPENSARY_FAQS);
+  const pageFaqs = visibleFaqs(WEED_DISPENSARY_FAQS);
+  const pageSchema = landingPageJsonLd(pageFaqs);
+  const guides = store.guides.filter((guide) => SHOW_CIGARETTES || !isCigaretteHref(guide.href));
 
   return (
     <>
@@ -92,7 +95,7 @@ export function GBPLandingPage() {
           <p>Need open-now hours, late arrival, and ID in FAQ form? Use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>.</p>
           <p>Confirming the current High Coastal name versus older search phrases? Use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>.</p>
           <p>Ordering to a Lakeshore / Clarkson / Port Credit address instead of walking in? Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page.</p>
-          <p>Comparing listed tobacco-nicotine categories? Use <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link> or <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.</p>
+          <p>{SHOW_CIGARETTES ? <>Comparing listed tobacco-nicotine categories? Use <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link> or <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.</> : <>Comparing nicotine vape? Use <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.</>}</p>
         </section>
 
         <section className={styles.section} id="find-your-weed">
@@ -126,7 +129,7 @@ export function GBPLandingPage() {
             <Link href="/24-hour-dispensary-mississauga">24-Hour Open-Now FAQ</Link>
             <Link href="/high-coastal-visit">High Coastal Brand Visit FAQ</Link>
             <Link href="/cannabis-delivery-lakeshore">Cannabis Delivery on Lakeshore</Link>
-            <Link href="/native-cigarettes-lakeshore">Native Cigarettes on Lakeshore</Link>
+            {SHOW_CIGARETTES ? <Link href="/native-cigarettes-lakeshore">Native Cigarettes on Lakeshore</Link> : null}
             <Link href="/nicotine-vape-lakeshore">Nicotine Vape on Lakeshore</Link>
             <Link href="/resources/cannabis-101">Cannabis 101</Link>
             <Link href="/resources/lakeshore-clarkson-first-visit-guide">First Visit on Lakeshore Road West</Link>
@@ -137,13 +140,13 @@ export function GBPLandingPage() {
 
         <section className={styles.section}>
           <h2>Helpful Cannabis Guides</h2>
-          <div className={styles.guideGrid}>{store.guides.map((guide) => <article className={styles.guideCard} key={guide.href}><h3>{guide.label}</h3><p>{guide.description}</p><Link href={guide.href}>Explore {guide.label}</Link></article>)}</div>
+          <div className={styles.guideGrid}>{guides.map((guide) => <article className={styles.guideCard} key={guide.href}><h3>{guide.label}</h3><p>{guide.description}</p><Link href={guide.href}>Explore {guide.label}</Link></article>)}</div>
         </section>
 
         <section className={styles.section} id="faq">
           <h2>Frequently Asked Questions</h2>
           <div className={styles.faqList}>
-            {WEED_DISPENSARY_FAQS.map((item) => (
+            {pageFaqs.map((item) => (
               <article className={styles.faqItem} key={item.question}>
                 <h3>{item.question}</h3>
                 <p>{withPhone(item.answer)}</p>

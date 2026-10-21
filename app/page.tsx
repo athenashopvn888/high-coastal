@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FlowerCard from "./components/FlowerCard";
 import { WeedDiscoveryModule } from "./components/WeedDiscoveryModule";
+import { SHOW_CIGARETTES, visibleQa } from "./lib/siteConfig";
 import { STORE_IDENTITY as nap, jsonLdHtml } from "./lib/storeIdentity";
 import { WEED_DISPENSARY_HUB_CARD } from "./lib/weedDiscovery";
 import { SccHubNav } from "./components/SccHubNav";
@@ -129,6 +130,7 @@ interface ReviewStats {
 }
 
 export default function HomePage() {
+    const localFaqs = visibleQa(LOCAL_FAQS);
     const __liveFlowers = useLiveFlowers();
   const [featuredStrains, setFeaturedStrains] = useState<any[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -301,7 +303,7 @@ export default function HomePage() {
           </div>
 
           <div className={styles.categoriesGrid}>
-            {EXPLORE_CATEGORIES.map((cat) => (
+            {EXPLORE_CATEGORIES.filter((cat) => SHOW_CIGARETTES || cat.slug !== "items/cigarettes").map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/${cat.slug}`}
@@ -351,13 +353,13 @@ export default function HomePage() {
           <div className={styles.seoPanel}>
             <h2 className={styles.seoPanelTitle}>24-Hour Cannabis Dispensary on Lakeshore Rd W</h2>
             <p className={styles.seoPanelText}>
-              High Coastal Cannabis is the 24-hour dispensary at 1720 Lakeshore Rd W in Mississauga, in the Clarkson / Lakeshore neighbourhood. Adults 19+ can walk in any time for flower, pre-rolls, edibles, vapes, concentrates, accessories, and cigarettes.
+              High Coastal Cannabis is the 24-hour dispensary at 1720 Lakeshore Rd W in Mississauga, in the Clarkson / Lakeshore neighbourhood. Adults 19+ can walk in any time for flower, pre-rolls, edibles, vapes, concentrates, accessories{SHOW_CIGARETTES ? ", and cigarettes" : ""}.
             </p>
             <p className={styles.seoPanelText}>
               Looking for a weed dispensary in Mississauga or a cannabis store on Lakeshore Rd W? Confirm the current identity: High Coastal Cannabis, 1720 Lakeshore Rd W, Mississauga, ON L5J 1J5, +1 (289) 815-5222, Open 24 Hours.
             </p>
             <p className={styles.seoPanelText}>
-              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>. For open-now hours and late-night ID, use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>. For current brand-name clarifiers, use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>. Need cannabis delivery on the Lakeshore / Clarkson / Port Credit corridor? Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page — delivery hours are dispatcher-confirmed and are not the 24-hour walk-in clock. Compare <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link> or <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link> before a carton or device trip. City flower context stays on the <Link href="/weed-dispensary-mississauga/">Mississauga weed dispensary hub</Link>. Shop <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>, <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower.
+              Start with the menu category that fits the visit, then compare current product names, prices, and package details in store. Free evening street parking is available. For Port Credit / Clarkson arrival notes, use the <Link href="/visit">Lakeshore Mississauga visit guide</Link>. For open-now hours and late-night ID, use the <Link href="/24-hour-dispensary-mississauga">24-hour Mississauga dispensary FAQ</Link>. For current brand-name clarifiers, use the <Link href="/high-coastal-visit">High Coastal brand visit FAQ</Link>. Need cannabis delivery on the Lakeshore / Clarkson / Port Credit corridor? Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page — delivery hours are dispatcher-confirmed and are not the 24-hour walk-in clock. Compare {SHOW_CIGARETTES ? <><Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link> or </> : null}<Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link> before a {SHOW_CIGARETTES ? "carton or device" : "device"} trip. City flower context stays on the <Link href="/weed-dispensary-mississauga/">Mississauga weed dispensary hub</Link>. Shop <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>, <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower.
             </p>
           </div>
         </div>
@@ -429,7 +431,7 @@ export default function HomePage() {
             __html: jsonLdHtml({
               "@context": "https://schema.org",
               "@type": "FAQPage",
-              mainEntity: LOCAL_FAQS.map((faq) => ({
+              mainEntity: localFaqs.map((faq) => ({
                 "@type": "Question",
                 name: faq.q,
                 acceptedAnswer: { "@type": "Answer", text: faq.a },
@@ -441,7 +443,7 @@ export default function HomePage() {
           <h2 className={styles.sectionTitle} style={{ textAlign: "center", marginBottom: "32px" }}>
             Frequently Asked Questions
           </h2>
-          {LOCAL_FAQS.map((faq, i) => (
+          {localFaqs.map((faq, i) => (
             <details key={i} className={styles.faqItem}>
               <summary className={styles.faqQuestion}>{faq.q}</summary>
               <p className={styles.faqAnswer}>{faq.a}</p>
@@ -506,10 +508,14 @@ export default function HomePage() {
                   Cannabis delivery on Lakeshore
                 </Link>
                 <br />
-                <Link href="/native-cigarettes-lakeshore" className={styles.storeLink}>
-                  Native cigarettes on Lakeshore
-                </Link>
-                <br />
+                {SHOW_CIGARETTES ? (
+                  <>
+                    <Link href="/native-cigarettes-lakeshore" className={styles.storeLink}>
+                      Native cigarettes on Lakeshore
+                    </Link>
+                    <br />
+                  </>
+                ) : null}
                 <Link href="/nicotine-vape-lakeshore" className={styles.storeLink}>
                   Nicotine vape on Lakeshore
                 </Link>

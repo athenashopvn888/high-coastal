@@ -3,12 +3,15 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { getGuidesByLane } from "../lib/guideRegistry";
+import { SHOW_CIGARETTES, isKeptSmokeAccessoryName } from "../lib/siteConfig";
 import styles from "./guides-index.module.css";
 
 const BASE = "https://www.highcoastalcannabis.com";
 const CANONICAL = `${BASE}/guides`;
 const TITLE = "Guides | High Coastal Cannabis";
-const DESCRIPTION = "Browse High Coastal Cannabis name guides for strains, Native Cigarettes, Nicotine Vape, and THC Vape. Adults 19+ only; check today's menu for current listings.";
+const DESCRIPTION = SHOW_CIGARETTES
+  ? "Browse High Coastal Cannabis name guides for strains, Native Cigarettes, Nicotine Vape, and THC Vape. Adults 19+ only; check today's menu for current listings."
+  : "Browse High Coastal Cannabis name guides for strains, Nicotine Vape, and THC Vape. Adults 19+ only; check today's menu for current listings.";
 
 export const metadata: Metadata = { title: { absolute: TITLE }, description: DESCRIPTION, alternates: { canonical: CANONICAL }, robots: { index: true, follow: true } };
 
@@ -21,7 +24,11 @@ const jsonLd = { "@context": "https://schema.org", "@graph": [
 ] };
 
 export default function GuidesPage() {
-  const guideGroups = getGuidesByLane();
+  const guideGroups = getGuidesByLane().flatMap((group) => {
+    if (SHOW_CIGARETTES || group.lane !== "native_cig") return [group];
+    const guides = group.guides.filter((guide) => isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`));
+    return guides.length ? [{ ...group, label: "Backwoods and Grabba", guides }] : [];
+  });
   return <main className={styles.main}>
     <Navbar />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />

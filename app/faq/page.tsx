@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "./faq.module.css";
+import { SHOW_CIGARETTES, publicCopy, visibleQa } from "../lib/siteConfig";
 import { STORE_IDENTITY as nap } from "../lib/storeIdentity";
 
 export const metadata: Metadata = {
   title: "FAQ | High Coastal Cannabis",
-  description: "Frequently asked questions about High Coastal Cannabis in Mississauga, including store-page checks, menu categories, value shopping, and Native smokes where listed.",
+  description: publicCopy("Frequently asked questions about High Coastal Cannabis in Mississauga, including store-page checks, menu categories, value shopping, and Native smokes where listed."),
   alternates: {
     canonical: "https://www.highcoastalcannabis.com/faq",
   },
@@ -48,10 +49,15 @@ const FAQ_CATEGORIES = [
 ];
 
 export default function FAQPage() {
+  const categories = FAQ_CATEGORIES.flatMap((cat) => {
+    if (!SHOW_CIGARETTES && cat.title === "Native Smokes") return [];
+    const faqs = visibleQa(cat.faqs);
+    return faqs.length ? [{ ...cat, faqs }] : [];
+  });
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQ_CATEGORIES.flatMap((cat) =>
+    mainEntity: categories.flatMap((cat) =>
       cat.faqs.map((faq) => ({
         "@type": "Question",
         name: faq.q,
@@ -77,7 +83,7 @@ export default function FAQPage() {
             Straight answers for shopping High Coastal Cannabis: store page first, menu category second, staff when the current detail matters.
           </p>
 
-          {FAQ_CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <div key={cat.title} className={styles.category}>
               <h2 className={styles.categoryTitle}>{cat.title}</h2>
               {cat.faqs.map((faq) => (
@@ -92,7 +98,7 @@ export default function FAQPage() {
           <div className={styles.ctaSection}>
             <h2 className={styles.ctaTitle}>Still have questions?</h2>
             <p className={styles.ctaText}>
-              Call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>, read the <a href="/visit">Lakeshore visit guide</a>, check the <a href="/24-hour-dispensary-mississauga">24-hour open-now FAQ</a>, read the <a href="/high-coastal-visit">High Coastal brand visit FAQ</a>, open <a href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</a>, compare <a href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</a> or <a href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</a>, or use the store page before visiting.
+              Call <a href={`tel:${nap.phoneIntl}`}>{nap.phoneDisplay}</a>, read the <a href="/visit">Lakeshore visit guide</a>, check the <a href="/24-hour-dispensary-mississauga">24-hour open-now FAQ</a>, read the <a href="/high-coastal-visit">High Coastal brand visit FAQ</a>, open <a href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</a>, compare {SHOW_CIGARETTES ? <><a href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</a> or </> : null}<a href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</a>, or use the store page before visiting.
             </p>
           </div>
         </div>

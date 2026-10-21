@@ -3,6 +3,7 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { SccHubNav } from "../components/SccHubNav";
+import { SHOW_CIGARETTES, visibleFaqs } from "../lib/siteConfig";
 import {
   OPEN_NOW_FAQS,
   STORE_IDENTITY as nap,
@@ -132,10 +133,10 @@ export default function OpenNowFaqPage() {
         </section>
 
         <section>
-          <h2>Overnight walk-in — flower, Native cigarettes, nicotine vape</h2>
+          <h2>Overnight walk-in — {SHOW_CIGARETTES ? "flower, Native cigarettes, nicotine vape" : "flower and nicotine vape"}</h2>
           <p>
-            Adults 19+ can walk in any hour for listed flower, Native cigarettes, and nicotine vape. Confirm current
-            packs on the <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link> page and the{" "}
+            Adults 19+ can walk in any hour for listed {SHOW_CIGARETTES ? "flower, Native cigarettes, and nicotine vape" : "flower and nicotine vape"}. Confirm current{" "}
+            {SHOW_CIGARETTES ? <>packs on the <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link> page and the{" "}</> : null}
             <Link href={nap.nicotineVapePath}>nicotine vape on Lakeshore</Link> page, then call when one name is the
             reason for a late trip. Stock still moves after midnight.
           </p>
@@ -175,7 +176,7 @@ export default function OpenNowFaqPage() {
         <section>
           <h2>Open-now FAQ</h2>
           <div className={styles.faqList}>
-            {OPEN_NOW_FAQS.map((faq) => (
+            {visibleFaqs(OPEN_NOW_FAQS).map((faq) => (
               <article key={faq.question} className={styles.faqItem}>
                 <h3>{faq.question}</h3>
                 <p>{withPhone(faq.answer)}</p>
@@ -196,8 +197,12 @@ export default function OpenNowFaqPage() {
             <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower. Need a drop instead of a
             walk-in? Open the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page —
             delivery hours stay separate from this 24-hour door. Compare{" "}
-            <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link> or{" "}
-            <Link href={nap.nicotineVapePath}>nicotine vape on Lakeshore</Link> before an overnight carton or device
+            {SHOW_CIGARETTES ? (
+              <>
+                <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link> or{" "}
+              </>
+            ) : null}
+            <Link href={nap.nicotineVapePath}>nicotine vape on Lakeshore</Link> before an overnight {SHOW_CIGARETTES ? "carton or device" : "device"}
             trip. The <Link href="/">homepage</Link> remains the website URL for this store — not this FAQ and not the
             city landing.
           </p>

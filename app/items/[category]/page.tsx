@@ -1,5 +1,6 @@
 import CigaretteSeasonalNotice from "../../components/CigaretteSeasonalNotice";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { SHOW_CIGARETTES, VAPE_PAGE_PATH, isKeptSmokeAccessoryName } from "../../lib/siteConfig";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
@@ -34,6 +35,7 @@ export async function generateMetadata({
   const { category: catSlug } = await params;
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) return {};
+  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(VAPE_PAGE_PATH);
   const items = getItemsByCategory(catInfo.key, await getResolvedItems());
 
   return {
@@ -53,6 +55,7 @@ export default async function ItemsCategoryPage({
   const { category: catSlug } = await params;
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) notFound();
+  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(VAPE_PAGE_PATH);
 
   /* Pre-Rolls also shows accessories (ADD ONS) */
   const resolvedItems = await getResolvedItems();
@@ -62,6 +65,11 @@ export default async function ItemsCategoryPage({
     const existingIds = new Set(items.map(i => i.sku));
     const uniqueAccessories = accessories.filter(a => !existingIds.has(a.sku));
     items = [...items, ...uniqueAccessories];
+  }
+  if (!SHOW_CIGARETTES && catInfo.key === "ADD ONS") {
+    const kept = getItemsByCategory("CIGARETTES", resolvedItems).filter((item) => isKeptSmokeAccessoryName(`${item.name} ${item.slug}`));
+    const existingIds = new Set(items.map((item) => item.sku));
+    items = [...items, ...kept.filter((item) => !existingIds.has(item.sku))];
   }
   const { config } = catInfo;
   const categoryBanner = resolveItemBanner(catSlug, config.banner);
@@ -199,7 +207,7 @@ function ItemCard({ item, catColor }: { item: ItemProduct; catColor: string }) {
         </div>
       </div>
       <div className={styles.cardBody}>
-        <span className={styles.cardCategory}>{item.category}</span>
+        <span className={styles.cardCategory}>{!SHOW_CIGARETTES && isKeptSmokeAccessoryName(`${item.name} ${item.slug}`) ? "Accessories" : item.category}</span>
         <h3 className={styles.cardName}>{item.name}</h3>
         {item.price && (
           <div className={styles.cardPrice}>

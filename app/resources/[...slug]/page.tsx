@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import ResourceView from "../ResourceView";
 import { getResourcePage, RESOURCE_PAGES } from "../resourceData";
+import { SHOW_CIGARETTES, VAPE_PAGE_PATH, publicCopy, visibleQa } from "../../lib/siteConfig";
 
 type ResourceRouteProps = {
   params: Promise<{ slug?: string[] }>;
@@ -19,9 +20,11 @@ export async function generateMetadata({ params }: ResourceRouteProps): Promise<
   const { slug } = await params;
   const page = getResourcePage(routeSlug(slug));
   if (!page) return {};
+  if (!SHOW_CIGARETTES && page.slug.startsWith("native-smokes")) redirect(VAPE_PAGE_PATH);
+  const description = publicCopy(page.description) || page.description;
   return {
     title: { absolute: page.seoTitle },
-    description: page.description,
+    description,
     alternates: { canonical: "https://www.highcoastalcannabis.com/resources/" + page.slug },
     robots: { index: true, follow: true },
   };
@@ -31,6 +34,8 @@ export default async function ResourcePage({ params }: ResourceRouteProps) {
   const { slug } = await params;
   const page = getResourcePage(routeSlug(slug));
   if (!page) notFound();
+  if (!SHOW_CIGARETTES && page.slug.startsWith("native-smokes")) redirect(VAPE_PAGE_PATH);
+  const faqs = page.faqs ? visibleQa(page.faqs) : undefined;
   const canonical = `https://www.highcoastalcannabis.com/resources/${page.slug}`;
   const graph: Record<string, unknown>[] = [
     {
@@ -47,15 +52,15 @@ export default async function ResourcePage({ params }: ResourceRouteProps) {
       url: canonical,
       name: page.seoTitle,
       headline: page.title,
-      description: page.description,
+      description: publicCopy(page.description) || page.description,
       mainEntityOfPage: canonical,
       ...(page.datePublished ? { datePublished: page.datePublished } : {}),
       ...(page.dateModified ? { dateModified: page.dateModified } : {}),
     },
-    ...(page.faqs && page.faqs.length > 0
+    ...(faqs && faqs.length > 0
       ? [{
           "@type": "FAQPage",
-          mainEntity: page.faqs.map((faq) => ({
+          mainEntity: faqs.map((faq) => ({
             "@type": "Question",
             name: faq.q,
             acceptedAnswer: { "@type": "Answer", text: faq.a },

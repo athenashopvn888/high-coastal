@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+import { SHOW_CIGARETTES, VAPE_PAGE_PATH } from "../lib/siteConfig";
 import CigaretteSeasonalNotice from "../components/CigaretteSeasonalNotice";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -55,6 +57,7 @@ function withPhone(text: string) {
 }
 
 export default function NativeCigarettesLakeshorePage() {
+  if (!SHOW_CIGARETTES) redirect(VAPE_PAGE_PATH);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdHtml(nativeCigarettesPageJsonLd()) }} />

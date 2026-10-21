@@ -1,4 +1,5 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { SHOW_CIGARETTES, VAPE_PAGE_PATH, isCigaretteHref, publicCopy, visibleQa } from "../../lib/siteConfig";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,10 +23,11 @@ export async function generateMetadata({
   const { seoPage: slug } = await params;
   const page = getSeoPageBySlug(slug);
   if (!page) return {};
+  if (!SHOW_CIGARETTES && (slug === "native-cigarettes-mississauga" || slug === "native-cigarettes-york")) redirect(VAPE_PAGE_PATH);
 
   return {
-    title: page.title,
-    description: page.metaDescription,
+    title: publicCopy(page.title) || page.title,
+    description: publicCopy(page.metaDescription) || page.metaDescription,
     alternates: {
       canonical: `https://www.highcoastalcannabis.com/info/${slug}`,
     },
@@ -41,6 +43,17 @@ export default async function SeoLandingPage({
   const { seoPage: slug } = await params;
   const page = getSeoPageBySlug(slug);
   if (!page) notFound();
+  if (!SHOW_CIGARETTES && (slug === "native-cigarettes-mississauga" || slug === "native-cigarettes-york")) redirect(VAPE_PAGE_PATH);
+  const sections = page.sections.flatMap((section) => {
+    const heading = publicCopy(section.heading);
+    const body = publicCopy(section.body);
+    if (!heading || !body) return [];
+    return [{ ...section, heading, body }];
+  });
+  const faqs = visibleQa(page.faqs);
+  const related = page.relatedLink && (SHOW_CIGARETTES || (!isCigaretteHref(page.relatedLink.href) && publicCopy(`${page.relatedLink.label} ${page.relatedLink.body}`)))
+    ? page.relatedLink
+    : null;
 
   const tiers = Object.values(TIER_CONFIG);
   const heroMenuHref = page.heroPreview?.menuHref ?? "/items/cigarettes";
@@ -107,7 +120,7 @@ export default async function SeoLandingPage({
       {/* Content Sections */}
       <section className={styles.content}>
         <div className={styles.container}>
-          {page.sections.map((s, i) => (
+          {sections.map((s, i) => (
             <div key={i} className={styles.section}>
               <h2 className={styles.sectionTitle}>{s.heading}</h2>
               <p className={styles.sectionBody}>{s.body}</p>
@@ -145,18 +158,18 @@ export default async function SeoLandingPage({
             </div>
           </div>}
 
-          {page.relatedLink && (
+          {related && (
             <div className={styles.relatedLinkCard}>
-              <p>{page.relatedLink.body}</p>
-              <Link href={page.relatedLink.href}>{page.relatedLink.label} →</Link>
+              <p>{publicCopy(related.body) || related.body}</p>
+              <Link href={related.href}>{publicCopy(related.label) || related.label} →</Link>
             </div>
           )}
 
           {/* FAQ */}
-          {page.faqs.length > 0 && (
+          {faqs.length > 0 && (
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
-              {page.faqs.map((faq, i) => (
+              {faqs.map((faq, i) => (
                 <details key={i} className={styles.faqItem}>
                   <summary className={styles.faqQ}>{faq.q}</summary>
                   <p className={styles.faqA}>{faq.a}</p>

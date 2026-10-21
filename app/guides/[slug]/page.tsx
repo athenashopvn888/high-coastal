@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { SHOW_CIGARETTES, VAPE_PAGE_PATH, isKeptSmokeAccessoryName } from "../../lib/siteConfig";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { DELIVERY_GUIDE_REGISTRY, getDeliveryGuide } from "../../lib/deliveryGuideRegistry";
@@ -24,9 +25,13 @@ export function generateStaticParams() { return [...GUIDE_REGISTRY, ...DELIVERY_
 export async function generateMetadata({ params }: GuidePageProps): Promise<Metadata> {
   const slug = (await params).slug;
   const deliveryGuide = getDeliveryGuide(slug);
-  if (deliveryGuide) return { title: { absolute: deliveryGuide.title }, description: deliveryGuide.description, alternates: { canonical: `${BASE}/guides/${deliveryGuide.slug}` }, robots: { index: true, follow: true }, openGraph: { title: deliveryGuide.title, description: deliveryGuide.description, url: `${BASE}/guides/${deliveryGuide.slug}`, type: "website" } };
+  if (deliveryGuide) {
+    if (!SHOW_CIGARETTES && deliveryGuide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${deliveryGuide.slug} ${deliveryGuide.name}`)) redirect(VAPE_PAGE_PATH);
+    return { title: { absolute: deliveryGuide.title }, description: deliveryGuide.description, alternates: { canonical: `${BASE}/guides/${deliveryGuide.slug}` }, robots: { index: true, follow: true }, openGraph: { title: deliveryGuide.title, description: deliveryGuide.description, url: `${BASE}/guides/${deliveryGuide.slug}`, type: "website" } };
+  }
   const guide = getGuide(slug);
   if (!guide) return {};
+  if (!SHOW_CIGARETTES && guide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`)) redirect(VAPE_PAGE_PATH);
   const description = stripMarkdown(guide.description);
   return {
     title: { absolute: guide.title },
@@ -43,9 +48,13 @@ const relatedEntries = (guide: GuideEntry) => guide.relatedSlugs.map(getGuide).f
 export default async function GuidePage({ params }: GuidePageProps) {
   const slug = (await params).slug;
   const deliveryGuide = getDeliveryGuide(slug);
-  if (deliveryGuide) return <DeliveryGuidePage guide={deliveryGuide} />;
+  if (deliveryGuide) {
+    if (!SHOW_CIGARETTES && deliveryGuide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${deliveryGuide.slug} ${deliveryGuide.name}`)) redirect(VAPE_PAGE_PATH);
+    return <DeliveryGuidePage guide={deliveryGuide} />;
+  }
   const guide = getGuide(slug);
   if (!guide) notFound();
+  if (!SHOW_CIGARETTES && guide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`)) redirect(VAPE_PAGE_PATH);
   const product = resolveGuideProduct(guide);
   const productHref = product ? `${guide.lane === "strain" ? "/flower" : "/item"}/${product.slug}` : undefined;
   const canonical = `${BASE}/guides/${guide.slug}`;

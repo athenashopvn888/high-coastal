@@ -10,6 +10,7 @@ import {
   mapsDirectionsUrl,
   nicotineVapePageJsonLd,
 } from "../lib/storeIdentity";
+import { SHOW_CIGARETTES, visibleFaqs } from "../lib/siteConfig";
 import styles from "../visit/visit.module.css";
 
 const canonical = `${nap.websiteUrl}${nap.nicotineVapePath}`;
@@ -112,9 +113,9 @@ export default function NicotineVapeLakeshorePage() {
               <strong>{nap.phoneDisplay}</strong>
             </a>{" "}
             when one device is the reason for the trip. For the five-card evidence set, open{" "}
-            <Link href="/info/nicotine-vapes-mississauga">Nicotine Vapes Mississauga</Link>. Native cigarettes stay on{" "}
+            <Link href="/info/nicotine-vapes-mississauga">Nicotine Vapes Mississauga</Link>.{SHOW_CIGARETTES ? <> Native cigarettes stay on{" "}
             <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link>. Nicotine pouch tins, when
-            listed, stay on the <Link href={nap.cigarettesMenuPath}>cigarette menu</Link>.
+            listed, stay on the <Link href={nap.cigarettesMenuPath}>cigarette menu</Link>.</> : null}
           </p>
         </section>
 
@@ -156,7 +157,7 @@ export default function NicotineVapeLakeshorePage() {
         <section>
           <h2>Nicotine vape FAQ for Lakeshore</h2>
           <div className={styles.faqList}>
-            {NICOTINE_VAPE_FAQS.map((faq) => (
+            {visibleFaqs(NICOTINE_VAPE_FAQS).map((faq) => (
               <article key={faq.question} className={styles.faqItem}>
                 <h3>{faq.question}</h3>
                 <p>{withPhone(faq.answer)}</p>
@@ -173,8 +174,8 @@ export default function NicotineVapeLakeshorePage() {
             <Link href={nap.brandVisitPath}>High Coastal brand visit FAQ</Link>. City flower context is{" "}
             <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Shop{" "}
             <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>,{" "}
-            <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower, or compare{" "}
-            <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link>.
+            <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link> flower{SHOW_CIGARETTES ? <>, or compare{" "}
+            <Link href={nap.nativeCigarettesPath}>Native cigarettes on Lakeshore</Link></> : null}.
           </p>
         </section>
       </main>

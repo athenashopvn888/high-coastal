@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import ResourceView from "./ResourceView";
+import { publicCopy } from "../lib/siteConfig";
 import { RESOURCE_HOME } from "./resourceData";
 
 export const metadata: Metadata = {
   title: RESOURCE_HOME.seoTitle,
-  description: RESOURCE_HOME.description,
+  description: publicCopy(RESOURCE_HOME.description) || RESOURCE_HOME.description,
   alternates: { canonical: "https://www.highcoastalcannabis.com/resources" },
 };
 
@@ -20,7 +21,7 @@ export default function ResourcesPage() {
           { "@type": "ListItem", position: 2, name: "Resources", item: canonical },
         ],
       },
-      { "@type": "CollectionPage", "@id": canonical, url: canonical, name: RESOURCE_HOME.seoTitle, headline: RESOURCE_HOME.title, description: RESOURCE_HOME.description },
+      { "@type": "CollectionPage", "@id": canonical, url: canonical, name: RESOURCE_HOME.seoTitle, headline: RESOURCE_HOME.title, description: publicCopy(RESOURCE_HOME.description) || RESOURCE_HOME.description },
     ],
   };
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} /><ResourceView page={RESOURCE_HOME} /></>;

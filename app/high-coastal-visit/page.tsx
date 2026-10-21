@@ -3,6 +3,7 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { SccHubNav } from "../components/SccHubNav";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import {
   BRAND_VISIT_FAQS,
   STORE_IDENTITY as nap,
@@ -177,8 +178,8 @@ export default function BrandVisitFaqPage() {
             <Link href="/exotic">Exotic</Link>, <Link href="/premium">Premium</Link>, <Link href="/aaa">AAA+</Link>,{" "}
             <Link href="/aa">AA</Link>, and <Link href="/budget">Budget</Link>. Ordering to a Lakeshore / Clarkson /
             Port Credit address? Use the <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link> page.
-            Retail smoke categories stay on <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link>{" "}
-            and <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.
+            {SHOW_CIGARETTES ? <>Retail smoke categories stay on <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link>{" "}
+            and </> : <>Nicotine vape stays on </>}<Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.
           </p>
         </section>
       </main>

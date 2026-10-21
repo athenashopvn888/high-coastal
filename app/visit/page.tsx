@@ -3,6 +3,7 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { SccHubNav } from "../components/SccHubNav";
+import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import {
   STORE_IDENTITY as nap,
   VISIT_FAQS,
@@ -210,8 +211,8 @@ export default function VisitPage() {
             The category landing remains{" "}
             <Link href={nap.landingPath}>Weed Dispensary in Mississauga</Link>. Ordering to a Lakeshore address instead
             of walking in? Open <Link href="/cannabis-delivery-lakeshore">cannabis delivery on Lakeshore</Link>. Coming
-            for cartons or a nicotine device? Use <Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link>{" "}
-            or <Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.
+            for {SHOW_CIGARETTES ? "cartons or a nicotine device" : "a nicotine device"}? Use {SHOW_CIGARETTES ? <><Link href="/native-cigarettes-lakeshore">Native cigarettes on Lakeshore</Link>{" "}
+            or </> : null}<Link href="/nicotine-vape-lakeshore">nicotine vape on Lakeshore</Link>.
           </p>
         </section>
 
