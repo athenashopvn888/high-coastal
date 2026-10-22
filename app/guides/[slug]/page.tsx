@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
-import { SHOW_CIGARETTES, VAPE_PAGE_PATH, isKeptSmokeAccessoryName, visibleKeptSmokeCopy } from "../../lib/siteConfig";
+import { notFound } from "next/navigation";
+import CigaretteUnavailablePage from "../../components/CigaretteUnavailablePage";
+import { resolveCigaretteRequest } from "../../lib/cigaretteGate";
+import { SHOW_CIGARETTES, isKeptSmokeAccessoryName, visibleKeptSmokeCopy } from "../../lib/siteConfig";
 import { isHiddenCigaretteGuide } from "../../lib/cigaretteVisibility";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -27,14 +29,18 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   const slug = (await params).slug;
   const deliveryGuide = getDeliveryGuide(slug);
   if (deliveryGuide) {
-    if (!SHOW_CIGARETTES && deliveryGuide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${deliveryGuide.slug} ${deliveryGuide.name}`)) redirect(VAPE_PAGE_PATH);
+    if ((await resolveCigaretteRequest(deliveryGuide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${deliveryGuide.slug} ${deliveryGuide.name}`))) === "unavailable") {
+      return { title: deliveryGuide.title, robots: { index: false, follow: false } };
+    }
     const title = visibleKeptSmokeCopy(deliveryGuide.title);
     const description = visibleKeptSmokeCopy(deliveryGuide.description);
     return { title: { absolute: title }, description, alternates: { canonical: `${BASE}/guides/${deliveryGuide.slug}` }, robots: { index: true, follow: true }, openGraph: { title, description, url: `${BASE}/guides/${deliveryGuide.slug}`, type: "website" } };
   }
   const guide = getGuide(slug);
   if (!guide) return {};
-  if (!SHOW_CIGARETTES && guide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`)) redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(guide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`))) === "unavailable") {
+    return { title: guide.title, robots: { index: false, follow: false } };
+  }
   const title = visibleKeptSmokeCopy(guide.title);
   const description = visibleKeptSmokeCopy(stripMarkdown(guide.description));
   const keywords = guide.primaryKeywords.map((keyword) => visibleKeptSmokeCopy(keyword)).filter(Boolean);
@@ -64,12 +70,16 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const slug = (await params).slug;
   const deliveryGuide = getDeliveryGuide(slug);
   if (deliveryGuide) {
-    if (!SHOW_CIGARETTES && deliveryGuide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${deliveryGuide.slug} ${deliveryGuide.name}`)) redirect(VAPE_PAGE_PATH);
+    if ((await resolveCigaretteRequest(deliveryGuide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${deliveryGuide.slug} ${deliveryGuide.name}`))) === "unavailable") {
+      return <CigaretteUnavailablePage />;
+    }
     return <DeliveryGuidePage guide={deliveryGuide} />;
   }
   const guide = getGuide(slug);
   if (!guide) notFound();
-  if (!SHOW_CIGARETTES && guide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`)) redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(guide.lane === "native_cig" && !isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`))) === "unavailable") {
+    return <CigaretteUnavailablePage />;
+  }
   const product = resolveGuideProduct(guide);
   const productHref = product ? `${guide.lane === "strain" ? "/flower" : "/item"}/${product.slug}` : undefined;
   const categoryHref = !SHOW_CIGARETTES && isKeptSmokeAccessoryName(`${guide.slug} ${guide.name}`) ? "/items/add-ons" : guide.preferredCategoryPath;

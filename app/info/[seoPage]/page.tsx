@@ -1,5 +1,7 @@
-import { notFound, redirect } from "next/navigation";
-import { SHOW_CIGARETTES, VAPE_PAGE_PATH, isCigaretteHref, publicCopy, visibleQa } from "../../lib/siteConfig";
+import CigaretteUnavailablePage from "../../components/CigaretteUnavailablePage";
+import { notFound } from "next/navigation";
+import { resolveCigaretteRequest } from "../../lib/cigaretteGate";
+import { SHOW_CIGARETTES, isCigaretteHref, publicCopy, visibleQa } from "../../lib/siteConfig";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +25,9 @@ export async function generateMetadata({
   const { seoPage: slug } = await params;
   const page = getSeoPageBySlug(slug);
   if (!page) return {};
-  if (!SHOW_CIGARETTES && (slug === "native-cigarettes-mississauga" || slug === "native-cigarettes-york")) redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(slug === "native-cigarettes-mississauga" || slug === "native-cigarettes-york")) === "unavailable") {
+    return { title: page.title, robots: { index: false, follow: false } };
+  }
 
   return {
     title: publicCopy(page.title) || page.title,
@@ -43,7 +47,9 @@ export default async function SeoLandingPage({
   const { seoPage: slug } = await params;
   const page = getSeoPageBySlug(slug);
   if (!page) notFound();
-  if (!SHOW_CIGARETTES && (slug === "native-cigarettes-mississauga" || slug === "native-cigarettes-york")) redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(slug === "native-cigarettes-mississauga" || slug === "native-cigarettes-york")) === "unavailable") {
+    return <CigaretteUnavailablePage />;
+  }
   const sections = page.sections.flatMap((section) => {
     const heading = publicCopy(section.heading);
     const body = publicCopy(section.body);

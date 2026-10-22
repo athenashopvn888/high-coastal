@@ -16,13 +16,17 @@ function isHiddenGrabbaLabel(label: string): boolean {
   return isGrabbaName(label) && !isKeptSmokeAccessoryName(label);
 }
 
-export function isHiddenCigaretteItem(item: NamedItem): boolean {
-  if (SHOW_CIGARETTES) return false;
+export function isCigaretteControlledItem(item: NamedItem): boolean {
   const label = `${item.name} ${item.slug}`;
   if (isHiddenGrabbaLabel(label)) return true;
   if (isKeptSmokeAccessoryName(label)) return false;
   if (item.category.toUpperCase() === "CIGARETTES") return true;
   return /\b(cigarettes?|marlboro|belmont)\b/i.test(label);
+}
+
+export function isHiddenCigaretteItem(item: NamedItem): boolean {
+  if (SHOW_CIGARETTES) return false;
+  return isCigaretteControlledItem(item);
 }
 
 export function isHiddenCigaretteGuide(guide: NamedGuide): boolean {

@@ -1,7 +1,8 @@
 import { getLiveMenu } from "../../lib/liveMenu";
-import { notFound, redirect } from "next/navigation";
-import { VAPE_PAGE_PATH } from "../../lib/siteConfig";
-import { isHiddenCigaretteItem } from "../../lib/cigaretteVisibility";
+import { notFound } from "next/navigation";
+import CigaretteUnavailablePage from "../../components/CigaretteUnavailablePage";
+import { resolveCigaretteRequest } from "../../lib/cigaretteGate";
+import { isCigaretteControlledItem } from "../../lib/cigaretteVisibility";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
@@ -38,7 +39,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const item = __menu.items.find((i) => i.slug === slug);
   if (!item) return {};
-  if (isHiddenCigaretteItem(item)) redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(isCigaretteControlledItem(item))) === "unavailable") {
+    return { title: item.name, robots: { index: false, follow: false } };
+  }
 
   const itemData = getItemData(item.category, item.name);
 
@@ -137,7 +140,7 @@ export default async function ItemPage({
   const { slug } = await params;
   const item = __menu.items.find((i) => i.slug === slug);
   if (!item) notFound();
-  if (isHiddenCigaretteItem(item)) redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(isCigaretteControlledItem(item))) === "unavailable") return <CigaretteUnavailablePage />;
 
   const catInfo = Object.values(CATEGORY_CONFIG).find(c => c.name.toUpperCase() === item.category.toUpperCase() || c.name === item.category);
   const catColor = catInfo?.color || "#94a3b8";

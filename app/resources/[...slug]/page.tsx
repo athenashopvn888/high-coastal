@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
+import CigaretteUnavailablePage from "../../components/CigaretteUnavailablePage";
 import ResourceView from "../ResourceView";
+import { resolveCigaretteRequest } from "../../lib/cigaretteGate";
 import { getResourcePage, RESOURCE_PAGES } from "../resourceData";
-import { SHOW_CIGARETTES, VAPE_PAGE_PATH, publicCopy, visibleQa } from "../../lib/siteConfig";
+import { publicCopy, visibleQa } from "../../lib/siteConfig";
 
 type ResourceRouteProps = {
   params: Promise<{ slug?: string[] }>;
@@ -20,7 +22,9 @@ export async function generateMetadata({ params }: ResourceRouteProps): Promise<
   const { slug } = await params;
   const page = getResourcePage(routeSlug(slug));
   if (!page) return {};
-  if (!SHOW_CIGARETTES && page.slug.startsWith("native-smokes")) redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(page.slug.startsWith("native-smokes"))) === "unavailable") {
+    return { title: page.seoTitle, robots: { index: false, follow: false } };
+  }
   const description = publicCopy(page.description) || page.description;
   return {
     title: { absolute: page.seoTitle },
@@ -34,7 +38,7 @@ export default async function ResourcePage({ params }: ResourceRouteProps) {
   const { slug } = await params;
   const page = getResourcePage(routeSlug(slug));
   if (!page) notFound();
-  if (!SHOW_CIGARETTES && page.slug.startsWith("native-smokes")) redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(page.slug.startsWith("native-smokes"))) === "unavailable") return <CigaretteUnavailablePage />;
   const faqs = page.faqs ? visibleQa(page.faqs) : undefined;
   const canonical = `https://www.highcoastalcannabis.com/resources/${page.slug}`;
   const graph: Record<string, unknown>[] = [

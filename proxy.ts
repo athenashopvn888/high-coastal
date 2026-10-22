@@ -1,10 +1,13 @@
+import { cigaretteWebMode } from "./app/lib/cigaretteFeed";
 import { cigaretteRedirectDestination } from "./app/lib/cigaretteVisibility";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const destination = cigaretteRedirectDestination(request.nextUrl.pathname);
   if (!destination) return NextResponse.next();
+  // Coded keeps the redirect. An explicit sheet flag stays on this URL.
+  if ((await cigaretteWebMode()) !== "coded") return NextResponse.next();
   const url = request.nextUrl.clone();
   url.pathname = destination;
   url.search = "";

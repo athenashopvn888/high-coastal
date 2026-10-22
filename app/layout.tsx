@@ -1,13 +1,18 @@
+import CigaretteStateProvider from "./components/CigaretteStateProvider";
+import FleetContentProvider from "./components/fleet/FleetContentProvider";
 import FullNameNap from "./components/FullNameNap";
 import PinnedNavClearance from "./components/PinnedNavClearance";
 import { HOME_DOC_TITLE } from "./lib/homeDelivery";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import { CIG_WORDING_FALLBACK } from "./lib/cigDecision";
+import { CODED_BANNERS } from "./lib/fleet/config";
+import { getFleetContent } from "./lib/fleetContent";
 import { SHOW_CIGARETTES } from "./lib/siteConfig";
 import { STORE_IDENTITY, cannabisStoreGraphNode, serializeJsonLd, websiteGraphNode } from "./lib/storeIdentity";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   metadataBase: new URL(STORE_IDENTITY.websiteUrl),
   title: {
     default: HOME_DOC_TITLE,
@@ -81,14 +86,31 @@ const jsonLd = {
   "@graph": [websiteGraphNode(), cannabisStoreGraphNode()],
 };
 
-export default function RootLayout({
+export async function generateMetadata(): Promise<Metadata> {
+  const fleet = await getFleetContent();
+  if (!fleet.active) return metadata;
+  const description = fleet.pages.Home?.metaDescription || "";
+  if (!description || description === metadata.description) return metadata;
+  return {
+    ...metadata,
+    description,
+    openGraph: { ...metadata.openGraph, description },
+    twitter: { ...metadata.twitter, description },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const fleet = await getFleetContent();
+  const cigarettes = { web: SHOW_CIGARETTES, tv: SHOW_CIGARETTES, wording: CIG_WORDING_FALLBACK };
+  const sheetBanners = fleet.active && fleet.banners.some((banner, index) => banner !== CODED_BANNERS[index]) ? fleet.banners : null;
   return (
     <html lang="en">
       <head>
+        <meta name="fleet-content-version" content={fleet.version} />
         <meta name="geo.region" content="CA-ON" />
         <meta name="geo.placename" content="Mississauga" />
         <meta name="geo.position" content="43.5177;-79.6220" />
@@ -119,9 +141,13 @@ export default function RootLayout({
         <Link className="deliveryAnnouncement" href="/delivery">
           NEW DELIVERY MENU IS HERE — CLICK TO EXPLORE
         </Link>
-        {children}
-        <FullNameNap />
-        <PinnedNavClearance />
+        <FleetContentProvider value={{ active: fleet.active, version: fleet.version, nap: fleet.nap, banners: sheetBanners }}>
+          <CigaretteStateProvider value={cigarettes}>
+            {children}
+            <FullNameNap />
+            <PinnedNavClearance />
+          </CigaretteStateProvider>
+        </FleetContentProvider>
       </body>
     </html>
   );

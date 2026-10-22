@@ -96,12 +96,18 @@ function menuStaleFlag(dataset, now = Date.now()) {
   return now - t > MENU_STALE_MS ? "1" : "0";
 }
 
+function normalizeCig(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  return value;
+}
+
 function staticDataset(staticFlowers, staticItems) {
   return {
     source: "static-fallback",
     flowers: Array.isArray(staticFlowers) ? staticFlowers : [],
     items: Array.isArray(staticItems) ? staticItems : [],
     stockDate: "",
+    cig: null,
   };
 }
 
@@ -189,6 +195,7 @@ async function resolveDataset(options) {
       flowers: data.flowers,
       items: data.items,
       stockDate: data.stockDate == null ? "" : String(data.stockDate),
+      cig: normalizeCig(data.cig),
     };
     const now = options.now ?? Date.now();
     cached = { expiresAt: now + TV_STOCK_CACHE_MS, dataset };
@@ -244,6 +251,16 @@ async function getTvData(options) {
   return selectTvPayload(dataset, options.type);
 }
 
+async function getCigaretteDataset(options) {
+  await getTvData({ ...options, type: "items" });
+  const dataset = (cached && cached.dataset) || lastGood || staticDataset(options.staticFlowers, options.staticItems);
+  return {
+    source: dataset.source || "static-fallback",
+    items: Array.isArray(dataset.items) ? dataset.items : [],
+    cig: dataset.cig ?? null,
+  };
+}
+
 module.exports = {
   DEFAULT_APPS_SCRIPT_URL,
   TV_STORE,
@@ -257,5 +274,6 @@ module.exports = {
   postprocessItems,
   resolveAppsScriptUrl,
   getTvData,
+  getCigaretteDataset,
   resetTvStockCache,
 };
