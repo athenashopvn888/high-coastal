@@ -3,9 +3,12 @@ import { FULL_NAME_NAP } from "../lib/fullNameNap";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import styles from "./contact.module.css";
+import { getFleetContent } from "../lib/fleetContent";
 import { STORE_IDENTITY as nap, jsonLdHtml } from "../lib/storeIdentity";
 
-export const metadata: Metadata = {
+export const dynamic = "force-dynamic";
+
+const metadata: Metadata = {
   title: { absolute: `Contact Us — ${nap.name} | ${nap.streetAddress}, ${nap.addressLocality}` },
   description:
     `Visit ${nap.name} at ${nap.addressDisplay}. ${nap.hoursDisplay}, 7 days a week. Walk-ins welcome. Call ${nap.phoneDisplay}.`,
@@ -19,7 +22,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+export async function generateMetadata(): Promise<Metadata> {
+  const fleet = await getFleetContent();
+  if (!fleet.active) return metadata;
+  const description = fleet.pages.Contact?.metaDescription || "";
+  const title = fleet.pages.Contact?.metaTitle || "";
+  if ((!description || description === metadata.description) && !title) return metadata;
+  return {
+    ...metadata,
+    ...(title ? { title: { absolute: title } } : {}),
+    ...(description && description !== metadata.description ? { description } : {}),
+  };
+}
+
+export default async function ContactPage() {
+  const fleet = await getFleetContent();
+  const street = fleet.active ? fleet.nap.street : nap.streetAddress;
+  const locality = fleet.active ? fleet.nap.city : nap.addressLocality;
+  const region = fleet.active ? fleet.nap.province : nap.addressRegion;
+  const postal = fleet.active ? fleet.nap.postalCode : nap.postalCode;
+  const intersection = fleet.active ? fleet.nap.intersection : nap.intersection;
+  const phoneDisplay = fleet.active ? fleet.nap.phoneDisplay : nap.phoneDisplay;
+  const phoneTel = fleet.active ? fleet.nap.phoneTel : nap.phoneIntl;
   const contactSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -50,15 +74,15 @@ export default function ContactPage() {
               <div className={styles.infoIcon}>📍</div>
               <h2 className={styles.infoTitle}>Location</h2>
               <p className={styles.infoText}>
-                {nap.streetAddress}
+                {street}
                 <br />
-                {nap.addressLocality}, {nap.addressRegion} {nap.postalCode}
+                {locality}, {region} {postal}
                 <br />
-                <span className={styles.infoMuted}>{nap.intersection}</span>
+                <span className={styles.infoMuted}>{intersection}</span>
               </p>
               <p className={styles.infoText}>
-                <a href={`tel:${nap.phoneIntl}`} className={styles.infoBtn}>
-                  Call {nap.phoneDisplay}
+                <a href={`tel:${phoneTel}`} className={styles.infoBtn}>
+                  Call {phoneDisplay}
                 </a>
               </p>
               <p className={styles.infoText}>

@@ -1,5 +1,8 @@
 "use client";
 import { SHOW_CIGARETTES, isGrabbaName, isKeptSmokeAccessoryName } from "../lib/siteConfig";
+import FleetTvTakeover from "../components/fleet/FleetTvTakeover";
+import { useFleetTvManifest } from "../components/fleet/useFleetTvManifest";
+import { pickTv2Sheet } from "../lib/fleet/tv";
 import { isNicotineItem } from "../tv/flashMessages";
 import { CIGARETTE_FLASH_MESSAGE, isCigaretteFlashWindow } from "../tv/flashMessages";
 import { useState, useEffect, useCallback, useRef } from "react";
@@ -218,6 +221,8 @@ function VerticalTicker() {
 
 /* -- MAIN TV2 PAGE -- */
 export default function TV2Page() {
+  const [sheetBroken, setSheetBroken] = useState<Record<string, { promo?: boolean; off?: boolean }>>({});
+  const fleetTv = useFleetTvManifest();
   const theme = getTvTheme(tvHiring?.store);
   const [bgUrl, setBgUrl] = useState("");
   useEffect(() => {
@@ -314,6 +319,38 @@ export default function TV2Page() {
           <HiringRibbon hiring={tvHiring} />
           <div className={styles.grid}>
             {CARD_CONFIG.map(card => {
+              const keptSmoke = items.filter((it) => it.category === "CIGARETTES" && isKeptSmokeAccessoryName(it.name) && !isGrabbaName(it.name));
+              const categoryOff = card.id === "CIGARETTES" && !SHOW_CIGARETTES;
+              const noItems = card.id === "CIGARETTES"
+                ? (SHOW_CIGARETTES ? items.filter(card.filter).length === 0 : keptSmoke.length === 0)
+                : items.filter(card.filter).filter(it => !(daytime && isNicotineItem(it))).length === 0;
+              const broken = sheetBroken[card.id] || {};
+              const sheet = pickTv2Sheet(fleetTv.cards[card.id], {
+                categoryOff,
+                noItems,
+                promoBroken: Boolean(broken.promo),
+                offBroken: Boolean(broken.off),
+              });
+              if (sheet) {
+                const markBroken = () => setSheetBroken((prev) => ({ ...prev, [card.id]: { ...prev[card.id], [sheet.kind]: true } }));
+                return (
+                  <div key={card.id} className={styles.card} data-fleet-tv-card={card.id} data-fleet-tv-kind={sheet.kind} style={{"--accent":card.accent} as React.CSSProperties}>
+                    <div className={styles.cardHeader}>{sheet.kind === "promo" ? "PROMO" : card.title}</div>
+                    <div className={styles.promoMain}>
+                      <div className={styles.promoViewport}>
+                        <img
+                          className={`${styles.promoImg} ${styles.promoActive}`}
+                          src={sheet.image}
+                          alt={sheet.alt}
+                          referrerPolicy="no-referrer"
+                          ref={(node) => { if (node?.complete && node.naturalWidth === 0) markBroken(); }}
+                          onError={markBroken}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
               if (!SHOW_CIGARETTES && card.id === "CIGARETTES") {
                 const kept = items.filter((it) => it.category === "CIGARETTES" && isKeptSmokeAccessoryName(it.name) && !isGrabbaName(it.name));
                 if (kept.length === 0) return null;
@@ -369,6 +406,7 @@ export default function TV2Page() {
         
       </div>
       {lastUpdate ? <div className={styles.lastUpdated}>Refreshed {lastUpdate}</div> : null}
+      <FleetTvTakeover promos={fleetTv.fullscreenPromos} />
     </div>
   );
 }

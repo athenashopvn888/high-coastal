@@ -11,6 +11,15 @@ function readShowCigarettes(raw: string | undefined): boolean {
 
 export const SHOW_CIGARETTES = readShowCigarettes(process.env.NEXT_PUBLIC_SHOW_CIGARETTES);
 
+/**
+ * An explicit false / 0 / no / off on the cigarette env is a hard override.
+ * An empty or missing value is not that override; the coded switch still applies.
+ */
+export function cigaretteEnvHardOff(raw: string | undefined = process.env.SHOW_CIGARETTES ?? process.env.NEXT_PUBLIC_SHOW_CIGARETTES): boolean {
+  if (raw == null || raw.trim() === "") return false;
+  return /^(0|false|no|off)$/i.test(raw.trim());
+}
+
 /** Nicotine vape category. Cigarette URLs temporarily redirect here while the switch is off. */
 export const VAPE_PAGE_PATH = "/items/vapes";
 

@@ -1,6 +1,8 @@
 import CigaretteSeasonalNotice from "../../components/CigaretteSeasonalNotice";
-import { notFound, redirect } from "next/navigation";
-import { SHOW_CIGARETTES, VAPE_PAGE_PATH, isKeptSmokeAccessoryName } from "../../lib/siteConfig";
+import CigaretteUnavailablePage from "../../components/CigaretteUnavailablePage";
+import { notFound } from "next/navigation";
+import { resolveCigaretteRequest } from "../../lib/cigaretteGate";
+import { SHOW_CIGARETTES, isKeptSmokeAccessoryName } from "../../lib/siteConfig";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
@@ -35,7 +37,9 @@ export async function generateMetadata({
   const { category: catSlug } = await params;
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) return {};
-  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(catSlug === "cigarettes")) === "unavailable") {
+    return { title: "Cigarettes", robots: { index: false, follow: false } };
+  }
   const items = getItemsByCategory(catInfo.key, await getResolvedItems());
 
   return {
@@ -55,7 +59,7 @@ export default async function ItemsCategoryPage({
   const { category: catSlug } = await params;
   const catInfo = getCategoryFromSlug(catSlug);
   if (!catInfo) notFound();
-  if (!SHOW_CIGARETTES && catSlug === "cigarettes") redirect(VAPE_PAGE_PATH);
+  if ((await resolveCigaretteRequest(catSlug === "cigarettes")) === "unavailable") return <CigaretteUnavailablePage />;
 
   /* Pre-Rolls also shows accessories (ADD ONS) */
   const resolvedItems = await getResolvedItems();

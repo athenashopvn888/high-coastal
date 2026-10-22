@@ -1,4 +1,5 @@
 import { getLiveMenu } from "./lib/liveMenu";
+import { loadFleetArticles } from "./lib/fleet/articles";
 import type { MetadataRoute } from "next";
 import { isHiddenCigaretteGuide, isHiddenCigaretteItem } from "./lib/cigaretteVisibility";
 import { DELIVERY_GUIDE_REGISTRY } from "./lib/deliveryGuideRegistry";
@@ -101,5 +102,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/guides`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
   ];
 
-  return [...guideIndex, ...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guidePages];
+  let fleetArticlePages: MetadataRoute.Sitemap = [];
+  try {
+    const loaded = await loadFleetArticles();
+    if (loaded.ok) {
+      const codedSlugs = new Set(RESOURCE_PAGES.map((page) => page.slug));
+      fleetArticlePages = loaded.articles.filter((article) => !codedSlugs.has(article.slug)).map((article) => ({
+        url: `${BASE}/articles/${article.slug}`,
+        lastModified: article.publishedAt,
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      }));
+    }
+  } catch {
+    fleetArticlePages = [];
+  }
+
+  return [...guideIndex, ...staticPages, ...tierPages, ...itemPages, ...flowerPages, ...itemDetailPages, ...resourcePages, ...seoPages, ...guidePages, ...fleetArticlePages];
 }

@@ -1,4 +1,8 @@
+"use client";
+
 import CigaretteSeasonalNotice from "./CigaretteSeasonalNotice";
+import SheetBanners from "./fleet/FleetAnnouncementBanner";
+import { useFleetContent } from "./fleet/FleetContentProvider";
 import { SHOW_CIGARETTES } from "../lib/siteConfig";
 import { Fragment } from "react";
 import Link from "next/link";
@@ -21,6 +25,8 @@ const imageStyle = { display: "block", width: "100%", maxWidth: "100%", height: 
 const captionStyle = { margin: 0, padding: "10px 14px", background: "#111827", color: "#ffffff", textAlign: "center" as const, fontWeight: 800, lineHeight: 1.35 };
 
 export default function FleetAnnouncementBanner() {
+  const fleet = useFleetContent();
+  if (fleet.banners) return <SheetBanners banners={fleet.banners} />;
   return (
     <aside data-fleet-homepage-announcement="" aria-label="Store promotions" style={{ display: "flex", flexDirection: "column", width: "100%", maxWidth: "100%", height: "auto", minHeight: 0, overflow: "visible", position: "relative", zIndex: 50 }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": bannerImageObjects }).replace(/</g, "\\u003c") }} />
