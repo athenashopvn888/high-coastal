@@ -2,8 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   CIG_WORDING_FALLBACK,
+  cigarettePublicHeaders,
   decideCigaretteGuide,
   decideCigaretteSurface,
+  readCigaretteTvHeader,
   reconcileSurfaceItems,
   resolveCigWording,
   resolveSurfaceFlag,
@@ -80,6 +82,31 @@ test("guide pages follow the master switch and a feed error stays open", () => {
   assert.equal(decideCigaretteGuide({ cig: cig({ on: true, master: true, webOn: false }), items }).show, true);
   assert.equal(decideCigaretteGuide({ cig: null, items, errored: true }).show, false);
   assert.equal(decideCigaretteGuide({ cig: cig({ on: true, master: true }), items, envRaw: "off" }).reason, "env");
+});
+
+test("TV follows tvOn without the website switch, and the website stays off while TV is on", () => {
+  const items = [carton, backwoods, pouch];
+  const tv = decideCigaretteSurface({ cig: cig({ webOn: false, tvOn: true }), items, surface: "tv" });
+  const web = decideCigaretteSurface({ cig: cig({ webOn: false, tvOn: true }), items, surface: "web" });
+  assert.equal(tv.show, true);
+  assert.equal(tv.reason, "on");
+  assert.equal(web.show, false);
+  assert.equal(web.reason, "off");
+  assert.equal(decideCigaretteSurface({ cig: null, items, surface: "tv" }).show, true);
+  assert.equal(decideCigaretteSurface({ cig: null, items, surface: "web" }).show, false);
+  assert.equal(decideCigaretteSurface({ cig: { on: null, tvOn: null, webOn: null }, items, surface: "tv" }).show, true);
+  assert.equal(decideCigaretteSurface({ cig: cig({ webOn: false, tvOn: false }), items, surface: "tv" }).show, false);
+  assert.equal(decideCigaretteSurface({ cig: cig({ webOn: true, tvOn: true }), items, surface: "tv", envRaw: "false" }).reason, "env");
+  const headers = cigarettePublicHeaders({ web: web.show, tv: tv.show, wording: tv.wording });
+  assert.equal(headers["x-tv-data-cig-tv"], "1");
+  assert.equal(headers["x-tv-data-cig-web"], "0");
+  const roundTrip = readCigaretteTvHeader({ get: (name: string) => headers[name] ?? null });
+  assert.equal(roundTrip.show, true);
+  assert.equal(roundTrip.wording.tv2BoardTitle, "FEED BOARD");
+  const hidden = reconcileSurfaceItems(items, items, false);
+  assert.deepEqual(hidden.map((item) => item.slug), [backwoods.slug, pouch.slug]);
+  const shown = reconcileSurfaceItems(items, items, true);
+  assert.ok(shown.some((item) => item.slug === carton.slug));
 });
 
 test("each surface hides real cigarettes itself and always keeps wraps and pouches", () => {
