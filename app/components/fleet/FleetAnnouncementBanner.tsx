@@ -5,6 +5,7 @@ import { useState } from "react";
 import CigaretteSeasonalNotice from "../CigaretteSeasonalNotice";
 import { useCigaretteState } from "../CigaretteStateProvider";
 import { FLEET_COLORS } from "../../lib/fleet/config";
+import { SHOW_CIGARETTES } from "../../lib/siteConfig";
 import type { ResolvedBanner } from "../../lib/fleet/types";
 
 const figureStyle = { margin: 0, width: "100%" } as const;
@@ -40,7 +41,7 @@ function BannerFigure({ banner }: { banner: ResolvedBanner }) {
 /** Sheet Home rows. The coded homepage keeps its own markup when this is not mounted. */
 export default function FleetAnnouncementBanner({ banners }: { banners: ResolvedBanner[] }) {
   const cigarettes = useCigaretteState();
-  const showCigarettes = cigarettes.web;
+  const showCigarettes = SHOW_CIGARETTES ? cigarettes.web : false;
   const visible = banners.filter((banner) => !banner.hidden && (showCigarettes || (banner.id !== "cigarettes" && banner.id !== "premium-cigarettes")));
   return (
     <aside data-fleet-homepage-announcement="" aria-label="Store promotions" style={{ display: "flex", flexDirection: "column", width: "100%", maxWidth: "100%", height: "auto", minHeight: 0, overflow: "visible", position: "relative", zIndex: 50 }}>

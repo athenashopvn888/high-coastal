@@ -6,7 +6,7 @@ import { HOME_DOC_TITLE } from "./lib/homeDelivery";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import { CIG_WORDING_FALLBACK } from "./lib/cigDecision";
+import { getCigaretteSnapshot, toPublicCigaretteState } from "./lib/cigaretteFeed";
 import { CODED_BANNERS } from "./lib/fleet/config";
 import { getFleetContent } from "./lib/fleetContent";
 import { SHOW_CIGARETTES } from "./lib/siteConfig";
@@ -104,8 +104,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const fleet = await getFleetContent();
-  const cigarettes = { web: SHOW_CIGARETTES, tv: SHOW_CIGARETTES, wording: CIG_WORDING_FALLBACK };
+  const [fleet, cigaretteSnapshot] = await Promise.all([getFleetContent(), getCigaretteSnapshot()]);
+  const cigarettes = toPublicCigaretteState(cigaretteSnapshot);
   const sheetBanners = fleet.active && fleet.banners.some((banner, index) => banner !== CODED_BANNERS[index]) ? fleet.banners : null;
   return (
     <html lang="en">
@@ -142,7 +142,7 @@ export default async function RootLayout({
           NEW DELIVERY MENU IS HERE — CLICK TO EXPLORE
         </Link>
         <FleetContentProvider value={{ active: fleet.active, version: fleet.version, nap: fleet.nap, banners: sheetBanners }}>
-          <CigaretteStateProvider value={cigarettes}>
+          <CigaretteStateProvider value={{ ...cigarettes, web: SHOW_CIGARETTES ? cigarettes.web : false, tv: SHOW_CIGARETTES }}>
             {children}
             <FullNameNap />
             <PinnedNavClearance />
