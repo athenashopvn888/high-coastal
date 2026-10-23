@@ -69,14 +69,14 @@ function flagPair(cig: unknown, surface: CigaretteSurface): { specific: unknown;
   return { specific: surface === "web" ? block.webOn : block.tvOn, fallback: block.on };
 }
 
-/** True when the feed set webOn/tvOn or the shared on flag. Null flags stay on the coded switch. */
+/** True when the feed set webOn/tvOn or the shared on flag. Null website flags stay on the coded switch. */
 export function surfaceFlagExplicit(cig: unknown, surface: CigaretteSurface): boolean {
   const pair = flagPair(cig, surface);
   if (!pair) return false;
   return typeof pair.specific === "boolean" || typeof pair.fallback === "boolean";
 }
 
-/** Website surfaces read webOn. TV surfaces read tvOn. A missing side flag falls back to cig.on. Only an explicit false hides the surface. */
+/** Website surfaces read webOn. TV surfaces read tvOn. A missing side flag falls back to cig.on. Only an explicit false hides the surface. TV does not fall back to the website switch. */
 export function resolveSurfaceFlag(cig: unknown, surface: CigaretteSurface): boolean {
   const pair = flagPair(cig, surface);
   if (!pair) return false;
@@ -84,7 +84,11 @@ export function resolveSurfaceFlag(cig: unknown, surface: CigaretteSurface): boo
   if (typeof pair.specific === "boolean") return pair.specific;
   if (pair.fallback === false) return false;
   if (typeof pair.fallback === "boolean") return pair.fallback;
-  return SHOW_CIGARETTES;
+  return surface === "tv" ? true : SHOW_CIGARETTES;
+}
+
+function codedSurfaceFallback(surface: CigaretteSurface): boolean {
+  return surface === "tv" ? true : SHOW_CIGARETTES;
 }
 
 export function decideCigaretteSurface(input: {
@@ -100,9 +104,12 @@ export function decideCigaretteSurface(input: {
       : undefined,
   );
   if (cigaretteEnvHardOff(input.envRaw)) return { show: false, reason: "env", wording };
-  // A missing feed or a feed error keeps today's coded switch. Only an explicit false flag hides a live feed.
-  if (input.errored) return { show: SHOW_CIGARETTES, reason: "error", wording };
-  if (!input.cig || typeof input.cig !== "object" || Array.isArray(input.cig) || !surfaceFlagExplicit(input.cig, input.surface)) {
+  // A missing feed or a feed error keeps the website on its coded switch. TV follows the feed only.
+  if (input.errored) return { show: codedSurfaceFallback(input.surface), reason: "error", wording };
+  if (!input.cig || typeof input.cig !== "object" || Array.isArray(input.cig)) {
+    return { show: codedSurfaceFallback(input.surface), reason: "missing", wording };
+  }
+  if (input.surface !== "tv" && !surfaceFlagExplicit(input.cig, input.surface)) {
     return { show: SHOW_CIGARETTES, reason: "missing", wording };
   }
   if (!resolveSurfaceFlag(input.cig, input.surface)) return { show: false, reason: "off", wording };

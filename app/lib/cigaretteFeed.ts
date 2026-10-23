@@ -1,5 +1,6 @@
 import { cache } from "react";
 import {
+  cigarettePublicHeaders,
   decideCigaretteGuide,
   decideCigaretteSurface,
   reconcileSurfaceItems,
@@ -75,6 +76,10 @@ export function toPublicCigaretteState(snap: CigaretteSnapshot): PublicCigarette
     tv: tvMode === "on" ? true : tvMode === "off" ? false : snap.tv.show,
     wording: snap.wording,
   };
+}
+
+export function snapshotHeaders(snap: CigaretteSnapshot): Record<string, string> {
+  return cigarettePublicHeaders(toPublicCigaretteState(snap));
 }
 
 export { reconcileSurfaceItems };
