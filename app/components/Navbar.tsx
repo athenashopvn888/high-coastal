@@ -25,7 +25,6 @@ const ALL_LINKS: { href: string; label: string; featured?: boolean }[] = [
   { href: "/delivery", label: "Delivery" },
     { href: "/careers/budtender", label: "Join Team", featured: true },
 
-  { href: "/visit", label: "Visit" },
   { href: "/24-hour-dispensary-mississauga", label: "Open Now" },
   { href: "/native-cigarettes-lakeshore", label: "Native Cigarettes" },
   { href: "/nicotine-vape-lakeshore", label: "Nic Vape Lakeshore" },
