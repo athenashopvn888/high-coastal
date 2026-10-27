@@ -1,0 +1,37 @@
+.prose a {
+  color: var(--green-dark);
+  font-weight: 800;
+  text-underline-offset: 0.15em;
+}
+
+.prose strong {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.tableWrap {
+  margin-top: 18px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--border-subtle);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  color: var(--text-primary);
+  font-weight: 800;
+  background: var(--bg-secondary);
+}

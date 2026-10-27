@@ -77,12 +77,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const resourcePages: MetadataRoute.Sitemap = RESOURCE_PAGES.filter((page) => SHOW_CIGARETTES || !page.slug.startsWith("native-smokes")).map((page) => ({
-    url: page.slug ? `${BASE}/resources/${page.slug}` : `${BASE}/resources`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: page.slug ? 0.6 : 0.7,
-  }));
+  const resourcePages: MetadataRoute.Sitemap = [
+    ...RESOURCE_PAGES.filter((page) => SHOW_CIGARETTES || !page.slug.startsWith("native-smokes")).map((page) => ({
+      url: page.slug ? `${BASE}/resources/${page.slug}` : `${BASE}/resources`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: page.slug ? 0.6 : 0.7,
+    })),
+    {
+      url: `${BASE}/resources/what-is-rosin`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
+  ];
 
   const seoPages: MetadataRoute.Sitemap = SEO_PAGES.map((p) => ({
     url: `${BASE}/info/${p.slug}`,
