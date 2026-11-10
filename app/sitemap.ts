@@ -96,6 +96,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     },
+    {
+      url: `${BASE}/resources/solventless-vs-solvent-concentrates`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
   ];
 
   const seoPages: MetadataRoute.Sitemap = SEO_PAGES.map((p) => ({
