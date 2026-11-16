@@ -425,6 +425,14 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
   "": {
     groups: [
       {
+        heading: "Latest articles",
+        cards: [
+          { title: "Solventless vs Solvent Concentrates: What's the Difference?", href: "/resources/solventless-vs-solvent-concentrates", text: "Two concentrates can look almost identical: one made with heat, pressure, ice and water, the other by washing plant material with a solvent." },
+          { title: "What Is Distillate? The Clear Cannabis Oil Behind So Many Vapes and Edibles", href: "/resources/what-is-cannabis-distillate", text: "Distillate is one of the most common ingredients in the legal cannabis world, and one of the least understood." },
+          { title: "Rosin, Decoded: What \"Solventless\" Really Means on a Concentrates Menu", href: "/resources/what-is-rosin", text: "Rosin names a real, specific process: squeeze cannabis with heat and pressure until the resin comes out, and use no solvent at all." },
+        ],
+      },
+      {
         heading: "Plan a Lakeshore Visit",
         cards: [
           { title: "Lakeshore Mississauga Visit Guide", href: "/visit", text: "How to find 1720 Lakeshore Rd W from Port Credit, Clarkson, and the Lakeshore West corridor." },
@@ -495,6 +503,11 @@ const supportingEnhancements: Record<string, Partial<ResourcePage> & { appendSec
     appendCards: [
       { title: "Weed & Flower Guide", href: "/resources/weed-flower-guide" },
       { title: "Cannabis 101", href: "/resources/cannabis-101" },
+    ],
+  },
+  "cannabis-101": {
+    appendCards: [
+      { title: "What Is Distillate? The Clear Cannabis Oil Behind So Many Vapes and Edibles", href: "/resources/what-is-cannabis-distillate", text: "Distillate is one of the most common ingredients in the legal cannabis world, and one of the least understood." },
     ],
   },
   "resource-centre-launch": {
