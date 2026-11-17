@@ -26,5 +26,8 @@ export const HOME_DELIVERY_FAQS = [
   { q: "Is the delivery information limited to Mississauga?", a: "This homepage describes the Mississauga delivery context only. The current delivery page confirms whether a specific address can be served." },
 ] as const;
 
-// Document <title> only (exact Google name | area). H1 keeps HOME_TITLE.
+// Root layout default <title> and inherited social titles. H1 keeps HOME_TITLE.
 export const HOME_DOC_TITLE = "High Coastal Cannabis Dispensary Weed Delivery | Clarkson, Mississauga";
+
+// Homepage document <title> only. Root default, H1, and schema stay on the constants above.
+export const HOME_PAGE_TITLE = "High Coastal Cannabis Dispensary near me | Weed Delivery | Clarkson, Mississauga";

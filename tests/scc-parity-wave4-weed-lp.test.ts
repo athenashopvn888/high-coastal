@@ -91,7 +91,7 @@ test("Wave 4 hub card and dense links cover visit, brand FAQ, 24h, delivery, cig
   assert.ok(SCC_HUB_LINKS.some((link) => link.href === "/weed-dispensary-mississauga/"));
 
   const landing = read("app/components/GBPLandingPage.tsx");
-  const home = read("app/page.tsx");
+  const home = read("app/HomePage.tsx");
   const resources = read("app/resources/resourceData.ts");
   const info = read("app/lib/seoPages.ts");
 
