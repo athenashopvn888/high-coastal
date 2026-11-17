@@ -67,7 +67,7 @@ test("required NAP surfaces import the locked identity", () => {
     "app/components/Footer.tsx",
     "app/contact/page.tsx",
     "app/components/GBPLandingPage.tsx",
-    "app/page.tsx",
+    "app/HomePage.tsx",
     "app/visit/page.tsx",
     "app/24-hour-dispensary-mississauga/page.tsx",
     "app/high-coastal-visit/page.tsx",

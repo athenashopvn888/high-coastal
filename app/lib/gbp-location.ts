@@ -30,7 +30,7 @@ export const gbpLocation = {
   latitude: String(nap.latitude),
   longitude: String(nap.longitude),
   hours: ["Open 24 Hours"],
-  seoTitle: "Weed Dispensary in Mississauga | High Coastal Cannabis",
+  seoTitle: "Weed Dispensary near me in Mississauga | High Coastal Cannabis",
   metaDescription: "High Coastal Cannabis is open 24 hours at 1720 Lakeshore Rd W in Mississauga. Adults 19+ can explore flower, pre-rolls, edibles, vapes and concentrates. Call +1 (289) 815-5222.",
   localLandmarks: ["Lakeshore Rd W", "Clarkson", "Mississauga"],
   introVariant: "High Coastal Cannabis is a local weed dispensary at 1720 Lakeshore Rd W in Mississauga. Adults 19+ can browse flower tiers and category pages for pre-rolls, edibles, vapes, concentrates, and accessories before visiting.",

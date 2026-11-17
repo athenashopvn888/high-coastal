@@ -55,7 +55,7 @@ test("TV routes read the live flag and website surfaces keep the static gate", (
   assert.doesNotMatch(route, /SHOW_CIGARETTES/);
   assert.match(read("app/components/Navbar.tsx"), /SHOW_CIGARETTES/);
   assert.match(read("app/sitemap.ts"), /SHOW_CIGARETTES/);
-  assert.match(read("app/page.tsx"), /SHOW_CIGARETTES/);
+  assert.match(read("app/HomePage.tsx"), /SHOW_CIGARETTES/);
   assert.match(read("app/layout.tsx"), /tv: SHOW_CIGARETTES/);
   assert.match(read("app/tv/layout.tsx"), /getCigaretteSnapshot/);
   assert.match(read("app/tv2/layout.tsx"), /getCigaretteSnapshot/);

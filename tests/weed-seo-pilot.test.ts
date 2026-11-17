@@ -8,7 +8,7 @@ test("LC01 keeps the protected owner and exact metadata", () => {
   const page = read("app/weed-dispensary-mississauga/page.tsx");
   const location = read("app/lib/gbp-location.ts");
   const sitemap = read("app/sitemap.ts");
-  assert.match(location, /Weed Dispensary in Mississauga \| High Coastal Cannabis/);
+  assert.match(location, /Weed Dispensary near me in Mississauga \| High Coastal Cannabis/);
   assert.match(location, /High Coastal Cannabis is open 24 hours at 1720 Lakeshore Rd W/);
   assert.match(sitemap, /weed-dispensary-mississauga`/);
   assert.doesNotMatch(sitemap, /weed-dispensary-mississauga\//);
@@ -45,7 +45,7 @@ test("LC01 V2.1 owners use tier-first Weed labels and direct canonicals", () => 
   const tierCopy = read("app/lib/tierSeoContent.ts");
   const nav = read("app/components/Navbar.tsx");
   const footer = read("app/components/Footer.tsx");
-  const home = read("app/page.tsx");
+  const home = read("app/HomePage.tsx");
   const resources = read("app/resources/resourceData.ts");
   const redirects = read("next.config.ts");
 

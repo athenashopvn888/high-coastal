@@ -42,7 +42,7 @@ test("nicotine and THC vape category labels match their routes", () => {
   assert.match(products, /"VAPE PENS": \{[\s\S]*?name: "Nicotine Vape", slug: "vapes"/);
   assert.match(products, /"VAPE DISPOSABLE": \{[\s\S]*?name: "THC Vape", slug: "vape-disposables"/);
 
-  const home = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const home = readFileSync(new URL("../app/HomePage.tsx", import.meta.url), "utf8");
   assert.match(home, /name: "THC Vape", slug: "items\/vape-disposables"/);
   const navbar = readFileSync(new URL("../app/components/Navbar.tsx", import.meta.url), "utf8");
   assert.match(navbar, /href: "\/items\/vapes", label: "Nicotine Vape"/);

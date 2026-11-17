@@ -11,7 +11,7 @@ const read = (path: string) => readFileSync(path, "utf8");
 
 const SHORT = ["exotic", "premium", "aaa", "aa", "budget"] as const;
 const HUB_SURFACES = [
-  "app/page.tsx",
+  "app/HomePage.tsx",
   "app/visit/page.tsx",
   "app/high-coastal-visit/page.tsx",
   "app/24-hour-dispensary-mississauga/page.tsx",
@@ -94,7 +94,7 @@ test("dense linking graph covers homepage, visit, brand FAQ, B12, weed hub, and 
     assert.match(source, /SccHubNav/, `${file} must render the SCC hub`);
   }
 
-  const home = read("app/page.tsx");
+  const home = read("app/HomePage.tsx");
   const visit = read("app/visit/page.tsx");
   const brand = read("app/high-coastal-visit/page.tsx");
   const hours = read("app/24-hour-dispensary-mississauga/page.tsx");

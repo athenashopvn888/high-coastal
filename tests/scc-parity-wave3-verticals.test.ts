@@ -17,7 +17,7 @@ import {
 const read = (path: string) => readFileSync(path, "utf8");
 
 const HUB_SURFACES = [
-  "app/page.tsx",
+  "app/HomePage.tsx",
   "app/visit/page.tsx",
   "app/high-coastal-visit/page.tsx",
   "app/24-hour-dispensary-mississauga/page.tsx",
@@ -155,7 +155,7 @@ test("Master GO: five Lakeshore pillars have FAQs, hub cards, and tied supportin
 
   const hub = read("app/lib/sccHub.ts");
   const discovery = read("app/lib/weedDiscovery.ts");
-  const home = read("app/page.tsx");
+  const home = read("app/HomePage.tsx");
   const delivery = read("app/cannabis-delivery-lakeshore/page.tsx");
   const info = read("app/lib/seoPages.ts");
   const resources = read("app/resources/resourceData.ts");

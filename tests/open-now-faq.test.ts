@@ -55,7 +55,7 @@ test("open-now FAQ is linked from hub surfaces without a second indexed article 
   const footer = read("app/components/Footer.tsx");
   const nav = read("app/components/Navbar.tsx");
   const landing = read("app/components/GBPLandingPage.tsx");
-  const home = read("app/page.tsx");
+  const home = read("app/HomePage.tsx");
   const visit = read("app/visit/page.tsx");
   const resources = read("app/resources/resourceData.ts");
   const redirects = await nextConfig.redirects!();
