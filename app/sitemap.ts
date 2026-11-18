@@ -102,6 +102,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     },
+    {
+      url: `${BASE}/resources/pink-godzilla-strain`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    },
   ];
 
   const seoPages: MetadataRoute.Sitemap = SEO_PAGES.map((p) => ({
